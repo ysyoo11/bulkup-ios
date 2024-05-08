@@ -1,5 +1,5 @@
 //
-//  SetList.swift
+//  ExerciseList.swift
 //  BulkUp
 //
 //  Created by Yuta Horiuchi on 7/5/2024.
@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-enum SetListType: String {
+enum ExerciseListType: String {
     case exercise = "exercise"
     case newTemplate = "newTemplate"
 }
 
-struct SetList: View {
-    let type: SetListType
+struct ExerciseList: View {
+    let type: ExerciseListType
     let name: String
     let exerciseType: String
     let bodyPart: String
@@ -85,16 +85,13 @@ struct SetList: View {
 
 #Preview {
     VStack (spacing: 0){
-        Text("SetList for Exercise View")
-            .font(.headline)
-            .padding()
-        SetList(type: .exercise,
+        ExerciseList(type: .exercise,
                 name: "Squat",
                 exerciseType: "Barbell",
                 bodyPart: "Legs",
                 imageUrl: "",
                 action: { print("SetList tapped") })
-        SetList(type: .exercise,
+        ExerciseList(type: .exercise,
                 name: "Squat",
                 exerciseType: "Barbell",
                 bodyPart: "Legs",
@@ -106,13 +103,13 @@ struct SetList: View {
         Text("SetList for NewTemplate View")
             .font(.headline)
             .padding()
-        SetList(type: .newTemplate,
+        ExerciseList(type: .newTemplate,
                 name: "Bench Press",
                 exerciseType: "Dumbbell",
                 bodyPart: "Chest",
                 imageUrl: "",
                 action: { print("Questionmark is tapped") })
-        SetList(type: .newTemplate,
+        ExerciseList(type: .newTemplate,
                 name: "Bench Press",
                 exerciseType: "Dumbbell",
                 bodyPart: "Chest",
