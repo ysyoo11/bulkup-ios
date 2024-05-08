@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct SignUpView: View {
-    @State private var username: String = ""
-    @State private var password: String = ""
     @State private var email: String = ""
+    @State private var password: String = ""
     
     // TODO:
     private func signUp() {
@@ -40,7 +39,7 @@ struct SignUpView: View {
                     BulkUpTextField(
                         placeholder: "",
                         type: .dark,
-                        label: "Username",
+                        label: "Email Address",
                         size: .sm
                     )
                     
@@ -50,13 +49,6 @@ struct SignUpView: View {
                         label: "Password",
                         size: .sm,
                         isSecure: true
-                    )
-                    
-                    BulkUpTextField(
-                        placeholder: "",
-                        type: .dark,
-                        label: "Email Address",
-                        size: .sm
                     )
                     
                     BulkUpButton(
