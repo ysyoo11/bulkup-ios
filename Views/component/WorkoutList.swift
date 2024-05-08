@@ -1,5 +1,5 @@
 //
-//  ExerciseList.swift
+//  WorkoutList.swift
 //  BulkUp
 //
 //  Created by Yuta Horiuchi on 7/5/2024.
@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-enum ExerciseListType: String {
+enum WorkoutListType: String {
     case exercise = "exercise"
     case newTemplate = "newTemplate"
 }
 
-struct ExerciseList: View {
-    let type: ExerciseListType
+struct WorkoutList: View {
+    let type: WorkoutListType
     let name: String
     let exerciseType: String
     let bodyPart: String
@@ -85,13 +85,13 @@ struct ExerciseList: View {
 
 #Preview {
     VStack (spacing: 0){
-        ExerciseList(type: .exercise,
+        WorkoutList(type: .exercise,
                 name: "Squat",
                 exerciseType: "Barbell",
                 bodyPart: "Legs",
                 imageUrl: "",
                 action: { print("SetList tapped") })
-        ExerciseList(type: .exercise,
+        WorkoutList(type: .exercise,
                 name: "Squat",
                 exerciseType: "Barbell",
                 bodyPart: "Legs",
@@ -103,13 +103,13 @@ struct ExerciseList: View {
         Text("SetList for NewTemplate View")
             .font(.headline)
             .padding()
-        ExerciseList(type: .newTemplate,
+        WorkoutList(type: .newTemplate,
                 name: "Bench Press",
                 exerciseType: "Dumbbell",
                 bodyPart: "Chest",
                 imageUrl: "",
                 action: { print("Questionmark is tapped") })
-        ExerciseList(type: .newTemplate,
+        WorkoutList(type: .newTemplate,
                 name: "Bench Press",
                 exerciseType: "Dumbbell",
                 bodyPart: "Chest",

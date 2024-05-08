@@ -25,7 +25,7 @@
 		A27C955A2BEB40A200A32358 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A27C95592BEB40A200A32358 /* FirebaseStorage */; settings = {ATTRIBUTES = (Required, ); }; };
 		A2A5AD112BE8E3B50087E2BA /* OngoingExerciseMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A5AD102BE8E3B50087E2BA /* OngoingExerciseMenu.swift */; };
 		A2A5AD132BE8E4430087E2BA /* TemplateEditMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A5AD122BE8E4430087E2BA /* TemplateEditMenu.swift */; };
-		A2B526942BEB42ED0093BDE1 /* ExerciseList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B526932BEB42ED0093BDE1 /* ExerciseList.swift */; };
+		A2B526942BEB42ED0093BDE1 /* WorkoutList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B526932BEB42ED0093BDE1 /* WorkoutList.swift */; };
 		A2B526962BEB47280093BDE1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2B526952BEB47280093BDE1 /* GoogleService-Info.plist */; };
 		A2B526992BEB47C30093BDE1 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B526982BEB47C30093BDE1 /* SignUpView.swift */; };
 		A2B5269B2BEB47FB0093BDE1 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B5269A2BEB47FB0093BDE1 /* WelcomeView.swift */; };
@@ -49,7 +49,7 @@
 		A271303C2BEB616000CDC8A9 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		A2A5AD102BE8E3B50087E2BA /* OngoingExerciseMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingExerciseMenu.swift; sourceTree = "<group>"; };
 		A2A5AD122BE8E4430087E2BA /* TemplateEditMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateEditMenu.swift; sourceTree = "<group>"; };
-		A2B526932BEB42ED0093BDE1 /* ExerciseList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseList.swift; sourceTree = "<group>"; };
+		A2B526932BEB42ED0093BDE1 /* WorkoutList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutList.swift; sourceTree = "<group>"; };
 		A2B526952BEB47280093BDE1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A2B526982BEB47C30093BDE1 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		A2B5269A2BEB47FB0093BDE1 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
@@ -113,7 +113,7 @@
 				A2A5AD102BE8E3B50087E2BA /* OngoingExerciseMenu.swift */,
 				A2A5AD122BE8E4430087E2BA /* TemplateEditMenu.swift */,
 				A25739EA2BE8E538001C013E /* HistoryEditMenu.swift */,
-				A2B526932BEB42ED0093BDE1 /* ExerciseList.swift */,
+				A2B526932BEB42ED0093BDE1 /* WorkoutList.swift */,
 				A2701BE12BEB78680028DDAA /* HistoryCard.swift */,
 			);
 			path = component;
@@ -247,7 +247,7 @@
 			files = (
 				A271303D2BEB616000CDC8A9 /* LogInView.swift in Sources */,
 				A2A5AD132BE8E4430087E2BA /* TemplateEditMenu.swift in Sources */,
-				A2B526942BEB42ED0093BDE1 /* ExerciseList.swift in Sources */,
+				A2B526942BEB42ED0093BDE1 /* WorkoutList.swift in Sources */,
 				A264A0C22BE8C70F00724C36 /* BulkUpMenu.swift in Sources */,
 				A2701BE02BEB762A0028DDAA /* Types.swift in Sources */,
 				A264A0C02BE8950B00724C36 /* BulkUpTextField.swift in Sources */,
