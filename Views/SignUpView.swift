@@ -8,8 +8,72 @@
 import SwiftUI
 
 struct SignUpView: View {
+    @State private var username: String = ""
+    @State private var password: String = ""
+    @State private var email: String = ""
+    
+    // TODO:
+    private func signUp() {
+        print("Sign up tapped")
+    }
+    
     var body: some View {
-        Text("Sign up View")
+        NavigationView {
+            ZStack {
+                Image(.welcome)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .ignoresSafeArea()
+                    .blur(radius: 10)
+                
+                Rectangle()
+                    .opacity(0.6)
+                    .ignoresSafeArea()
+                
+                VStack(spacing: 20) {
+                    Text("Sign Up")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    BulkUpTextField(
+                        placeholder: "",
+                        type: .dark,
+                        label: "Username",
+                        size: .sm
+                    )
+                    
+                    BulkUpTextField(
+                        placeholder: "",
+                        type: .dark,
+                        label: "Password",
+                        size: .sm,
+                        isSecure: true
+                    )
+                    
+                    BulkUpTextField(
+                        placeholder: "",
+                        type: .dark,
+                        label: "Email Address",
+                        size: .sm
+                    )
+                    
+                    BulkUpButton(
+                        text: "Sign Up",
+                        color: .blue,
+                        isDisabled: true,
+                        isFullWidth: true,
+                        onClick: signUp
+                    )
+                    .padding(.top, 20)
+                    
+                    Spacer()
+                }
+                .padding(.top)
+                .padding(.horizontal, 80)
+            }
+        }
     }
 }
 
