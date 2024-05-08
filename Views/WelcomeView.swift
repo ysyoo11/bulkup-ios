@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct WelcomeView: View {
-    @State private var isShowingSignUp = false
-    
     // TODO: Google sign-up
     private func signInWithGoogle() {
         print("Sign in with Google")

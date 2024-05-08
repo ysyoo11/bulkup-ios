@@ -1,5 +1,5 @@
 //
-//  LogInView.swift
+//  SignUpView.swift
 //  BulkUp
 //
 //  Created by Yeonsuk Yoo on 8/5/2024.
@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct LogInView: View {
+struct SignUpView: View {
     var body: some View {
-        Text("Login View")
+        Text("Sign up View")
     }
 }
 
 #Preview {
-    LogInView()
+    SignUpView()
 }
