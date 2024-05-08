@@ -44,7 +44,7 @@ struct BulkUpButton: View {
             Text(text)
                 .foregroundColor(color.textColor)
                 .padding(.horizontal, 10)
-                .padding(.vertical, 6)
+                .padding(.vertical, 8)
                 .bold()
                 .frame(maxWidth: isFullWidth ? .infinity : nil)
         }

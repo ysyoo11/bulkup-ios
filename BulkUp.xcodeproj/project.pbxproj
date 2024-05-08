@@ -9,19 +9,23 @@
 /* Begin PBXBuildFile section */
 		A25739EB2BE8E538001C013E /* HistoryEditMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25739EA2BE8E538001C013E /* HistoryEditMenu.swift */; };
 		A25739ED2BE8F75A001C013E /* BulkUpDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25739EC2BE8F75A001C013E /* BulkUpDialog.swift */; };
-		A25739F42BE90A1C001C013E /* ModalView in Frameworks */ = {isa = PBXBuildFile; productRef = A25739F32BE90A1C001C013E /* ModalView */; };
+		A25739F42BE90A1C001C013E /* ModalView in Frameworks */ = {isa = PBXBuildFile; productRef = A25739F32BE90A1C001C013E /* ModalView */; settings = {ATTRIBUTES = (Required, ); }; };
 		A264A0BE2BE88D7600724C36 /* BulkUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A264A0BD2BE88D7600724C36 /* BulkUpButton.swift */; };
 		A264A0C02BE8950B00724C36 /* BulkUpTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A264A0BF2BE8950B00724C36 /* BulkUpTextField.swift */; };
 		A264A0C22BE8C70F00724C36 /* BulkUpMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A264A0C12BE8C70F00724C36 /* BulkUpMenu.swift */; };
-		A27C954F2BEB3F8600A32358 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A27C954E2BEB3F8600A32358 /* GoogleService-Info.plist */; };
-		A27C95522BEB40A200A32358 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = A27C95512BEB40A200A32358 /* FirebaseAppCheck */; };
-		A27C95542BEB40A200A32358 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A27C95532BEB40A200A32358 /* FirebaseAuth */; };
-		A27C95562BEB40A200A32358 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = A27C95552BEB40A200A32358 /* FirebaseDatabase */; };
-		A27C95582BEB40A200A32358 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A27C95572BEB40A200A32358 /* FirebaseDatabaseSwift */; };
-		A27C955A2BEB40A200A32358 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A27C95592BEB40A200A32358 /* FirebaseStorage */; };
+		A270B24A2BEB55820042AD0D /* BulkUpNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = A270B2492BEB55820042AD0D /* BulkUpNavigationLink.swift */; };
+		A271303D2BEB616000CDC8A9 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A271303C2BEB616000CDC8A9 /* LogInView.swift */; };
+		A27C95522BEB40A200A32358 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = A27C95512BEB40A200A32358 /* FirebaseAppCheck */; settings = {ATTRIBUTES = (Required, ); }; };
+		A27C95542BEB40A200A32358 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A27C95532BEB40A200A32358 /* FirebaseAuth */; settings = {ATTRIBUTES = (Required, ); }; };
+		A27C95562BEB40A200A32358 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = A27C95552BEB40A200A32358 /* FirebaseDatabase */; settings = {ATTRIBUTES = (Required, ); }; };
+		A27C95582BEB40A200A32358 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A27C95572BEB40A200A32358 /* FirebaseDatabaseSwift */; settings = {ATTRIBUTES = (Required, ); }; };
+		A27C955A2BEB40A200A32358 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A27C95592BEB40A200A32358 /* FirebaseStorage */; settings = {ATTRIBUTES = (Required, ); }; };
 		A2A5AD112BE8E3B50087E2BA /* OngoingExerciseMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A5AD102BE8E3B50087E2BA /* OngoingExerciseMenu.swift */; };
 		A2A5AD132BE8E4430087E2BA /* TemplateEditMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A5AD122BE8E4430087E2BA /* TemplateEditMenu.swift */; };
 		A2B526942BEB42ED0093BDE1 /* SetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B526932BEB42ED0093BDE1 /* SetList.swift */; };
+		A2B526962BEB47280093BDE1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2B526952BEB47280093BDE1 /* GoogleService-Info.plist */; };
+		A2B526992BEB47C30093BDE1 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B526982BEB47C30093BDE1 /* SignUpView.swift */; };
+		A2B5269B2BEB47FB0093BDE1 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B5269A2BEB47FB0093BDE1 /* WelcomeView.swift */; };
 		A2D68EBA2BE8DD66000D19CB /* RestTimerSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D68EB92BE8DD66000D19CB /* RestTimerSetupView.swift */; };
 		F295E3752BE647B600D2DE64 /* BulkUpApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F295E3742BE647B600D2DE64 /* BulkUpApp.swift */; };
 		F295E3772BE647B600D2DE64 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F295E3762BE647B600D2DE64 /* ContentView.swift */; };
@@ -35,10 +39,14 @@
 		A264A0BD2BE88D7600724C36 /* BulkUpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkUpButton.swift; sourceTree = "<group>"; };
 		A264A0BF2BE8950B00724C36 /* BulkUpTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkUpTextField.swift; sourceTree = "<group>"; };
 		A264A0C12BE8C70F00724C36 /* BulkUpMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkUpMenu.swift; sourceTree = "<group>"; };
-		A27C954E2BEB3F8600A32358 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A270B2492BEB55820042AD0D /* BulkUpNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkUpNavigationLink.swift; sourceTree = "<group>"; };
+		A271303C2BEB616000CDC8A9 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		A2A5AD102BE8E3B50087E2BA /* OngoingExerciseMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingExerciseMenu.swift; sourceTree = "<group>"; };
 		A2A5AD122BE8E4430087E2BA /* TemplateEditMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateEditMenu.swift; sourceTree = "<group>"; };
 		A2B526932BEB42ED0093BDE1 /* SetList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetList.swift; sourceTree = "<group>"; };
+		A2B526952BEB47280093BDE1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A2B526982BEB47C30093BDE1 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		A2B5269A2BEB47FB0093BDE1 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		A2D68EB92BE8DD66000D19CB /* RestTimerSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestTimerSetupView.swift; sourceTree = "<group>"; };
 		F295E3712BE647B600D2DE64 /* BulkUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BulkUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F295E3742BE647B600D2DE64 /* BulkUpApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkUpApp.swift; sourceTree = "<group>"; };
@@ -70,6 +78,9 @@
 				A2D68EBB2BE8E29A000D19CB /* base */,
 				A2A5AD0F2BE8E3110087E2BA /* component */,
 				A2D68EB92BE8DD66000D19CB /* RestTimerSetupView.swift */,
+				A2B526982BEB47C30093BDE1 /* SignUpView.swift */,
+				A2B5269A2BEB47FB0093BDE1 /* WelcomeView.swift */,
+				A271303C2BEB616000CDC8A9 /* LogInView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -92,6 +103,7 @@
 				A264A0BF2BE8950B00724C36 /* BulkUpTextField.swift */,
 				A264A0C12BE8C70F00724C36 /* BulkUpMenu.swift */,
 				A25739EC2BE8F75A001C013E /* BulkUpDialog.swift */,
+				A270B2492BEB55820042AD0D /* BulkUpNavigationLink.swift */,
 			);
 			path = base;
 			sourceTree = "<group>";
@@ -103,7 +115,7 @@
 				F295E3742BE647B600D2DE64 /* BulkUpApp.swift */,
 				F295E3762BE647B600D2DE64 /* ContentView.swift */,
 				F295E3782BE647B800D2DE64 /* Assets.xcassets */,
-				A27C954E2BEB3F8600A32358 /* GoogleService-Info.plist */,
+				A2B526952BEB47280093BDE1 /* GoogleService-Info.plist */,
 				F295E37A2BE647B800D2DE64 /* Preview Content */,
 				F295E3722BE647B600D2DE64 /* Products */,
 			);
@@ -196,8 +208,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F295E37C2BE647B800D2DE64 /* Preview Assets.xcassets in Resources */,
+				A2B526962BEB47280093BDE1 /* GoogleService-Info.plist in Resources */,
 				F295E3792BE647B800D2DE64 /* Assets.xcassets in Resources */,
-				A27C954F2BEB3F8600A32358 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,12 +220,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A271303D2BEB616000CDC8A9 /* LogInView.swift in Sources */,
 				A2A5AD132BE8E4430087E2BA /* TemplateEditMenu.swift in Sources */,
 				A2B526942BEB42ED0093BDE1 /* SetList.swift in Sources */,
 				A264A0C22BE8C70F00724C36 /* BulkUpMenu.swift in Sources */,
 				A264A0C02BE8950B00724C36 /* BulkUpTextField.swift in Sources */,
+				A2B526992BEB47C30093BDE1 /* SignUpView.swift in Sources */,
 				F295E3772BE647B600D2DE64 /* ContentView.swift in Sources */,
 				A2D68EBA2BE8DD66000D19CB /* RestTimerSetupView.swift in Sources */,
+				A2B5269B2BEB47FB0093BDE1 /* WelcomeView.swift in Sources */,
+				A270B24A2BEB55820042AD0D /* BulkUpNavigationLink.swift in Sources */,
 				F295E3752BE647B600D2DE64 /* BulkUpApp.swift in Sources */,
 				A264A0BE2BE88D7600724C36 /* BulkUpButton.swift in Sources */,
 				A2A5AD112BE8E3B50087E2BA /* OngoingExerciseMenu.swift in Sources */,

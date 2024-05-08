@@ -54,6 +54,7 @@ struct BulkUpTextField: View {
     var isSearch: Bool = false
     var label: String?
     var size: TextFieldSize = .base
+    var isSecure: Bool = false
     
     @State private var text: String = ""
     @FocusState private var isFocused: Bool
@@ -61,7 +62,10 @@ struct BulkUpTextField: View {
     var body: some View {
         VStack(alignment: .leading) {
             if let label = label {
-                Text(label).font(.system(size: 16)).foregroundColor(type.textColor)
+                Text(label)
+                    .font(.system(size: 16))
+                    .foregroundColor(type.textColor)
+                    .bold()
             }
             HStack {
                 if isSearch {
@@ -69,13 +73,23 @@ struct BulkUpTextField: View {
                         .padding(.leading, 10)
                         .foregroundColor(type.textColor)
                 }
-                TextField(placeholder, text: $text)
-                    .foregroundColor(type.textColor)
-                    .font(Font.system(size: size.fontSize))
-                    .padding(isSearch
-                             ? .init(top: 10, leading: 0, bottom: 10, trailing: 10)
-                             : .init(top: 10, leading: 10, bottom: 10, trailing: 10))
-                    .focused($isFocused)
+                if isSecure {
+                    SecureField(placeholder, text: $text)
+                        .foregroundColor(type.textColor)
+                        .font(Font.system(size: size.fontSize))
+                        .padding(isSearch
+                                 ? .init(top: 10, leading: 0, bottom: 10, trailing: 10)
+                                 : .init(top: 10, leading: 10, bottom: 10, trailing: 10))
+                        .focused($isFocused)
+                } else {
+                    TextField(placeholder, text: $text)
+                        .foregroundColor(type.textColor)
+                        .font(Font.system(size: size.fontSize))
+                        .padding(isSearch
+                                 ? .init(top: 10, leading: 0, bottom: 10, trailing: 10)
+                                 : .init(top: 10, leading: 10, bottom: 10, trailing: 10))
+                        .focused($isFocused)
+                }
             }
             .background(type.backgroundColor)
             .cornerRadius(6)
@@ -109,6 +123,12 @@ struct BulkUpTextField: View {
             Spacer()
             BulkUpTextField(placeholder: "yysuk0302@gmail.com", type: .dark, label: "Email")
             Spacer()
+            BulkUpTextField(
+                placeholder: "*******",
+                type: .dark,
+                label: "Password",
+                isSecure: true
+            )
         }
         .background(.black)
         .padding(.vertical)
