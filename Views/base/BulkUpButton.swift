@@ -51,6 +51,7 @@ struct BulkUpButton: View {
         .disabled(isDisabled)
         .background(color.backgroundColor)
         .clipShape(RoundedRectangle(cornerRadius: 6))
+        .opacity(isDisabled ? 0.6 : 1.0)
     }
 }
 
