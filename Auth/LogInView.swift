@@ -6,10 +6,10 @@
 //
 
 import SwiftUI
+import Combine
 
 struct LogInView: View {
-    @State private var email: String = ""
-    @State private var password: String = ""
+    @EnvironmentObject var viewModel: AuthenticationViewModel
     
     // TODO:
     private func logIn() {
@@ -40,7 +40,8 @@ struct LogInView: View {
                         placeholder: "",
                         type: .dark,
                         label: "Email Address",
-                        size: .sm
+                        size: .sm,
+                        text: $viewModel.email
                     )
                     
                     BulkUpTextField(
@@ -48,7 +49,8 @@ struct LogInView: View {
                         type: .dark,
                         label: "Password",
                         size: .sm,
-                        isSecure: true
+                        isSecure: true,
+                        text: $viewModel.password
                     )
                     
                     BulkUpButton(
@@ -71,4 +73,5 @@ struct LogInView: View {
 
 #Preview {
     LogInView()
+        .environmentObject(AuthenticationViewModel())
 }

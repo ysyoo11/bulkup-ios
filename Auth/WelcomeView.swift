@@ -8,9 +8,21 @@
 import SwiftUI
 
 struct WelcomeView: View {
-    // TODO: Google sign-up
+    @EnvironmentObject var viewModel: AuthenticationViewModel
+    @Environment(\.dismiss) var dismiss
+    
+    @Binding var showWelcomeView: Bool
+    
     private func signInWithGoogle() {
         print("Sign in with Google")
+        Task {
+            if await viewModel.signInWithGoogle() == true {
+                print("dismissed")
+                dismiss()
+            } else {
+                print("hmm")
+            }
+        }
     }
     
     var body: some View {
@@ -52,7 +64,7 @@ struct WelcomeView: View {
                         
                         BulkUpNavigationLink(
                             text: "Sign Up",
-                            destination: SignUpView(),
+                            destination: SignUpView(showWelcomeView: $showWelcomeView),
                             type: .blue,
                             isFullWidth: true,
                             isDisabled: false
@@ -73,5 +85,6 @@ struct WelcomeView: View {
 }
 
 #Preview {
-    WelcomeView()
+    WelcomeView(showWelcomeView: .constant(true))
+        .environmentObject(AuthenticationViewModel())
 }
