@@ -55,21 +55,21 @@ struct BulkUpNavigationLink<Destination: View>: View {
         VStack {
             BulkUpNavigationLink(
                 text: "Finish",
-                destination: SignUpView(),
+                destination: SignUpView(showWelcomeView: .constant(true)),
                 type: .green,
                 isFullWidth: false,
                 isDisabled: false
             )
             BulkUpNavigationLink(
                 text: "Sign Up",
-                destination: SignUpView(),
+                destination: SignUpView(showWelcomeView: .constant(true)),
                 type: .blue,
                 isFullWidth: true,
                 isDisabled: false
             )
             BulkUpNavigationLink(
                 text: "Log in",
-                destination: LogInView(),
+                destination: LogInView(showWelcomeView: .constant(true)),
                 type: .noBorder,
                 isFullWidth: true,
                 isDisabled: false

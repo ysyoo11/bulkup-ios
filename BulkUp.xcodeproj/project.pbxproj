@@ -7,9 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A21625B42BEB7EFD00BBE9AC /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = A21625B32BEB7EFD00BBE9AC /* GoogleSignIn */; };
+		A21625B62BEB7EFD00BBE9AC /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A21625B52BEB7EFD00BBE9AC /* GoogleSignInSwift */; };
+		A21625BA2BEB844200BBE9AC /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21625B92BEB844200BBE9AC /* AuthenticationViewModel.swift */; };
 		A25739EB2BE8E538001C013E /* HistoryEditMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25739EA2BE8E538001C013E /* HistoryEditMenu.swift */; };
 		A25739ED2BE8F75A001C013E /* BulkUpDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25739EC2BE8F75A001C013E /* BulkUpDialog.swift */; };
 		A25739F42BE90A1C001C013E /* ModalView in Frameworks */ = {isa = PBXBuildFile; productRef = A25739F32BE90A1C001C013E /* ModalView */; settings = {ATTRIBUTES = (Required, ); }; };
+		A25B17EF2BECB34400E8E6E7 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25B17EE2BECB34400E8E6E7 /* AuthenticationManager.swift */; };
+		A25B17F12BECC2D200E8E6E7 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25B17F02BECC2D200E8E6E7 /* ProfileView.swift */; };
+		A25B17F32BECDD2D00E8E6E7 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25B17F22BECDD2D00E8E6E7 /* Errors.swift */; };
 		A264A0BE2BE88D7600724C36 /* BulkUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A264A0BD2BE88D7600724C36 /* BulkUpButton.swift */; };
 		A264A0C02BE8950B00724C36 /* BulkUpTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A264A0BF2BE8950B00724C36 /* BulkUpTextField.swift */; };
 		A264A0C22BE8C70F00724C36 /* BulkUpMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A264A0C12BE8C70F00724C36 /* BulkUpMenu.swift */; };
@@ -31,14 +37,19 @@
 		A2B5269B2BEB47FB0093BDE1 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B5269A2BEB47FB0093BDE1 /* WelcomeView.swift */; };
 		A2D68EBA2BE8DD66000D19CB /* RestTimerSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D68EB92BE8DD66000D19CB /* RestTimerSetupView.swift */; };
 		F295E3752BE647B600D2DE64 /* BulkUpApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F295E3742BE647B600D2DE64 /* BulkUpApp.swift */; };
-		F295E3772BE647B600D2DE64 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F295E3762BE647B600D2DE64 /* ContentView.swift */; };
+		F295E3772BE647B600D2DE64 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F295E3762BE647B600D2DE64 /* RootView.swift */; };
 		F295E3792BE647B800D2DE64 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F295E3782BE647B800D2DE64 /* Assets.xcassets */; };
 		F295E37C2BE647B800D2DE64 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F295E37B2BE647B800D2DE64 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A21625B72BEB7FB600BBE9AC /* BulkUp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "BulkUp-Info.plist"; sourceTree = "<group>"; };
+		A21625B92BEB844200BBE9AC /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		A25739EA2BE8E538001C013E /* HistoryEditMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryEditMenu.swift; sourceTree = "<group>"; };
 		A25739EC2BE8F75A001C013E /* BulkUpDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkUpDialog.swift; sourceTree = "<group>"; };
+		A25B17EE2BECB34400E8E6E7 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
+		A25B17F02BECC2D200E8E6E7 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		A25B17F22BECDD2D00E8E6E7 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		A264A0BD2BE88D7600724C36 /* BulkUpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkUpButton.swift; sourceTree = "<group>"; };
 		A264A0BF2BE8950B00724C36 /* BulkUpTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkUpTextField.swift; sourceTree = "<group>"; };
 		A264A0C12BE8C70F00724C36 /* BulkUpMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkUpMenu.swift; sourceTree = "<group>"; };
@@ -56,7 +67,7 @@
 		A2D68EB92BE8DD66000D19CB /* RestTimerSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestTimerSetupView.swift; sourceTree = "<group>"; };
 		F295E3712BE647B600D2DE64 /* BulkUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BulkUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F295E3742BE647B600D2DE64 /* BulkUpApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkUpApp.swift; sourceTree = "<group>"; };
-		F295E3762BE647B600D2DE64 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F295E3762BE647B600D2DE64 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		F295E3782BE647B800D2DE64 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F295E37B2BE647B800D2DE64 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -69,25 +80,37 @@
 				A27C95582BEB40A200A32358 /* FirebaseDatabaseSwift in Frameworks */,
 				A27C95522BEB40A200A32358 /* FirebaseAppCheck in Frameworks */,
 				A27C95542BEB40A200A32358 /* FirebaseAuth in Frameworks */,
+				A21625B62BEB7EFD00BBE9AC /* GoogleSignInSwift in Frameworks */,
 				A27C95562BEB40A200A32358 /* FirebaseDatabase in Frameworks */,
 				A25739F42BE90A1C001C013E /* ModalView in Frameworks */,
 				A27C955A2BEB40A200A32358 /* FirebaseStorage in Frameworks */,
+				A21625B42BEB7EFD00BBE9AC /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A21625B82BEB83CC00BBE9AC /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				A25B17EE2BECB34400E8E6E7 /* AuthenticationManager.swift */,
+				A2B5269A2BEB47FB0093BDE1 /* WelcomeView.swift */,
+				A2B526982BEB47C30093BDE1 /* SignUpView.swift */,
+				A271303C2BEB616000CDC8A9 /* LogInView.swift */,
+				A21625B92BEB844200BBE9AC /* AuthenticationViewModel.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
 		A264A0BC2BE88D6000724C36 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A2701BE52BEB79EC0028DDAA /* HistoryView.swift */,
+				A25B17F02BECC2D200E8E6E7 /* ProfileView.swift */,
+				A2D68EB92BE8DD66000D19CB /* RestTimerSetupView.swift */,
 				A2D68EBB2BE8E29A000D19CB /* base */,
 				A2A5AD0F2BE8E3110087E2BA /* component */,
-				A2D68EB92BE8DD66000D19CB /* RestTimerSetupView.swift */,
-				A2B526982BEB47C30093BDE1 /* SignUpView.swift */,
-				A2B5269A2BEB47FB0093BDE1 /* WelcomeView.swift */,
-				A271303C2BEB616000CDC8A9 /* LogInView.swift */,
-				A2701BE52BEB79EC0028DDAA /* HistoryView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -103,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				A2701BDF2BEB762A0028DDAA /* Types.swift */,
+				A25B17F22BECDD2D00E8E6E7 /* Errors.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -134,13 +158,15 @@
 		F295E3682BE647B500D2DE64 = {
 			isa = PBXGroup;
 			children = (
+				A21625B82BEB83CC00BBE9AC /* Auth */,
 				A2701BDE2BEB761A0028DDAA /* Model */,
 				A2701BD92BEB74A80028DDAA /* ViewModel */,
 				A264A0BC2BE88D6000724C36 /* Views */,
 				F295E3742BE647B600D2DE64 /* BulkUpApp.swift */,
-				F295E3762BE647B600D2DE64 /* ContentView.swift */,
+				F295E3762BE647B600D2DE64 /* RootView.swift */,
 				F295E3782BE647B800D2DE64 /* Assets.xcassets */,
 				A2B526952BEB47280093BDE1 /* GoogleService-Info.plist */,
+				A21625B72BEB7FB600BBE9AC /* BulkUp-Info.plist */,
 				F295E37A2BE647B800D2DE64 /* Preview Content */,
 				F295E3722BE647B600D2DE64 /* Products */,
 			);
@@ -185,6 +211,8 @@
 				A27C95552BEB40A200A32358 /* FirebaseDatabase */,
 				A27C95572BEB40A200A32358 /* FirebaseDatabaseSwift */,
 				A27C95592BEB40A200A32358 /* FirebaseStorage */,
+				A21625B32BEB7EFD00BBE9AC /* GoogleSignIn */,
+				A21625B52BEB7EFD00BBE9AC /* GoogleSignInSwift */,
 			);
 			productName = BulkUp;
 			productReference = F295E3712BE647B600D2DE64 /* BulkUp.app */;
@@ -217,6 +245,7 @@
 			packageReferences = (
 				A25739F22BE90A1C001C013E /* XCRemoteSwiftPackageReference "modal-view" */,
 				A27C95502BEB40A200A32358 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				A21625B22BEB7EFD00BBE9AC /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			productRefGroup = F295E3722BE647B600D2DE64 /* Products */;
 			projectDirPath = "";
@@ -247,21 +276,25 @@
 			files = (
 				A271303D2BEB616000CDC8A9 /* LogInView.swift in Sources */,
 				A2A5AD132BE8E4430087E2BA /* TemplateEditMenu.swift in Sources */,
+				A21625BA2BEB844200BBE9AC /* AuthenticationViewModel.swift in Sources */,
 				A2B526942BEB42ED0093BDE1 /* WorkoutList.swift in Sources */,
 				A264A0C22BE8C70F00724C36 /* BulkUpMenu.swift in Sources */,
 				A2701BE02BEB762A0028DDAA /* Types.swift in Sources */,
 				A264A0C02BE8950B00724C36 /* BulkUpTextField.swift in Sources */,
 				A2B526992BEB47C30093BDE1 /* SignUpView.swift in Sources */,
 				A2701BE62BEB79EC0028DDAA /* HistoryView.swift in Sources */,
-				F295E3772BE647B600D2DE64 /* ContentView.swift in Sources */,
+				F295E3772BE647B600D2DE64 /* RootView.swift in Sources */,
 				A2D68EBA2BE8DD66000D19CB /* RestTimerSetupView.swift in Sources */,
 				A2B5269B2BEB47FB0093BDE1 /* WelcomeView.swift in Sources */,
 				A270B24A2BEB55820042AD0D /* BulkUpNavigationLink.swift in Sources */,
+				A25B17EF2BECB34400E8E6E7 /* AuthenticationManager.swift in Sources */,
 				F295E3752BE647B600D2DE64 /* BulkUpApp.swift in Sources */,
 				A264A0BE2BE88D7600724C36 /* BulkUpButton.swift in Sources */,
 				A2701BE22BEB78680028DDAA /* HistoryCard.swift in Sources */,
 				A2A5AD112BE8E3B50087E2BA /* OngoingExerciseMenu.swift in Sources */,
+				A25B17F32BECDD2D00E8E6E7 /* Errors.swift in Sources */,
 				A25739ED2BE8F75A001C013E /* BulkUpDialog.swift in Sources */,
+				A25B17F12BECC2D200E8E6E7 /* ProfileView.swift in Sources */,
 				A25739EB2BE8E538001C013E /* HistoryEditMenu.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -398,6 +431,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "BulkUp-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -426,6 +460,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "BulkUp-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -468,6 +503,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		A21625B22BEB7EFD00BBE9AC /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.1.0;
+			};
+		};
 		A25739F22BE90A1C001C013E /* XCRemoteSwiftPackageReference "modal-view" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/diniska/modal-view";
@@ -487,6 +530,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A21625B32BEB7EFD00BBE9AC /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A21625B22BEB7EFD00BBE9AC /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		A21625B52BEB7EFD00BBE9AC /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A21625B22BEB7EFD00BBE9AC /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
 		A25739F32BE90A1C001C013E /* ModalView */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A25739F22BE90A1C001C013E /* XCRemoteSwiftPackageReference "modal-view" */;

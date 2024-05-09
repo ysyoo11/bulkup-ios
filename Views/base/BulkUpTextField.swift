@@ -56,7 +56,7 @@ struct BulkUpTextField: View {
     var size: TextFieldSize = .base
     var isSecure: Bool = false
     
-    @State private var text: String = ""
+    @Binding var text: String
     @FocusState private var isFocused: Bool
     
     var body: some View {
@@ -99,41 +99,4 @@ struct BulkUpTextField: View {
             )
         }
     }
-}
-
-#Preview {
-    VStack {
-        Spacer()
-        
-        VStack {
-            Spacer()
-            Text("Light Background").font(.headline)
-            Spacer()
-            BulkUpTextField(placeholder: "100", type: .light)
-            BulkUpTextField(placeholder: "Search", type: .light, isSearch: true)
-            BulkUpTextField(placeholder: "Template name", type: .noBorder, size: .lg)
-            Spacer()
-        }
-        
-        Spacer()
-        
-        VStack {
-            Spacer()
-            Text("Dark Background").foregroundStyle(.white).font(.headline)
-            Spacer()
-            BulkUpTextField(placeholder: "yysuk0302@gmail.com", type: .dark, label: "Email")
-            Spacer()
-            BulkUpTextField(
-                placeholder: "*******",
-                type: .dark,
-                label: "Password",
-                isSecure: true
-            )
-        }
-        .background(.black)
-        .padding(.vertical)
-        
-        Spacer()
-    }
-    .padding()
 }

@@ -63,7 +63,7 @@ struct History {
     var userId: String
 }
 
-struct User {
+struct BulkUpUser {
     var id: String
     var username: String
     var createdAt: Date

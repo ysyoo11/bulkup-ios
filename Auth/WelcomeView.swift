@@ -8,9 +8,19 @@
 import SwiftUI
 
 struct WelcomeView: View {
-    // TODO: Google sign-up
+    @EnvironmentObject var viewModel: AuthenticationViewModel
+    @Environment(\.dismiss) var dismiss
+    @Binding var showWelcomeView: Bool
+    
     private func signInWithGoogle() {
-        print("Sign in with Google")
+        Task {
+            if await viewModel.signInWithGoogle() == true {
+                showWelcomeView = false
+                dismiss()
+            } else {
+                print("Something went wrong")
+            }
+        }
     }
     
     var body: some View {
@@ -46,13 +56,14 @@ struct WelcomeView: View {
                             color: .gray,
                             isDisabled: false,
                             isFullWidth: true,
+                            imageResource: .googleLogo,
                             onClick: signInWithGoogle
                         )
                         .padding(.horizontal, 80)
                         
                         BulkUpNavigationLink(
                             text: "Sign Up",
-                            destination: SignUpView(),
+                            destination: SignUpView(showWelcomeView: $showWelcomeView),
                             type: .blue,
                             isFullWidth: true,
                             isDisabled: false
@@ -61,7 +72,7 @@ struct WelcomeView: View {
                         
                         BulkUpNavigationLink(
                             text: "Log In",
-                            destination: LogInView(),
+                            destination: LogInView(showWelcomeView: $showWelcomeView),
                             type: .noBorder,
                             isDisabled: false
                         )
@@ -73,5 +84,6 @@ struct WelcomeView: View {
 }
 
 #Preview {
-    WelcomeView()
+    WelcomeView(showWelcomeView: .constant(true))
+        .environmentObject(AuthenticationViewModel())
 }

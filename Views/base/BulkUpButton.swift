@@ -37,30 +37,44 @@ struct BulkUpButton: View {
     let color: ButtonColor
     var isDisabled: Bool
     var isFullWidth: Bool = false
+    var imageResource: ImageResource?
     let onClick: () -> Void
     
     var body: some View {
         Button(action: onClick) {
-            Text(text)
-                .foregroundColor(color.textColor)
-                .padding(.horizontal, 10)
-                .padding(.vertical, 8)
-                .bold()
-                .frame(maxWidth: isFullWidth ? .infinity : nil)
+            HStack(spacing: 10, content: {
+                if let imageResource = imageResource {
+                    Image(imageResource)
+                        .resizable()
+                        .frame(width: 20, height: 20, alignment: .trailing)
+                }
+                Text(text)
+                    .foregroundColor(color.textColor)
+                    .bold()
+            })
+            .padding(.horizontal, 10)
+            .padding(.vertical, 8)
+            .frame(maxWidth: isFullWidth ? .infinity : nil)
         }
         .disabled(isDisabled)
         .background(color.backgroundColor)
         .clipShape(RoundedRectangle(cornerRadius: 6))
+        .opacity(isDisabled ? 0.6 : 1.0)
     }
 }
 
 #Preview {
-    HStack {
-        BulkUpButton(text: "Cancel", color: .gray, isDisabled: false, isFullWidth: true) {
+    VStack {
+        BulkUpButton(text: "Sign In with Google", color: .gray, isDisabled: false, isFullWidth: true, imageResource: .googleLogo) {
             print("Cancel")
         }
-        BulkUpButton(text: "Save", color: .blue, isDisabled: false, isFullWidth: true) {
-            print("Save")
+        HStack {
+            BulkUpButton(text: "Cancel", color: .gray, isDisabled: false, isFullWidth: true) {
+                print("Cancel")
+            }
+            BulkUpButton(text: "Save", color: .blue, isDisabled: false, isFullWidth: true) {
+                print("Save")
+            }
         }
     }
     .padding()
