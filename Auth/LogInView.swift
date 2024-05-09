@@ -8,13 +8,25 @@
 import SwiftUI
 import Combine
 
-struct LogInView: View {
-    @EnvironmentObject var viewModel: AuthenticationViewModel
+@MainActor
+final class LogInViewModel: ObservableObject {
+    @Published var email = ""
+    @Published var password = ""
     
-    // TODO:
-    private func logIn() {
-        print("Log In tapped")
+    func signIn() async throws {
+        guard !email.isEmpty, !password.isEmpty else {
+            print("No email or password found.")
+            return
+        }
+        
+        let returnedUserData = try await AuthenticationManager.shared.signIn(email: email, password: password)
+        print(returnedUserData)
     }
+}
+
+struct LogInView: View {
+    @StateObject var viewModel = LogInViewModel()
+    @Binding var showWelcomeView: Bool
     
     var body: some View {
         NavigationView {
@@ -53,13 +65,25 @@ struct LogInView: View {
                         text: $viewModel.password
                     )
                     
-                    BulkUpButton(
-                        text: "Log In",
-                        color: .blue,
-                        isDisabled: true,
-                        isFullWidth: true,
-                        onClick: logIn
-                    )
+                    // TODO: Modify BulkUpButton and use the component
+                    Button {
+                        Task {
+                            do {
+                                try await viewModel.signIn()
+                                showWelcomeView = false
+                            } catch {
+                                print(error)
+                            }
+                        }
+                    } label: {
+                        Text("Log In")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .frame(height: 40)
+                            .frame(maxWidth: .infinity)
+                            .background(.primaryBlue)
+                            .cornerRadius(6)
+                    }
                     .padding(.top, 20)
                     
                     Spacer()
@@ -72,6 +96,5 @@ struct LogInView: View {
 }
 
 #Preview {
-    LogInView()
-        .environmentObject(AuthenticationViewModel())
+    LogInView(showWelcomeView: .constant(true))
 }

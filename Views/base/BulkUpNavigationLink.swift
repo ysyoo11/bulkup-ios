@@ -69,7 +69,7 @@ struct BulkUpNavigationLink<Destination: View>: View {
             )
             BulkUpNavigationLink(
                 text: "Log in",
-                destination: LogInView(),
+                destination: LogInView(showWelcomeView: .constant(true)),
                 type: .noBorder,
                 isFullWidth: true,
                 isDisabled: false

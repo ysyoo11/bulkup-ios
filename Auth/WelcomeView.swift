@@ -73,7 +73,7 @@ struct WelcomeView: View {
                         
                         BulkUpNavigationLink(
                             text: "Log In",
-                            destination: LogInView(),
+                            destination: LogInView(showWelcomeView: $showWelcomeView),
                             type: .noBorder,
                             isDisabled: false
                         )
