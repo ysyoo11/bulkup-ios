@@ -6,7 +6,11 @@
 //
 
 import Foundation
+import Firebase
 import FirebaseAuth
+import FirebaseCore
+import GoogleSignIn
+import GoogleSignInSwift
 
 struct AuthDataResultModel {
     let uid: String

@@ -10,17 +10,15 @@ import SwiftUI
 struct WelcomeView: View {
     @EnvironmentObject var viewModel: AuthenticationViewModel
     @Environment(\.dismiss) var dismiss
-    
     @Binding var showWelcomeView: Bool
     
     private func signInWithGoogle() {
-        print("Sign in with Google")
         Task {
             if await viewModel.signInWithGoogle() == true {
-                print("dismissed")
+                showWelcomeView = false
                 dismiss()
             } else {
-                print("hmm")
+                print("Something went wrong")
             }
         }
     }
@@ -58,6 +56,7 @@ struct WelcomeView: View {
                             color: .gray,
                             isDisabled: false,
                             isFullWidth: true,
+                            imageResource: .googleLogo,
                             onClick: signInWithGoogle
                         )
                         .padding(.horizontal, 80)
