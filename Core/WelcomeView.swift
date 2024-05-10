@@ -8,17 +8,16 @@
 import SwiftUI
 
 struct WelcomeView: View {
-    @EnvironmentObject var viewModel: AuthenticationViewModel
-    @Environment(\.dismiss) var dismiss
+    @StateObject private var viewModel = AuthenticationViewModel()
     @Binding var showWelcomeView: Bool
     
     private func signInWithGoogle() {
         Task {
-            if await viewModel.signInWithGoogle() == true {
+            do {
+                try await viewModel.signInWithGoogle()
                 showWelcomeView = false
-                dismiss()
-            } else {
-                print("Something went wrong")
+            } catch {
+                print(error) // TODO: Error handling
             }
         }
     }
@@ -85,5 +84,4 @@ struct WelcomeView: View {
 
 #Preview {
     WelcomeView(showWelcomeView: .constant(true))
-        .environmentObject(AuthenticationViewModel())
 }

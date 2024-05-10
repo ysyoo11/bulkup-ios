@@ -31,7 +31,6 @@ enum ButtonColor {
     }
 }
 
-
 struct BulkUpButton: View {
     let text: String
     let color: ButtonColor
