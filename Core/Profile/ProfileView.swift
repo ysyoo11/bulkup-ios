@@ -24,22 +24,24 @@ struct ProfileView: View {
     @Binding var showWelcomeView: Bool
     
     var body: some View {
-        List {
-            if let user = viewModel.user {
-                Text("UserId: \(user.userId)")
+        NavigationStack {
+            List {
+                if let user = viewModel.user {
+                    Text("UserId: \(user.userId)")
+                }
             }
-        }
-        .task {
-            try? await viewModel.loadCurrentUser()
-        }
-        .navigationTitle("Profile")
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                NavigationLink {
-                    SettingsView(showWelcomeView: $showWelcomeView)
-                } label: {
-                    Image(systemName: "gear")
-                        .font(.headline)
+            .task {
+                try? await viewModel.loadCurrentUser()
+            }
+            .navigationTitle("Profile")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    NavigationLink {
+                        SettingsView(showWelcomeView: $showWelcomeView)
+                    } label: {
+                        Image(systemName: "gear")
+                            .font(.headline)
+                    }
                 }
             }
         }
