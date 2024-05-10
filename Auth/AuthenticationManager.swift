@@ -84,8 +84,9 @@ extension AuthenticationManager {
     func createUser(email: String, password: String) async throws -> AuthDataResultModel {
         let authDataResult = try await Auth.auth().createUser(withEmail: email, password: password)
         let authDataResultModel = AuthDataResultModel(user: authDataResult.user)
+        let user = DBUser(auth: authDataResultModel)
         
-        try await UserManager.shared.createNewUser(auth: authDataResultModel)
+        try await UserManager.shared.createNewUser(user: user)
         
         return authDataResultModel
     }

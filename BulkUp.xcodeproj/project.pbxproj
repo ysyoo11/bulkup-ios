@@ -13,7 +13,7 @@
 		A245A8272BECF72700778555 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A245A8262BECF72700778555 /* FirebaseFirestoreSwift */; };
 		A245A82C2BEDFA1600778555 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A245A82B2BEDFA1600778555 /* ProfileView.swift */; };
 		A245A82F2BEE000300778555 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A245A82E2BEE000300778555 /* UserManager.swift */; };
-		A245A8322BEE023D00778555 /* MyAuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A245A8312BEE023D00778555 /* MyAuthenticationViewModel.swift */; };
+		A245A8322BEE023D00778555 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A245A8312BEE023D00778555 /* AuthenticationViewModel.swift */; };
 		A245A8352BEE064200778555 /* SignInEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A245A8342BEE064200778555 /* SignInEmailViewModel.swift */; };
 		A25739EB2BE8E538001C013E /* HistoryEditMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25739EA2BE8E538001C013E /* HistoryEditMenu.swift */; };
 		A25739ED2BE8F75A001C013E /* BulkUpDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25739EC2BE8F75A001C013E /* BulkUpDialog.swift */; };
@@ -48,7 +48,7 @@
 		A21625B72BEB7FB600BBE9AC /* BulkUp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "BulkUp-Info.plist"; sourceTree = "<group>"; };
 		A245A82B2BEDFA1600778555 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		A245A82E2BEE000300778555 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
-		A245A8312BEE023D00778555 /* MyAuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAuthenticationViewModel.swift; sourceTree = "<group>"; };
+		A245A8312BEE023D00778555 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		A245A8342BEE064200778555 /* SignInEmailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInEmailViewModel.swift; sourceTree = "<group>"; };
 		A25739EA2BE8E538001C013E /* HistoryEditMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryEditMenu.swift; sourceTree = "<group>"; };
 		A25739EC2BE8F75A001C013E /* BulkUpDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkUpDialog.swift; sourceTree = "<group>"; };
@@ -145,7 +145,7 @@
 		A245A8302BEE022D00778555 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				A245A8312BEE023D00778555 /* MyAuthenticationViewModel.swift */,
+				A245A8312BEE023D00778555 /* AuthenticationViewModel.swift */,
 				A245A8332BEE061D00778555 /* Subviews */,
 			);
 			path = Authentication;
@@ -360,7 +360,7 @@
 				A25B17F32BECDD2D00E8E6E7 /* Errors.swift in Sources */,
 				A25739ED2BE8F75A001C013E /* BulkUpDialog.swift in Sources */,
 				A25B17F12BECC2D200E8E6E7 /* SettingsView.swift in Sources */,
-				A245A8322BEE023D00778555 /* MyAuthenticationViewModel.swift in Sources */,
+				A245A8322BEE023D00778555 /* AuthenticationViewModel.swift in Sources */,
 				A25739EB2BE8E538001C013E /* HistoryEditMenu.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

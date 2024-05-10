@@ -7,23 +7,8 @@
 
 import SwiftUI
 
-@MainActor
-final class WelcomeViewModel: ObservableObject {
-    
-    @Published var errorMessage: String = ""
-    
-    func signInWithGoogle() async throws {
-        let helper = SignInGoogleHelper()
-        let tokens = try await helper.signIn()
-        let authDataResultModel = try await AuthenticationManager.shared.signInWithGoogle(tokens: tokens)
-              
-        // TODO: Enable it after refactoring authentication logic
-//            try await UserManager.shared.createNewUser(auth: authDataResultModel)
-    }
-}
-
 struct WelcomeView: View {
-    @StateObject private var viewModel = WelcomeViewModel()
+    @StateObject private var viewModel = AuthenticationViewModel()
     @Binding var showWelcomeView: Bool
     
     private func signInWithGoogle() {
