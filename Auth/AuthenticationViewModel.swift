@@ -166,6 +166,9 @@ extension AuthenticationViewModel {
         let result = try await Auth.auth().signIn(with: credential)
         let firebaseUser = result.user
         print("User \(firebaseUser.uid) signed in with email \(firebaseUser.email ?? "unknown")")
+          
+        try await UserManager.shared.createNewUser(auth: AuthDataResultModel(user: firebaseUser))
+          
         return true
       }
       catch {

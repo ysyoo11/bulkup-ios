@@ -13,6 +13,9 @@
 		A245A8232BECF72700778555 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A245A8222BECF72700778555 /* FirebaseFirestore */; };
 		A245A8272BECF72700778555 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A245A8262BECF72700778555 /* FirebaseFirestoreSwift */; };
 		A245A82C2BEDFA1600778555 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A245A82B2BEDFA1600778555 /* ProfileView.swift */; };
+		A245A82F2BEE000300778555 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A245A82E2BEE000300778555 /* UserManager.swift */; };
+		A245A8322BEE023D00778555 /* MyAuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A245A8312BEE023D00778555 /* MyAuthenticationViewModel.swift */; };
+		A245A8352BEE064200778555 /* SignInEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A245A8342BEE064200778555 /* SignInEmailViewModel.swift */; };
 		A25739EB2BE8E538001C013E /* HistoryEditMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25739EA2BE8E538001C013E /* HistoryEditMenu.swift */; };
 		A25739ED2BE8F75A001C013E /* BulkUpDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25739EC2BE8F75A001C013E /* BulkUpDialog.swift */; };
 		A25739F42BE90A1C001C013E /* ModalView in Frameworks */ = {isa = PBXBuildFile; productRef = A25739F32BE90A1C001C013E /* ModalView */; settings = {ATTRIBUTES = (Required, ); }; };
@@ -45,6 +48,9 @@
 		A21625B72BEB7FB600BBE9AC /* BulkUp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "BulkUp-Info.plist"; sourceTree = "<group>"; };
 		A21625B92BEB844200BBE9AC /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		A245A82B2BEDFA1600778555 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		A245A82E2BEE000300778555 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		A245A8312BEE023D00778555 /* MyAuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAuthenticationViewModel.swift; sourceTree = "<group>"; };
+		A245A8342BEE064200778555 /* SignInEmailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInEmailViewModel.swift; sourceTree = "<group>"; };
 		A25739EA2BE8E538001C013E /* HistoryEditMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryEditMenu.swift; sourceTree = "<group>"; };
 		A25739EC2BE8F75A001C013E /* BulkUpDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkUpDialog.swift; sourceTree = "<group>"; };
 		A25B17EE2BECB34400E8E6E7 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
@@ -101,6 +107,7 @@
 		A245A8282BEDF72800778555 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				A245A8302BEE022D00778555 /* Authentication */,
 				A245A82A2BEDFA0900778555 /* Profile */,
 				A245A8292BEDF96900778555 /* Settings */,
 				F295E3762BE647B600D2DE64 /* RootView.swift */,
@@ -125,6 +132,31 @@
 				A245A82B2BEDFA1600778555 /* ProfileView.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		A245A82D2BEDFFF300778555 /* Firestore */ = {
+			isa = PBXGroup;
+			children = (
+				A245A82E2BEE000300778555 /* UserManager.swift */,
+			);
+			path = Firestore;
+			sourceTree = "<group>";
+		};
+		A245A8302BEE022D00778555 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				A245A8312BEE023D00778555 /* MyAuthenticationViewModel.swift */,
+				A245A8332BEE061D00778555 /* Subviews */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		A245A8332BEE061D00778555 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				A245A8342BEE064200778555 /* SignInEmailViewModel.swift */,
+			);
+			path = Subviews;
 			sourceTree = "<group>";
 		};
 		A264A0BC2BE88D6000724C36 /* Views */ = {
@@ -183,6 +215,7 @@
 			children = (
 				A245A8282BEDF72800778555 /* Core */,
 				A21625B82BEB83CC00BBE9AC /* Auth */,
+				A245A82D2BEDFFF300778555 /* Firestore */,
 				A2701BDE2BEB761A0028DDAA /* Model */,
 				A2701BD92BEB74A80028DDAA /* ViewModel */,
 				A264A0BC2BE88D6000724C36 /* Views */,
@@ -300,7 +333,9 @@
 				A21625BA2BEB844200BBE9AC /* AuthenticationViewModel.swift in Sources */,
 				A2B526942BEB42ED0093BDE1 /* WorkoutList.swift in Sources */,
 				A264A0C22BE8C70F00724C36 /* BulkUpMenu.swift in Sources */,
+				A245A8352BEE064200778555 /* SignInEmailViewModel.swift in Sources */,
 				A2701BE02BEB762A0028DDAA /* Types.swift in Sources */,
+				A245A82F2BEE000300778555 /* UserManager.swift in Sources */,
 				A264A0C02BE8950B00724C36 /* BulkUpTextField.swift in Sources */,
 				A2B526992BEB47C30093BDE1 /* SignUpView.swift in Sources */,
 				A2701BE62BEB79EC0028DDAA /* HistoryView.swift in Sources */,
@@ -317,6 +352,7 @@
 				A25B17F32BECDD2D00E8E6E7 /* Errors.swift in Sources */,
 				A25739ED2BE8F75A001C013E /* BulkUpDialog.swift in Sources */,
 				A25B17F12BECC2D200E8E6E7 /* SettingsView.swift in Sources */,
+				A245A8322BEE023D00778555 /* MyAuthenticationViewModel.swift in Sources */,
 				A25739EB2BE8E538001C013E /* HistoryEditMenu.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
