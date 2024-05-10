@@ -1,5 +1,5 @@
 //
-//  ProfileView.swift
+//  SettingsView.swift
 //  BulkUp
 //
 //  Created by Yeonsuk Yoo on 9/5/2024.
@@ -8,7 +8,7 @@
 import SwiftUI
 
 @MainActor
-final class ProfileViewModel: ObservableObject {
+final class SettingsViewModel: ObservableObject {
     func logOut() throws {
         try AuthenticationManager.shared.signOut()
     }
@@ -22,8 +22,8 @@ final class ProfileViewModel: ObservableObject {
     }
 }
 
-struct ProfileView: View {
-    @StateObject var viewModel = ProfileViewModel()
+struct SettingsView: View {
+    @StateObject var viewModel = SettingsViewModel()
     @Binding var showWelcomeView: Bool
     
     private func signOut() {
@@ -39,7 +39,7 @@ struct ProfileView: View {
     
     var body: some View {
         VStack {
-            Text("Profile")
+            Text("Settings")
                 .font(.title)
                 .bold()
             
@@ -78,5 +78,5 @@ struct ProfileView: View {
 }
 
 #Preview {
-    ProfileView(showWelcomeView: .constant(false))
+    SettingsView(showWelcomeView: .constant(false))
 }
