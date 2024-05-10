@@ -19,7 +19,7 @@ final class LogInViewModel: ObservableObject {
             return
         }
         
-        let returnedUserData = try await AuthenticationManager.shared.signIn(email: email, password: password)
+        let returnedUserData = try await AuthenticationManager.shared.signInUser(email: email, password: password)
         print(returnedUserData)
     }
 }

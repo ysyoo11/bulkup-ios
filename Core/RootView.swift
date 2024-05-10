@@ -13,8 +13,10 @@ struct RootView: View {
     
     var body: some View {
         ZStack {
-            NavigationStack {
-                ProfileView(showWelcomeView: $showWelcomeView)
+            if !showWelcomeView {
+                NavigationStack {
+                    ProfileView(showWelcomeView: $showWelcomeView)
+                }
             }
         }
         .onAppear {
@@ -24,7 +26,6 @@ struct RootView: View {
         .fullScreenCover(isPresented: $showWelcomeView) {
             NavigationStack {
                 WelcomeView(showWelcomeView: $showWelcomeView)
-                    .environmentObject(AuthenticationViewModel())
             }
         }
     }

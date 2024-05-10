@@ -14,6 +14,7 @@ struct DBUser {
     let email: String?
     let photoUrl: String?
     let createdAt: Date?
+    let username: String?
 }
 
 final class UserManager {
@@ -32,6 +33,9 @@ final class UserManager {
         if let photoUrl = auth.photoUrl {
             userData["photo_url"] = photoUrl
         }
+        if let username = auth.username {
+            userData["username"] = username
+        }
         
         try await Firestore.firestore().collection("users").document(auth.uid).setData(userData, merge: false)
     }
@@ -46,8 +50,9 @@ final class UserManager {
         let email = data["email"] as? String
         let photoUrl = data["photo_url"] as? String
         let createdAt = data["created_at"] as? Date
+        let username = data["username"] as? String
         
-        return DBUser(userId: userId, email: email, photoUrl: photoUrl, createdAt: createdAt)
+        return DBUser(userId: userId, email: email, photoUrl: photoUrl, createdAt: createdAt, username: username)
     }
     
 }

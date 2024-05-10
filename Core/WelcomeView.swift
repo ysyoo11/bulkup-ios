@@ -7,18 +7,32 @@
 
 import SwiftUI
 
+@MainActor
+final class WelcomeViewModel: ObservableObject {
+    
+    @Published var errorMessage: String = ""
+    
+    func signInWithGoogle() async throws {
+        let helper = SignInGoogleHelper()
+        let tokens = try await helper.signIn()
+        let authDataResultModel = try await AuthenticationManager.shared.signInWithGoogle(tokens: tokens)
+              
+        // TODO: Enable it after refactoring authentication logic
+//            try await UserManager.shared.createNewUser(auth: authDataResultModel)
+    }
+}
+
 struct WelcomeView: View {
-    @EnvironmentObject var viewModel: AuthenticationViewModel
-    @Environment(\.dismiss) var dismiss
+    @StateObject private var viewModel = WelcomeViewModel()
     @Binding var showWelcomeView: Bool
     
     private func signInWithGoogle() {
         Task {
-            if await viewModel.signInWithGoogle() == true {
+            do {
+                try await viewModel.signInWithGoogle()
                 showWelcomeView = false
-                dismiss()
-            } else {
-                print("Something went wrong")
+            } catch {
+                print(error) // TODO: Error handling
             }
         }
     }
@@ -85,5 +99,4 @@ struct WelcomeView: View {
 
 #Preview {
     WelcomeView(showWelcomeView: .constant(true))
-        .environmentObject(AuthenticationViewModel())
 }

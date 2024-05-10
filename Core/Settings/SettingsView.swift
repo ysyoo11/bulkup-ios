@@ -9,6 +9,15 @@ import SwiftUI
 
 @MainActor
 final class SettingsViewModel: ObservableObject {
+    
+    @Published var authProviders: [AuthProviderOption] = []
+    
+    func loadAuthProviders() {
+        if let providers = try? AuthenticationManager.shared.getProviders() {
+            authProviders = providers
+        }
+    }
+    
     func logOut() throws {
         try AuthenticationManager.shared.signOut()
     }
@@ -38,11 +47,7 @@ struct SettingsView: View {
     }
     
     var body: some View {
-        VStack {
-            Text("Settings")
-                .font(.title)
-                .bold()
-            
+        List {
             BulkUpButton(
                 text: "Log out",
                 color: .pink,
@@ -51,32 +56,67 @@ struct SettingsView: View {
                 onClick: signOut
             )
             
-            Button {
-                Task {
-                    do {
-                        try await viewModel.resetPassword()
-                        print("password reset!")
-                    } catch {
-                        print(error)
+            if viewModel.authProviders.contains(.email) {
+                Button {
+                    Task {
+                        do {
+                            try await viewModel.resetPassword()
+                            print("password reset!")
+                        } catch {
+                            print(error)
+                        }
                     }
+                } label: {
+                    Text("Reset Password")
+                        .font(.headline)
+                        .foregroundColor(.primaryBlue)
+                        .cornerRadius(6)
+                        .underline()
                 }
-            } label: {
-                Text("Reset Password")
-                    .font(.headline)
-                    .foregroundColor(.primaryBlue)
-                    .cornerRadius(6)
-                    .underline()
+                .padding(.top, 20)
             }
-            .padding(.top, 20)
-            
-            Spacer()
         }
-        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
-        .padding()
-        .padding(.top, 20)
+        .onAppear {
+            viewModel.loadAuthProviders()
+        }
+        .navigationBarTitle("Settings")
+//        VStack {
+//            BulkUpButton(
+//                text: "Log out",
+//                color: .pink,
+//                isDisabled: false,
+//                isFullWidth: true,
+//                onClick: signOut
+//            )
+//            
+//            Button {
+//                Task {
+//                    do {
+//                        try await viewModel.resetPassword()
+//                        print("password reset!")
+//                    } catch {
+//                        print(error)
+//                    }
+//                }
+//            } label: {
+//                Text("Reset Password")
+//                    .font(.headline)
+//                    .foregroundColor(.primaryBlue)
+//                    .cornerRadius(6)
+//                    .underline()
+//            }
+//            .padding(.top, 20)
+//            
+//            Spacer()
+//        }
+//        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
+//        .padding()
+//        .padding(.top, 20)
     }
 }
 
 #Preview {
-    SettingsView(showWelcomeView: .constant(false))
+    NavigationStack {
+        SettingsView(showWelcomeView: .constant(false))
+    }
 }

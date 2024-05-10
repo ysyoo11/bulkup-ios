@@ -30,6 +30,6 @@ final class SignInEmailViewModel: ObservableObject {
     func signIn() async throws {
         verifyEmailPassword()
         
-        let authDataResult = try await AuthenticationManager.shared.signIn(email: email, password: password)
+        try await AuthenticationManager.shared.signInUser(email: email, password: password)
     }
 }
