@@ -11,11 +11,36 @@ struct RootView: View {
     
     @State private var showWelcomeView: Bool = false
     
+    init() {
+        UITabBar.appearance().backgroundColor = .primaryGray
+        UITabBar.appearance().unselectedItemTintColor = .secondaryGray
+    }
+    
     var body: some View {
         ZStack {
             if !showWelcomeView {
-                NavigationStack {
-                    ProfileView(showWelcomeView: $showWelcomeView)
+                NavigationView {
+                    TabView {
+                        ProfileView(showWelcomeView: $showWelcomeView)
+                            .tabItem {
+                                Label("Profile", systemImage: "person")
+                            }
+
+                        HistoryView()
+                            .tabItem {
+                                Label("History", systemImage: "clock")
+                            }
+
+                        StartWorkoutView()
+                            .tabItem {
+                                Label("Start Workout", systemImage: "plus")
+                            }
+
+                        ExercisesView()
+                            .tabItem {
+                                Label("Exercises", systemImage: "flame")
+                            }
+                    }
                 }
             }
         }

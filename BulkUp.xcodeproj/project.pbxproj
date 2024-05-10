@@ -31,6 +31,8 @@
 		A270B24A2BEB55820042AD0D /* BulkUpNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = A270B2492BEB55820042AD0D /* BulkUpNavigationLink.swift */; };
 		A271303D2BEB616000CDC8A9 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A271303C2BEB616000CDC8A9 /* LogInView.swift */; };
 		A27C95542BEB40A200A32358 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A27C95532BEB40A200A32358 /* FirebaseAuth */; settings = {ATTRIBUTES = (Required, ); }; };
+		A27FAEE72BEE4FB500436B5E /* StartWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27FAEE62BEE4FB500436B5E /* StartWorkoutView.swift */; };
+		A27FAEE92BEE4FEC00436B5E /* ExercisesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27FAEE82BEE4FEC00436B5E /* ExercisesView.swift */; };
 		A2A5AD112BE8E3B50087E2BA /* OngoingExerciseMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A5AD102BE8E3B50087E2BA /* OngoingExerciseMenu.swift */; };
 		A2A5AD132BE8E4430087E2BA /* TemplateEditMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A5AD122BE8E4430087E2BA /* TemplateEditMenu.swift */; };
 		A2B526942BEB42ED0093BDE1 /* WorkoutList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B526932BEB42ED0093BDE1 /* WorkoutList.swift */; };
@@ -64,6 +66,8 @@
 		A2701BE52BEB79EC0028DDAA /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		A270B2492BEB55820042AD0D /* BulkUpNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkUpNavigationLink.swift; sourceTree = "<group>"; };
 		A271303C2BEB616000CDC8A9 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
+		A27FAEE62BEE4FB500436B5E /* StartWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartWorkoutView.swift; sourceTree = "<group>"; };
+		A27FAEE82BEE4FEC00436B5E /* ExercisesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesView.swift; sourceTree = "<group>"; };
 		A2A5AD102BE8E3B50087E2BA /* OngoingExerciseMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingExerciseMenu.swift; sourceTree = "<group>"; };
 		A2A5AD122BE8E4430087E2BA /* TemplateEditMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateEditMenu.swift; sourceTree = "<group>"; };
 		A2B526932BEB42ED0093BDE1 /* WorkoutList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutList.swift; sourceTree = "<group>"; };
@@ -163,9 +167,11 @@
 			isa = PBXGroup;
 			children = (
 				A2701BE52BEB79EC0028DDAA /* HistoryView.swift */,
+				A27FAEE62BEE4FB500436B5E /* StartWorkoutView.swift */,
 				A2D68EB92BE8DD66000D19CB /* RestTimerSetupView.swift */,
 				A2D68EBB2BE8E29A000D19CB /* base */,
 				A2A5AD0F2BE8E3110087E2BA /* component */,
+				A27FAEE82BEE4FEC00436B5E /* ExercisesView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -338,6 +344,7 @@
 			files = (
 				A271303D2BEB616000CDC8A9 /* LogInView.swift in Sources */,
 				A2A5AD132BE8E4430087E2BA /* TemplateEditMenu.swift in Sources */,
+				A27FAEE92BEE4FEC00436B5E /* ExercisesView.swift in Sources */,
 				A2B526942BEB42ED0093BDE1 /* WorkoutList.swift in Sources */,
 				A264A0C22BE8C70F00724C36 /* BulkUpMenu.swift in Sources */,
 				A245A8352BEE064200778555 /* SignInEmailViewModel.swift in Sources */,
@@ -345,6 +352,7 @@
 				A245A82F2BEE000300778555 /* UserManager.swift in Sources */,
 				A264A0C02BE8950B00724C36 /* BulkUpTextField.swift in Sources */,
 				A2B526992BEB47C30093BDE1 /* SignUpView.swift in Sources */,
+				A27FAEE72BEE4FB500436B5E /* StartWorkoutView.swift in Sources */,
 				A2701BE62BEB79EC0028DDAA /* HistoryView.swift in Sources */,
 				F295E3772BE647B600D2DE64 /* RootView.swift in Sources */,
 				A2D68EBA2BE8DD66000D19CB /* RestTimerSetupView.swift in Sources */,
