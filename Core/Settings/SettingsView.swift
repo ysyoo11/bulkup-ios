@@ -22,6 +22,10 @@ final class SettingsViewModel: ObservableObject {
         try AuthenticationManager.shared.signOut()
     }
     
+    func deleteAccount() async throws {
+        try await AuthenticationManager.shared.delete()
+    }
+    
     func resetPassword() async throws {
         let authUser = try AuthenticationManager.shared.getAuthenticatedUser()
         guard let email = authUser.email else {
@@ -56,6 +60,23 @@ struct SettingsView: View {
                 onClick: signOut
             )
             
+            BulkUpButton(
+                text: "Delete Account",
+                color: .red,
+                isDisabled: false,
+                isFullWidth: true,
+                onClick: {
+                    Task {
+                        do {
+                            try await viewModel.deleteAccount()
+                            showWelcomeView = true
+                        } catch {
+                            print(error)
+                        }
+                    }
+                }
+            )
+            
             if viewModel.authProviders.contains(.email) {
                 Button {
                     Task {
@@ -74,44 +95,13 @@ struct SettingsView: View {
                         .underline()
                 }
                 .padding(.top, 20)
+                .frame(maxWidth: .infinity, alignment: .center)
             }
         }
         .onAppear {
             viewModel.loadAuthProviders()
         }
         .navigationBarTitle("Settings")
-//        VStack {
-//            BulkUpButton(
-//                text: "Log out",
-//                color: .pink,
-//                isDisabled: false,
-//                isFullWidth: true,
-//                onClick: signOut
-//            )
-//            
-//            Button {
-//                Task {
-//                    do {
-//                        try await viewModel.resetPassword()
-//                        print("password reset!")
-//                    } catch {
-//                        print(error)
-//                    }
-//                }
-//            } label: {
-//                Text("Reset Password")
-//                    .font(.headline)
-//                    .foregroundColor(.primaryBlue)
-//                    .cornerRadius(6)
-//                    .underline()
-//            }
-//            .padding(.top, 20)
-//            
-//            Spacer()
-//        }
-//        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
-//        .padding()
-//        .padding(.top, 20)
     }
 }
 
