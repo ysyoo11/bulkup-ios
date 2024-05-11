@@ -72,6 +72,11 @@ struct DBExercise: Codable {
     }
 }
 
+enum ExerciseFilterOption: String {
+    case bodyPart = "body_part"
+    case category = "category"
+}
+
 final class ExercisesManager {
     
     static let shared = ExercisesManager()
@@ -83,7 +88,7 @@ final class ExercisesManager {
         exercisesCollection.document(exerciseId)
     }
     
-    func uploadExercise(exercise: Exercise) async throws {
+    func uploadExercise(exercise: DBExercise) async throws {
         try exerciseDocument(exerciseId: String(exercise.id)).setData(from: exercise, merge: false)
     }
     
@@ -91,9 +96,72 @@ final class ExercisesManager {
         try await exerciseDocument(exerciseId: exerciseId).getDocument(as: DBExercise.self)
     }
     
-    func getAllExercises() async throws -> [DBExercise] {
+    private func getAllExercises() async throws -> [DBExercise] {
         try await exercisesCollection.getDocuments(as: DBExercise.self)
     }
+    
+    private func getExercisesByKeyword(query: String) async throws -> [DBExercise] {
+        try await exercisesCollection
+            .whereField(DBExercise.CodingKeys.name.rawValue, isGreaterThanOrEqualTo: query)
+            .whereField(DBExercise.CodingKeys.name.rawValue, isLessThanOrEqualTo: query+"\u{F7FF}")
+            .getDocuments(as: DBExercise.self)
+    }
+    
+    private func getExercisesByFilterOption(option: ExerciseFilterOption, value: String) async throws -> [DBExercise] {
+        try await exercisesCollection.whereField(option.rawValue, isEqualTo: value).getDocuments(as: DBExercise.self)
+    }
+    
+    private func getExercisesByBodyPartAndCategory(bodyPart: BodyPart, category: ExerciseCategory) async throws -> [DBExercise] {
+        try await exercisesCollection
+            .whereField(DBExercise.CodingKeys.bodyPart.rawValue, isEqualTo: bodyPart.rawValue)
+            .whereField(DBExercise.CodingKeys.category.rawValue, isEqualTo: category.rawValue)
+            .getDocuments(as: DBExercise.self)
+    }
+    
+    private func getExercisesByKeywordAndBodyPart(query: String, bodyPart: BodyPart) async throws -> [DBExercise] {
+        try await exercisesCollection
+            .whereField(DBExercise.CodingKeys.name.rawValue, isGreaterThanOrEqualTo: query)
+            .whereField(DBExercise.CodingKeys.name.rawValue, isLessThanOrEqualTo: query+"\u{F7FF}")
+            .whereField(DBExercise.CodingKeys.bodyPart.rawValue, isEqualTo: bodyPart.rawValue)
+            .getDocuments(as: DBExercise.self)
+    }
+    
+    private func getExercisesByKeywordAndCategory(query: String, category: ExerciseCategory) async throws -> [DBExercise] {
+        try await exercisesCollection
+            .whereField(DBExercise.CodingKeys.name.rawValue, isGreaterThanOrEqualTo: query)
+            .whereField(DBExercise.CodingKeys.name.rawValue, isLessThanOrEqualTo: query+"\u{F7FF}")
+            .whereField(DBExercise.CodingKeys.category.rawValue, isEqualTo: category.rawValue)
+            .getDocuments(as: DBExercise.self)
+    }
+    
+    private func getExercisesByKeywordAndAllFilterOptions(query: String, bodyPart: BodyPart, category: ExerciseCategory) async throws -> [DBExercise] {
+        try await exercisesCollection
+            .whereField(DBExercise.CodingKeys.name.rawValue, isGreaterThanOrEqualTo: query)
+            .whereField(DBExercise.CodingKeys.name.rawValue, isLessThanOrEqualTo: query+"\u{F7FF}")
+            .whereField(DBExercise.CodingKeys.bodyPart.rawValue, isEqualTo: bodyPart.rawValue)
+            .whereField(DBExercise.CodingKeys.category.rawValue, isEqualTo: category.rawValue)
+            .getDocuments(as: DBExercise.self)
+    }
+    
+    func getExercises(bodyPart: BodyPart?, category: ExerciseCategory?, query: String?) async throws -> [DBExercise] {
+        if let bodyPart, let category, let query {
+            return try await getExercisesByKeywordAndAllFilterOptions(query: query, bodyPart: bodyPart, category: category)
+        } else if let bodyPart, let query {
+            return try await getExercisesByKeywordAndBodyPart(query: query, bodyPart: bodyPart)
+        } else if let category, let query {
+            return try await getExercisesByKeywordAndCategory(query: query, category: category)
+        } else if let bodyPart, let category {
+            return try await getExercisesByBodyPartAndCategory(bodyPart: bodyPart, category: category)
+        } else if let bodyPart {
+            return try await getExercisesByFilterOption(option: .bodyPart, value: bodyPart.rawValue)
+        } else if let category {
+            return try await getExercisesByFilterOption(option: .category, value: category.rawValue)
+        } else if let query {
+            return try await getExercisesByKeyword(query: query)
+        }
+        return try await getAllExercises()
+    }
+    
 }
 
 extension Query {
