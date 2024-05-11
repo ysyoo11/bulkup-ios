@@ -21,7 +21,7 @@ struct BodyPartMenu: View {
                 }
             }
         } label: {
-            BulkUpButton(text: currentlySelected.isEmpty ? "Any Body Part" : "\(currentlySelected)",
+            BulkUpButton(text: currentlySelected.isEmpty ? "Any Body Part" : currentlySelected,
                          color: !currentlySelected.isEmpty ? .blue : .gray,
                          isDisabled: false, isFullWidth: true) {}
         }

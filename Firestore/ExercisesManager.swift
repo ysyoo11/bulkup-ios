@@ -72,6 +72,11 @@ struct DBExercise: Codable {
     }
 }
 
+enum ExerciseFilterOption: String {
+    case bodyPart = "body_part"
+    case category = "category"
+}
+
 final class ExercisesManager {
     
     static let shared = ExercisesManager()
@@ -93,6 +98,14 @@ final class ExercisesManager {
     
     func getAllExercises() async throws -> [DBExercise] {
         try await exercisesCollection.getDocuments(as: DBExercise.self)
+    }
+    
+//    func getExercisesByKeyword() async throws -> [DBExercise] {
+//        try await exercisesCollection.order(by: "name")
+//    }
+    
+    func getExercisesByFilterOption(option: ExerciseFilterOption, value: String) async throws -> [DBExercise] {
+        try await exercisesCollection.whereField(option.rawValue, isEqualTo: value).getDocuments(as: DBExercise.self)
     }
 }
 

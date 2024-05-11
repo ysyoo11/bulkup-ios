@@ -16,6 +16,14 @@ final class ExercisesViewModel: ObservableObject {
         self.exercises = try await ExercisesManager.shared.getAllExercises()
     }
     
+    func bodyPartFilterSelected(option: BodyPart) async throws {
+        self.exercises = try await ExercisesManager.shared.getExercisesByFilterOption(option: .bodyPart, value: option.rawValue)
+        print(exercises)
+    }
+    
+    func categoryFilterSelected(option: ExerciseCategory) async throws {
+        self.exercises = try await ExercisesManager.shared.getExercisesByFilterOption(option: .category, value: option.rawValue)
+    }
 }
 
 struct ExercisesView: View {
@@ -25,23 +33,89 @@ struct ExercisesView: View {
     @State private var searchText: String = ""
     @State private var isDialogActive = false
     
+    let allBodyParts = BodyPart.allCases.map { $0.rawValue }
+    let allCategories = ExerciseCategory.allCases.map { $0.rawValue }
+    @State var selectedBodyPart: String = ""
+    @State var selectedCategory: String = ""
+    
+    private func filterByBodyPart() {
+        Task {
+            do {
+                if selectedBodyPart.isEmpty {
+                    try await viewModel.getAllExercises()
+                } else {
+                    try await viewModel.bodyPartFilterSelected(option: BodyPart(rawValue: selectedBodyPart)!)
+                }
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
+    private func filterByCategory() {
+        Task {
+            do {
+                if selectedCategory.isEmpty {
+                    try await viewModel.getAllExercises()
+                } else {
+                    try await viewModel.categoryFilterSelected(option: ExerciseCategory(rawValue: selectedCategory)!)
+                }
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
     var body: some View {
         ZStack {
             NavigationStack {
                 VStack{
 //                    BulkUpTextField(placeholder: "Search", type: .light, isSearch: true)
+                    
+                    // TODO: Refactor using BodyPartMenu
                     HStack{
-                        BodyPartMenu()
-                        ExerciseCategoryMenu()
+                        Menu {
+                            Picker("", selection: $selectedBodyPart) {
+                                Text("Any Body Part").tag("")
+                                ForEach(allBodyParts, id: \.self) { bodyPart in
+                                    Text(bodyPart)
+                                }
+                            }
+                            .onChange(of: selectedBodyPart, initial: true, {
+                                filterByBodyPart()
+                            })
+                        } label: {
+                            BulkUpButton(text: selectedBodyPart.isEmpty ? "Any Body Part" : selectedBodyPart,
+                                         color: !selectedBodyPart.isEmpty ? .blue : .gray,
+                                         isDisabled: false, isFullWidth: true) {}
+                        }
+                        
+                        // TODO: Refactor using ExerciseCategoryMenu
+                        Menu {
+                            Picker("", selection: $selectedCategory) {
+                                Text("Any Category").tag("")
+                                ForEach(allCategories, id: \.self) { category in
+                                    Text(category)
+                                }
+                            }
+                            .onChange(of: selectedCategory, initial: true, {
+                                filterByCategory()
+                            })
+                        } label: {
+                            BulkUpButton(text: selectedCategory.isEmpty ? "Any Category" : selectedCategory,
+                                         color: !selectedCategory.isEmpty ? .blue : .gray,
+                                         isDisabled: false,
+                                         isFullWidth: true) {}
+                        }
                     }
                 }
                 .padding()
                 
                 ScrollView (showsIndicators: true) {
                     if isSearchActive {
-                        FilteredList(exercises: ExerciseDatabase.exercises.filter { $0.name.localizedCaseInsensitiveContains(searchText) })
+                        FilteredList(exercises: viewModel.exercises.filter { $0.name.localizedCaseInsensitiveContains(searchText) })
                     } else {
-                        AlphabeticalList(exercises: ExerciseDatabase.exercises)
+                        AlphabeticalList(exercises: viewModel.exercises)
                     }
                 }
                 .navigationTitle("Exercises")

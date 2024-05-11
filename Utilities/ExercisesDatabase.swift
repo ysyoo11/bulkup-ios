@@ -60,7 +60,47 @@ final class ExerciseDatabase {
             category: .barbell,
             description: "This is deadlift",
             imageUrl: "https://gymvisual.com/15635-large_default/barbell-straight-leg-deadlift.jpg"
-        )
+        ),
+        DBExercise(
+            id: "4",
+            name: "Lat Pulldown",
+            bodyPart: .back,
+            category: .machine,
+            description: "This is lat pulldown",
+            imageUrl: "https://gymvisual.com/472-large_default/cable-bar-lateral-pulldown.jpg"
+        ),
+        DBExercise(
+            id: "5",
+            name: "Laterl Raise",
+            bodyPart: .shoulder,
+            category: .dumbbell,
+            description: "This is dumbbell lateral raise",
+            imageUrl: "https://gymvisual.com/15650-large_default/3-4-sit-up.jpg"
+        ),
+        DBExercise(
+            id: "6",
+            name: "Biceps Curl",
+            bodyPart: .arms,
+            category: .dumbbell,
+            description: "This is dumbbell biceps curl",
+            imageUrl: "https://gymvisual.com/904-large_default/dumbbell-biceps-curl.jpg"
+        ),
+        DBExercise(
+            id: "7",
+            name: "Crunch Floor",
+            bodyPart: .core,
+            category: .bodyWeight,
+            description: "This is crunch floor",
+            imageUrl: "https://gymvisual.com/844-large_default/crunch-floor.jpg"
+        ),
+        DBExercise(
+            id: "8",
+            name: "Run",
+            bodyPart: .legs,
+            category: .cardio,
+            description: "Running",
+            imageUrl: "https://gymvisual.com/8745-large_default/3-4-sit-up.jpg"
+        ),
     ]
     
 }
