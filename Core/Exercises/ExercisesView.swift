@@ -6,6 +6,23 @@
 //
 
 import SwiftUI
+import Combine
+
+class TextFieldObserver : ObservableObject {
+    @Published var debouncedText = ""
+    @Published var searchText = ""
+    
+    private var subscriptions = Set<AnyCancellable>()
+    
+    init() {
+        $searchText
+            .debounce(for: .seconds(1), scheduler: DispatchQueue.main)
+            .sink(receiveValue: { [weak self] t in
+                self?.debouncedText = t
+            } )
+            .store(in: &subscriptions)
+    }
+}
 
 @MainActor
 final class ExercisesViewModel: ObservableObject {
@@ -18,23 +35,29 @@ final class ExercisesViewModel: ObservableObject {
     
     func bodyPartFilterSelected(option: BodyPart) async throws {
         self.exercises = try await ExercisesManager.shared.getExercisesByFilterOption(option: .bodyPart, value: option.rawValue)
-        print(exercises)
     }
     
     func categoryFilterSelected(option: ExerciseCategory) async throws {
         self.exercises = try await ExercisesManager.shared.getExercisesByFilterOption(option: .category, value: option.rawValue)
+    }
+    
+    func searchExercisesByKeyword(query: String) async throws {
+        self.exercises = try await ExercisesManager.shared.getExercisesByKeyword(query: query)
+        print(exercises)
     }
 }
 
 struct ExercisesView: View {
     @StateObject private var viewModel = ExercisesViewModel()
     
+    @State var searchQuery = ""
+    
     @State private var isSearchActive: Bool = false
     @State private var searchText: String = ""
     @State private var isDialogActive = false
     
-    let allBodyParts = BodyPart.allCases.map { $0.rawValue }
-    let allCategories = ExerciseCategory.allCases.map { $0.rawValue }
+    let allBodyParts = BodyPart.allCases.map { $0.rawValue.capitalized }
+    let allCategories = ExerciseCategory.allCases.map { $0.rawValue.capitalized }
     @State var selectedBodyPart: String = ""
     @State var selectedCategory: String = ""
     
@@ -70,7 +93,8 @@ struct ExercisesView: View {
         ZStack {
             NavigationStack {
                 VStack{
-//                    BulkUpTextField(placeholder: "Search", type: .light, isSearch: true)
+                    TextFieldWithDebounce(debouncedText: $searchQuery)
+                        .padding(.bottom, 5)
                     
                     // TODO: Refactor using BodyPartMenu
                     HStack{
@@ -135,6 +159,15 @@ struct ExercisesView: View {
         }
         .task {
             try? await viewModel.getAllExercises()
+        }
+        .onChange(of: searchQuery) { _, newValue in
+            Task {
+                if newValue.isEmpty {
+                    try? await viewModel.getAllExercises()
+                    return
+                }
+                try? await viewModel.searchExercisesByKeyword(query: newValue)
+            }
         }
     }
 }

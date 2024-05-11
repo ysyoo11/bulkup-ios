@@ -9,7 +9,7 @@ import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-struct DBExercise: Codable {
+struct DBExercise: Codable, Hashable {
     let id: String
     let name: String
     let bodyPart: BodyPart
@@ -88,7 +88,7 @@ final class ExercisesManager {
         exercisesCollection.document(exerciseId)
     }
     
-    func uploadExercise(exercise: Exercise) async throws {
+    func uploadExercise(exercise: DBExercise) async throws {
         try exerciseDocument(exerciseId: String(exercise.id)).setData(from: exercise, merge: false)
     }
     
@@ -100,9 +100,12 @@ final class ExercisesManager {
         try await exercisesCollection.getDocuments(as: DBExercise.self)
     }
     
-//    func getExercisesByKeyword() async throws -> [DBExercise] {
-//        try await exercisesCollection.order(by: "name")
-//    }
+    func getExercisesByKeyword(query: String) async throws -> [DBExercise] {
+        try await exercisesCollection
+            .whereField("name", isGreaterThanOrEqualTo: query)
+            .whereField("name", isLessThanOrEqualTo: query+"\u{F7FF}")
+            .getDocuments(as: DBExercise.self)
+    }
     
     func getExercisesByFilterOption(option: ExerciseFilterOption, value: String) async throws -> [DBExercise] {
         try await exercisesCollection.whereField(option.rawValue, isEqualTo: value).getDocuments(as: DBExercise.self)

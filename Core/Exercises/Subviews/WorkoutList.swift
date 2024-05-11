@@ -43,7 +43,7 @@ struct WorkoutList: View {
                     Text("\(name) (\(category.capitalized))")
                         .font(.headline)
                     HStack{
-                        Text(bodyPart)
+                        Text(bodyPart.capitalized)
                         Spacer()
                         if type == .exercise {
                             if weight > 0 && reps > 0 {

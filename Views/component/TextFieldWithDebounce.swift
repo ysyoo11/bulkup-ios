@@ -8,11 +8,15 @@
 import SwiftUI
 
 struct TextFieldWithDebounce: View {
+    @Binding var debouncedText : String
+    @StateObject private var textObserver = TextFieldObserver()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    
+        VStack {
+            BulkUpTextField(placeholder: "Search", type: .light, isSearch: true, text: $textObserver.searchText)
+        }.onReceive(textObserver.$debouncedText) { (val) in
+            debouncedText = val
+        }
     }
-}
-
-#Preview {
-    TextFieldWithDebounce()
 }
