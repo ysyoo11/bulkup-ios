@@ -9,7 +9,7 @@ import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-struct DBExercise: Codable {
+struct DBExercise: Codable, Equatable {
     let id: String
     let name: String
     let bodyPart: BodyPart
@@ -70,6 +70,10 @@ struct DBExercise: Codable {
         try container.encode(self.description, forKey: .description)
         try container.encodeIfPresent(self.imageUrl, forKey: .imageUrl)
     }
+    
+    static func ==(lhs: DBExercise, rhs: DBExercise) -> Bool {
+        return lhs.id == rhs.id
+    }
 }
 
 enum ExerciseFilterOption: String {
@@ -96,70 +100,74 @@ final class ExercisesManager {
         try await exerciseDocument(exerciseId: exerciseId).getDocument(as: DBExercise.self)
     }
     
-    private func getAllExercises() async throws -> [DBExercise] {
-        try await exercisesCollection.getDocuments(as: DBExercise.self)
+    private func getAllExercisesQuery() -> Query {
+        exercisesCollection
     }
     
-    private func getExercisesByKeyword(query: String) async throws -> [DBExercise] {
-        try await exercisesCollection
+    private func getExercisesByKeywordQuery(query: String) -> Query {
+        exercisesCollection
             .whereField(DBExercise.CodingKeys.name.rawValue, isGreaterThanOrEqualTo: query)
             .whereField(DBExercise.CodingKeys.name.rawValue, isLessThanOrEqualTo: query+"\u{F7FF}")
-            .getDocuments(as: DBExercise.self)
     }
     
-    private func getExercisesByFilterOption(option: ExerciseFilterOption, value: String) async throws -> [DBExercise] {
-        try await exercisesCollection.whereField(option.rawValue, isEqualTo: value).getDocuments(as: DBExercise.self)
+    private func getExercisesByFilterOptionQuery(option: ExerciseFilterOption, value: String) -> Query {
+        exercisesCollection.whereField(option.rawValue, isEqualTo: value)
     }
     
-    private func getExercisesByBodyPartAndCategory(bodyPart: BodyPart, category: ExerciseCategory) async throws -> [DBExercise] {
-        try await exercisesCollection
+    private func getExercisesByBodyPartAndCategoryQuery(bodyPart: BodyPart, category: ExerciseCategory) -> Query {
+        exercisesCollection
             .whereField(DBExercise.CodingKeys.bodyPart.rawValue, isEqualTo: bodyPart.rawValue)
             .whereField(DBExercise.CodingKeys.category.rawValue, isEqualTo: category.rawValue)
-            .getDocuments(as: DBExercise.self)
     }
     
-    private func getExercisesByKeywordAndBodyPart(query: String, bodyPart: BodyPart) async throws -> [DBExercise] {
-        try await exercisesCollection
+    private func getExercisesByKeywordAndBodyPartQuery(query: String, bodyPart: BodyPart) -> Query {
+        exercisesCollection
             .whereField(DBExercise.CodingKeys.name.rawValue, isGreaterThanOrEqualTo: query)
             .whereField(DBExercise.CodingKeys.name.rawValue, isLessThanOrEqualTo: query+"\u{F7FF}")
             .whereField(DBExercise.CodingKeys.bodyPart.rawValue, isEqualTo: bodyPart.rawValue)
-            .getDocuments(as: DBExercise.self)
     }
     
-    private func getExercisesByKeywordAndCategory(query: String, category: ExerciseCategory) async throws -> [DBExercise] {
-        try await exercisesCollection
+    private func getExercisesByKeywordAndCategoryQuery(query: String, category: ExerciseCategory) -> Query {
+        exercisesCollection
             .whereField(DBExercise.CodingKeys.name.rawValue, isGreaterThanOrEqualTo: query)
             .whereField(DBExercise.CodingKeys.name.rawValue, isLessThanOrEqualTo: query+"\u{F7FF}")
             .whereField(DBExercise.CodingKeys.category.rawValue, isEqualTo: category.rawValue)
-            .getDocuments(as: DBExercise.self)
     }
     
-    private func getExercisesByKeywordAndAllFilterOptions(query: String, bodyPart: BodyPart, category: ExerciseCategory) async throws -> [DBExercise] {
-        try await exercisesCollection
+    private func getExercisesByKeywordAndAllFilterOptionsQuery(query: String, bodyPart: BodyPart, category: ExerciseCategory) -> Query {
+        exercisesCollection
             .whereField(DBExercise.CodingKeys.name.rawValue, isGreaterThanOrEqualTo: query)
             .whereField(DBExercise.CodingKeys.name.rawValue, isLessThanOrEqualTo: query+"\u{F7FF}")
             .whereField(DBExercise.CodingKeys.bodyPart.rawValue, isEqualTo: bodyPart.rawValue)
             .whereField(DBExercise.CodingKeys.category.rawValue, isEqualTo: category.rawValue)
-            .getDocuments(as: DBExercise.self)
     }
     
-    func getExercises(bodyPart: BodyPart?, category: ExerciseCategory?, query: String?) async throws -> [DBExercise] {
-        if let bodyPart, let category, let query {
-            return try await getExercisesByKeywordAndAllFilterOptions(query: query, bodyPart: bodyPart, category: category)
-        } else if let bodyPart, let query {
-            return try await getExercisesByKeywordAndBodyPart(query: query, bodyPart: bodyPart)
-        } else if let category, let query {
-            return try await getExercisesByKeywordAndCategory(query: query, category: category)
+    func getExercises(bodyPart: BodyPart?, category: ExerciseCategory?, searchText: String?, count: Int, lastDocument: DocumentSnapshot?) async throws -> (exercises: [DBExercise], lastDocument: DocumentSnapshot?) {
+        var query: Query = getAllExercisesQuery()
+        
+        if let bodyPart, let category, let searchText {
+            query = getExercisesByKeywordAndAllFilterOptionsQuery(query: searchText, bodyPart: bodyPart, category: category)
+        } else if let bodyPart, let searchText {
+            query = getExercisesByKeywordAndBodyPartQuery(query: searchText, bodyPart: bodyPart)
+        } else if let category, let searchText {
+            query = getExercisesByKeywordAndCategoryQuery(query: searchText, category: category)
         } else if let bodyPart, let category {
-            return try await getExercisesByBodyPartAndCategory(bodyPart: bodyPart, category: category)
+            query = getExercisesByBodyPartAndCategoryQuery(bodyPart: bodyPart, category: category)
         } else if let bodyPart {
-            return try await getExercisesByFilterOption(option: .bodyPart, value: bodyPart.rawValue)
+            query = getExercisesByFilterOptionQuery(option: .bodyPart, value: bodyPart.rawValue)
         } else if let category {
-            return try await getExercisesByFilterOption(option: .category, value: category.rawValue)
-        } else if let query {
-            return try await getExercisesByKeyword(query: query)
+            query = getExercisesByFilterOptionQuery(option: .category, value: category.rawValue)
+        } else if let searchText {
+            query = getExercisesByKeywordQuery(query: searchText)
         }
-        return try await getAllExercises()
+        
+        return try await query
+            .startOptionally(afterDocument: lastDocument)
+            .getDocumentsWithSnapshot(as: DBExercise.self)
+    }
+    
+    func getAllExercisesCount() async throws -> Int {
+        try await exercisesCollection.aggregateCount()
     }
     
 }
@@ -167,11 +175,27 @@ final class ExercisesManager {
 extension Query {
     
     func getDocuments<T>(as type: T.Type) async throws -> [T] where T: Decodable {
+        try await getDocumentsWithSnapshot(as: type).exercises
+    }
+    
+    func getDocumentsWithSnapshot<T>(as type: T.Type) async throws -> (exercises: [T], lastDocument: DocumentSnapshot?) where T: Decodable {
         let snapshot = try await self.getDocuments()
         
-        return try snapshot.documents.map({ document in
+        let exercises = try snapshot.documents.map({ document in
             try document.data(as: T.self)
         })
+        
+        return (exercises, snapshot.documents.last)
+    }
+    
+    func startOptionally(afterDocument lastDocument: DocumentSnapshot?) -> Query {
+        guard let lastDocument else { return self }
+        return self.start(afterDocument: lastDocument)
+    }
+    
+    func aggregateCount() async throws -> Int {
+        let snapshot = try await self.count.getAggregation(source: .server)
+        return Int(truncating: snapshot.count)
     }
     
 }

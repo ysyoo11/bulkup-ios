@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import FirebaseFirestore
 
 class TextFieldObserver : ObservableObject {
     @Published var debouncedText = ""
@@ -31,24 +32,45 @@ final class ExercisesViewModel: ObservableObject {
     @Published var selectedBodyPart: BodyPart? = nil
     @Published var selectedCategory: ExerciseCategory? = nil
     @Published var searchQuery: String? = ""
+    @Published var isReachingEnd: Bool = false
+    
+    private let count: Int = 20
+    private var lastDocument: DocumentSnapshot? = nil
      
     func bodyPartFilterSelected(option: BodyPart?) async throws {
         self.selectedBodyPart = option ?? nil
+        self.exercises = []
+        self.lastDocument = nil
+        self.isReachingEnd = false
         try await self.getExercises()
     }
     
     func categoryFilterSelected(option: ExerciseCategory?) async throws {
         self.selectedCategory = option ?? nil
+        self.exercises = []
+        self.lastDocument = nil
+        self.isReachingEnd = false
         try await self.getExercises()
     }
     
     func searchExercisesByKeyword(query: String) async throws {
         self.searchQuery = query
+        self.exercises = []
+        self.lastDocument = nil
+        self.isReachingEnd = false
         try await self.getExercises()
     }
     
     func getExercises() async throws {
-        self.exercises = try await ExercisesManager.shared.getExercises(bodyPart: selectedBodyPart, category: selectedCategory, query: searchQuery)
+        let (newExercises, lastDocument) = try await ExercisesManager.shared.getExercises(bodyPart: selectedBodyPart, category: selectedCategory, searchText: searchQuery, count: count, lastDocument: lastDocument)
+        
+        self.exercises.append(contentsOf: newExercises)
+        if let lastDocument {
+            self.lastDocument = lastDocument
+        }
+        if newExercises.count < count || newExercises.count == 0 {
+            self.isReachingEnd = true
+        }
     }
 }
 
@@ -131,7 +153,12 @@ struct ExercisesView: View {
                 .padding()
                 
                 ScrollView (showsIndicators: true) {
-                    ExercisesList(exercises: viewModel.exercises)
+                    ExercisesList(
+                        exercises: viewModel.exercises,
+                        lastExercise: viewModel.exercises.last,
+                        fetchNext: viewModel.getExercises,
+                        isReachingEnd: viewModel.isReachingEnd
+                    )
                 }
                 .navigationTitle("Exercises")
                 .toolbar {
@@ -162,6 +189,9 @@ struct ExercisesView: View {
 struct ExercisesList: View {
     
     let exercises: [DBExercise]
+    var lastExercise: DBExercise?
+    let fetchNext: @MainActor () async throws -> ()
+    var isReachingEnd: Bool
     
     var body: some View {
         VStack (spacing: 0) {
@@ -183,6 +213,21 @@ struct ExercisesList: View {
                                 action: {print(exercise.name)}) // TODO: Show modal view
                     Divider()
                         .padding(.horizontal, 15)
+                    
+                    if exercise == lastExercise && !isReachingEnd {
+                        ProgressView()
+                            .onAppear {
+                                Task {
+                                    do {
+                                        print("Fetch next!!")
+                                        try await fetchNext()
+                                    } catch {
+                                        print(error)
+                                    }
+                                }
+                            }
+                            .padding(.vertical, 20)
+                    }
                 }
             }
         }
