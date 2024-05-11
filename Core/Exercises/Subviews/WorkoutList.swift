@@ -15,9 +15,9 @@ enum WorkoutListType: String {
 struct WorkoutList: View {
     let type: WorkoutListType
     let name: String
-    let exerciseType: String
+    let category: String
     let bodyPart: String
-    let imageUrl: String
+    let imageUrl: String?
     let action: () -> Void
     
     var count: Int = 0
@@ -29,14 +29,18 @@ struct WorkoutList: View {
     var body: some View {
         
             HStack {
-                AsyncImage(url: URL(string: imageUrl))
-                    
-                        .scaledToFit()
-                        .frame(width: 30)
-                        .padding(.trailing, 5)
+                AsyncImage(url: URL(string: imageUrl ?? "")){ image in
+                    image
+                        .resizable()
+                        .scaledToFill()
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                } placeholder: {
+                    ProgressView()
+                }
+                    .frame(width: 30, height:30)
                     
                 VStack(alignment: .leading, spacing: 5) {
-                    Text("\(name) (\(exerciseType))")
+                    Text("\(name) (\(category.capitalized))")
                         .font(.headline)
                     HStack{
                         Text(bodyPart)
@@ -87,15 +91,15 @@ struct WorkoutList: View {
     VStack (spacing: 0){
         WorkoutList(type: .exercise,
                 name: "Squat",
-                exerciseType: "Barbell",
+                category: "Barbell",
                 bodyPart: "Legs",
-                imageUrl: "",
+                imageUrl: "https://gymvisual.com/158-large_default/barbell-full-squat.jpg",
                 action: { print("SetList tapped") })
         WorkoutList(type: .exercise,
                 name: "Squat",
-                exerciseType: "Barbell",
+                category: "Barbell",
                 bodyPart: "Legs",
-                imageUrl: "",
+                imageUrl: "https://gymvisual.com/158-large_default/barbell-full-squat.jpg",
                 action: { print("SetList tapped") },
                 weight: 60.0,
                 reps: 10)
@@ -105,15 +109,15 @@ struct WorkoutList: View {
             .padding()
         WorkoutList(type: .newTemplate,
                 name: "Bench Press",
-                exerciseType: "Dumbbell",
+                category: "Dumbbell",
                 bodyPart: "Chest",
-                imageUrl: "",
+                imageUrl: "https://gymvisual.com/158-large_default/barbell-full-squat.jpg",
                 action: { print("Questionmark is tapped") })
         WorkoutList(type: .newTemplate,
                 name: "Bench Press",
-                exerciseType: "Dumbbell",
+                category: "Dumbbell",
                 bodyPart: "Chest",
-                imageUrl: "",
+                imageUrl: "https://gymvisual.com/158-large_default/barbell-full-squat.jpg",
                 action: { print("Questionmark is tapped") },
                 count: 1)
     }

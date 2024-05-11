@@ -82,7 +82,6 @@ struct SettingsView: View {
                     Task {
                         do {
                             try await viewModel.resetPassword()
-                            print("password reset!")
                         } catch {
                             print(error)
                         }
