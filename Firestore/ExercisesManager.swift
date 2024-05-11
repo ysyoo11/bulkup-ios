@@ -87,19 +87,23 @@ final class ExercisesManager {
         try exerciseDocument(exerciseId: String(exercise.id)).setData(from: exercise, merge: false)
     }
     
-    func getAllExercises() async throws -> [DBExercise] {
-        let snapshot = try await exercisesCollection.getDocuments()
-        
-        var exercises: [DBExercise] = []
-        for document in snapshot.documents {
-            do {
-                let exercise = try document.data(as: DBExercise.self)
-                exercises.append(exercise)
-            } catch {
-                print(error)
-            }
-        }
-        
-        return exercises
+    func getExerciseById(exerciseId: String) async throws -> DBExercise {
+        try await exerciseDocument(exerciseId: exerciseId).getDocument(as: DBExercise.self)
     }
+    
+    func getAllExercises() async throws -> [DBExercise] {
+        try await exercisesCollection.getDocuments(as: DBExercise.self)
+    }
+}
+
+extension Query {
+    
+    func getDocuments<T>(as type: T.Type) async throws -> [T] where T: Decodable {
+        let snapshot = try await self.getDocuments()
+        
+        return try snapshot.documents.map({ document in
+            try document.data(as: T.self)
+        })
+    }
+    
 }
