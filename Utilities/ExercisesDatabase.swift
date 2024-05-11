@@ -47,7 +47,7 @@ final class ExerciseDatabase {
         ),
         DBExercise(
             id: "2",
-            name: "Bench Press (Barbell)",
+            name: "Bench Press",
             bodyPart: .chest,
             category: .barbell,
             description: "This is a barbell bench press description",
@@ -55,7 +55,7 @@ final class ExerciseDatabase {
         ),
         DBExercise(
             id: "3",
-            name: "Deadlift (Barbell)",
+            name: "Deadlift",
             bodyPart: .fullBody,
             category: .barbell,
             description: "This is deadlift",

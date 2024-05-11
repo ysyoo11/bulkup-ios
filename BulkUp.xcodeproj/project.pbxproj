@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A205D7F22BEE61350065CF5B /* ExercisesDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A205D7F12BEE61350065CF5B /* ExercisesDatabase.swift */; };
+		A205D7F42BEE637D0065CF5B /* ExercisesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A205D7F32BEE637D0065CF5B /* ExercisesManager.swift */; };
+		A205D7F62BEE80DF0065CF5B /* BodyPartMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A205D7F52BEE80DF0065CF5B /* BodyPartMenu.swift */; };
+		A205D7F82BEE81200065CF5B /* ExerciseCategoryMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A205D7F72BEE81200065CF5B /* ExerciseCategoryMenu.swift */; };
+		A205D7FA2BEE81AD0065CF5B /* NewExerciseDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A205D7F92BEE81AD0065CF5B /* NewExerciseDialog.swift */; };
+		A205D7FC2BEE836E0065CF5B /* SetListButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A205D7FB2BEE836E0065CF5B /* SetListButton.swift */; };
 		A21625B42BEB7EFD00BBE9AC /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = A21625B32BEB7EFD00BBE9AC /* GoogleSignIn */; };
 		A21625B62BEB7EFD00BBE9AC /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A21625B52BEB7EFD00BBE9AC /* GoogleSignInSwift */; };
 		A245A8232BECF72700778555 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A245A8222BECF72700778555 /* FirebaseFirestore */; };
@@ -47,6 +53,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A205D7F12BEE61350065CF5B /* ExercisesDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesDatabase.swift; sourceTree = "<group>"; };
+		A205D7F32BEE637D0065CF5B /* ExercisesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesManager.swift; sourceTree = "<group>"; };
+		A205D7F52BEE80DF0065CF5B /* BodyPartMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyPartMenu.swift; sourceTree = "<group>"; };
+		A205D7F72BEE81200065CF5B /* ExerciseCategoryMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCategoryMenu.swift; sourceTree = "<group>"; };
+		A205D7F92BEE81AD0065CF5B /* NewExerciseDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExerciseDialog.swift; sourceTree = "<group>"; };
+		A205D7FB2BEE836E0065CF5B /* SetListButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetListButton.swift; sourceTree = "<group>"; };
 		A21625B72BEB7FB600BBE9AC /* BulkUp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "BulkUp-Info.plist"; sourceTree = "<group>"; };
 		A245A82B2BEDFA1600778555 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		A245A82E2BEE000300778555 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
@@ -99,6 +111,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A205D7F02BEE60920065CF5B /* Exercises */ = {
+			isa = PBXGroup;
+			children = (
+				A27FAEE82BEE4FEC00436B5E /* ExercisesView.swift */,
+				A205D7FD2BEEF00B0065CF5B /* Subviews */,
+			);
+			path = Exercises;
+			sourceTree = "<group>";
+		};
+		A205D7FD2BEEF00B0065CF5B /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				A2B526932BEB42ED0093BDE1 /* WorkoutList.swift */,
+				A205D7F52BEE80DF0065CF5B /* BodyPartMenu.swift */,
+				A205D7F72BEE81200065CF5B /* ExerciseCategoryMenu.swift */,
+				A205D7F92BEE81AD0065CF5B /* NewExerciseDialog.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
 		A21625B82BEB83CC00BBE9AC /* Auth */ = {
 			isa = PBXGroup;
 			children = (
@@ -111,13 +143,11 @@
 		A245A8282BEDF72800778555 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				A205D7F02BEE60920065CF5B /* Exercises */,
 				A245A8302BEE022D00778555 /* Authentication */,
 				A245A82A2BEDFA0900778555 /* Profile */,
 				A245A8292BEDF96900778555 /* Settings */,
 				F295E3762BE647B600D2DE64 /* RootView.swift */,
-				A2B5269A2BEB47FB0093BDE1 /* WelcomeView.swift */,
-				A2B526982BEB47C30093BDE1 /* SignUpView.swift */,
-				A271303C2BEB616000CDC8A9 /* LogInView.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -142,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				A245A82E2BEE000300778555 /* UserManager.swift */,
+				A205D7F32BEE637D0065CF5B /* ExercisesManager.swift */,
 			);
 			path = Firestore;
 			sourceTree = "<group>";
@@ -150,6 +181,9 @@
 			isa = PBXGroup;
 			children = (
 				A245A8312BEE023D00778555 /* AuthenticationViewModel.swift */,
+				A2B5269A2BEB47FB0093BDE1 /* WelcomeView.swift */,
+				A2B526982BEB47C30093BDE1 /* SignUpView.swift */,
+				A271303C2BEB616000CDC8A9 /* LogInView.swift */,
 				A245A8332BEE061D00778555 /* Subviews */,
 			);
 			path = Authentication;
@@ -171,7 +205,6 @@
 				A2D68EB92BE8DD66000D19CB /* RestTimerSetupView.swift */,
 				A2D68EBB2BE8E29A000D19CB /* base */,
 				A2A5AD0F2BE8E3110087E2BA /* component */,
-				A27FAEE82BEE4FEC00436B5E /* ExercisesView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -179,6 +212,7 @@
 		A26970D52BEE1A2A0005F1BB /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				A205D7F12BEE61350065CF5B /* ExercisesDatabase.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -205,8 +239,8 @@
 				A2A5AD102BE8E3B50087E2BA /* OngoingExerciseMenu.swift */,
 				A2A5AD122BE8E4430087E2BA /* TemplateEditMenu.swift */,
 				A25739EA2BE8E538001C013E /* HistoryEditMenu.swift */,
-				A2B526932BEB42ED0093BDE1 /* WorkoutList.swift */,
 				A2701BE12BEB78680028DDAA /* HistoryCard.swift */,
+				A205D7FB2BEE836E0065CF5B /* SetListButton.swift */,
 			);
 			path = component;
 			sourceTree = "<group>";
@@ -342,9 +376,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A205D7F82BEE81200065CF5B /* ExerciseCategoryMenu.swift in Sources */,
 				A271303D2BEB616000CDC8A9 /* LogInView.swift in Sources */,
 				A2A5AD132BE8E4430087E2BA /* TemplateEditMenu.swift in Sources */,
 				A27FAEE92BEE4FEC00436B5E /* ExercisesView.swift in Sources */,
+				A205D7F42BEE637D0065CF5B /* ExercisesManager.swift in Sources */,
 				A2B526942BEB42ED0093BDE1 /* WorkoutList.swift in Sources */,
 				A264A0C22BE8C70F00724C36 /* BulkUpMenu.swift in Sources */,
 				A245A8352BEE064200778555 /* SignInEmailViewModel.swift in Sources */,
@@ -352,6 +388,7 @@
 				A245A82F2BEE000300778555 /* UserManager.swift in Sources */,
 				A264A0C02BE8950B00724C36 /* BulkUpTextField.swift in Sources */,
 				A2B526992BEB47C30093BDE1 /* SignUpView.swift in Sources */,
+				A205D7F62BEE80DF0065CF5B /* BodyPartMenu.swift in Sources */,
 				A27FAEE72BEE4FB500436B5E /* StartWorkoutView.swift in Sources */,
 				A2701BE62BEB79EC0028DDAA /* HistoryView.swift in Sources */,
 				F295E3772BE647B600D2DE64 /* RootView.swift in Sources */,
@@ -359,14 +396,17 @@
 				A26970D92BEE280E0005F1BB /* SignInGoogleHelper.swift in Sources */,
 				A2B5269B2BEB47FB0093BDE1 /* WelcomeView.swift in Sources */,
 				A270B24A2BEB55820042AD0D /* BulkUpNavigationLink.swift in Sources */,
+				A205D7FC2BEE836E0065CF5B /* SetListButton.swift in Sources */,
 				A25B17EF2BECB34400E8E6E7 /* AuthenticationManager.swift in Sources */,
 				F295E3752BE647B600D2DE64 /* BulkUpApp.swift in Sources */,
+				A205D7FA2BEE81AD0065CF5B /* NewExerciseDialog.swift in Sources */,
 				A264A0BE2BE88D7600724C36 /* BulkUpButton.swift in Sources */,
 				A2701BE22BEB78680028DDAA /* HistoryCard.swift in Sources */,
 				A245A82C2BEDFA1600778555 /* ProfileView.swift in Sources */,
 				A2A5AD112BE8E3B50087E2BA /* OngoingExerciseMenu.swift in Sources */,
 				A25B17F32BECDD2D00E8E6E7 /* Errors.swift in Sources */,
 				A25739ED2BE8F75A001C013E /* BulkUpDialog.swift in Sources */,
+				A205D7F22BEE61350065CF5B /* ExercisesDatabase.swift in Sources */,
 				A25B17F12BECC2D200E8E6E7 /* SettingsView.swift in Sources */,
 				A245A8322BEE023D00778555 /* AuthenticationViewModel.swift in Sources */,
 				A25739EB2BE8E538001C013E /* HistoryEditMenu.swift in Sources */,

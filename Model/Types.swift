@@ -7,33 +7,6 @@
 
 import Foundation
 
-enum BodyPart: String {
-    case legs = "legs"
-    case back = "back"
-    case chest = "chest"
-    case shoulder = "shoulder"
-    case arms = "arms"
-    case core = "core"
-    case fullBody = "full body"
-}
-
-enum ExerciseCategory: String {
-    case dumbbell = "dumbbell"
-    case barbell = "barbell"
-    case machine = "machine"
-    case bodyWeight = "body weight"
-    case cardio = "cardio"
-}
-
-struct Exercise {
-    var id: String
-    var name: String
-    var bodyPart: BodyPart
-    var type: ExerciseCategory
-    var description: String
-    var imageUrl: String
-}
-
 struct Record {
     var id: String
     var weight: Double?
