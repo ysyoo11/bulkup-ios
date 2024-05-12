@@ -7,7 +7,6 @@
 
 import SwiftUI
 import Combine
-import FirebaseFirestore
 
 class TextFieldObserver : ObservableObject {
     @Published var debouncedText = ""
@@ -22,55 +21,6 @@ class TextFieldObserver : ObservableObject {
                 self?.debouncedText = t
             } )
             .store(in: &subscriptions)
-    }
-}
-
-@MainActor
-final class ExercisesViewModel: ObservableObject {
-    
-    @Published private(set) var exercises: [DBExercise] = []
-    @Published var selectedBodyPart: BodyPart? = nil
-    @Published var selectedCategory: ExerciseCategory? = nil
-    @Published var searchQuery: String? = ""
-    @Published var isReachingEnd: Bool = false
-    
-    private let count: Int = 20
-    private var lastDocument: DocumentSnapshot? = nil
-     
-    func bodyPartFilterSelected(option: BodyPart?) async throws {
-        self.selectedBodyPart = option ?? nil
-        self.exercises = []
-        self.lastDocument = nil
-        self.isReachingEnd = false
-        try await self.getExercises()
-    }
-    
-    func categoryFilterSelected(option: ExerciseCategory?) async throws {
-        self.selectedCategory = option ?? nil
-        self.exercises = []
-        self.lastDocument = nil
-        self.isReachingEnd = false
-        try await self.getExercises()
-    }
-    
-    func searchExercisesByKeyword(query: String) async throws {
-        self.searchQuery = query
-        self.exercises = []
-        self.lastDocument = nil
-        self.isReachingEnd = false
-        try await self.getExercises()
-    }
-    
-    func getExercises() async throws {
-        let (newExercises, lastDocument) = try await ExercisesManager.shared.getExercises(bodyPart: selectedBodyPart, category: selectedCategory, searchText: searchQuery, count: count, lastDocument: lastDocument)
-        
-        self.exercises.append(contentsOf: newExercises)
-        if let lastDocument {
-            self.lastDocument = lastDocument
-        }
-        if newExercises.count < count || newExercises.count == 0 {
-            self.isReachingEnd = true
-        }
     }
 }
 
@@ -183,63 +133,6 @@ struct ExercisesView: View {
                 try? await viewModel.searchExercisesByKeyword(query: searchQuery)
             }
         }
-    }
-}
-
-struct ExercisesList: View {
-    
-    let exercises: [DBExercise]
-    var lastExercise: DBExercise?
-    let fetchNext: @MainActor () async throws -> ()
-    var isReachingEnd: Bool
-    
-    var body: some View {
-        VStack (spacing: 0) {
-            ForEach(sections.keys.sorted(), id: \.self) { key in
-                VStack (alignment: .leading) {
-                    Text(key)
-                        .padding(.top)
-                        .padding(.leading)
-                        .font(Font.system(size: 14))
-                        .foregroundColor(Color.gray)
-                    Divider()
-                }
-                ForEach(sections[key]!, id: \.id) { exercise in
-                    WorkoutList(type: .exercise,
-                                name: exercise.name,
-                                category: exercise.category.rawValue,
-                                bodyPart: exercise.bodyPart.rawValue,
-                                imageUrl: exercise.imageUrl,
-                                action: {print(exercise.name)}) // TODO: Show modal view
-                    Divider()
-                        .padding(.horizontal, 15)
-                    
-                    if exercise == lastExercise && !isReachingEnd {
-                        ProgressView()
-                            .onAppear {
-                                Task {
-                                    do {
-                                        try await fetchNext()
-                                    } catch {
-                                        print(error)
-                                    }
-                                }
-                            }
-                            .padding(.vertical, 20)
-                    }
-                }
-            }
-        }
-    }
-    
-    func prepareData(exercises: [DBExercise]) -> [String: [DBExercise]] {
-        let sortedExercises = exercises.sorted { $0.name < $1.name }
-        let grouped = Dictionary(grouping: sortedExercises) { String($0.name.prefix(1)) }
-        return grouped
-    }
-            
-    private var sections: [String: [DBExercise]] {
-        prepareData(exercises: exercises)
     }
 }
 
