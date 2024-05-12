@@ -16,8 +16,7 @@ final class AuthenticationViewModel: ObservableObject {
         let authDataResult = try await AuthenticationManager.shared.signInWithGoogle(tokens: tokens)
         let user = DBUser(auth: authDataResult)
         
-        // TODO: Enable it after refactoring authentication logic
-//            try await UserManager.shared.createNewUser(user: user)
+        try await UserManager.shared.createNewUser(user: user)
     }
     
 }
