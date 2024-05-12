@@ -5,6 +5,7 @@
 //  Created by Yeonsuk Yoo on 10/5/2024.
 //
 
+import Combine
 import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
@@ -222,6 +223,8 @@ final class UserManager {
         userTemplatesCollection(userId: userId).document(templateId)
     }
     
+    private var userTemplatesListener: ListenerRegistration? = nil
+    
     func createNewUser(user: DBUser) async throws {
         try userDocument(userId: user.userId).setData(from: user, merge: false)
     }
@@ -256,4 +259,17 @@ final class UserManager {
     func getUserTemplateById(userId: String, templateId: String) async throws -> UserTemplate {
         try await userTemplateDocument(userId: userId, templateId: templateId).getDocument(as: UserTemplate.self)
     }
+    
+    func removeListenerForAllUserTemplates() {
+        self.userTemplatesListener?.remove()
+    }
+    
+    func addListenerForAllUserTemplates(userId: String) -> AnyPublisher<[UserTemplate], any Error> {
+        let (publisher, listener) = userTemplatesCollection(userId: userId)
+            .addSnapshotListener(as: UserTemplate.self)
+        
+        self.userTemplatesListener = listener
+        return publisher
+    }
+    
 }
