@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum ButtonColor {
-    case blue, red, green, skyblue, pink, gray
+    case blue, red, green, skyblue, pink, gray, clear
 
     var backgroundColor: Color {
         switch self {
@@ -18,6 +18,7 @@ enum ButtonColor {
         case .skyblue: return .secondaryBlue
         case .pink: return .secondaryRed
         case .gray: return .secondaryGray
+        case .clear: return .clear
         }
     }
 
@@ -27,6 +28,7 @@ enum ButtonColor {
         case .skyblue: return .primaryBlue
         case .pink: return .primaryRed
         case .gray: return .primaryGray
+        case .clear: return .primaryBlue
         }
     }
 }
@@ -37,19 +39,25 @@ struct BulkUpButton: View {
     var isDisabled: Bool
     var isFullWidth: Bool = false
     var imageResource: ImageResource?
+    var image: Image?
     let onClick: () -> Void
     
     var body: some View {
         Button(action: onClick) {
-            HStack(spacing: 10, content: {
+            HStack(content: {
                 if let imageResource = imageResource {
                     Image(imageResource)
                         .resizable()
                         .frame(width: 20, height: 20, alignment: .trailing)
+                        .padding(.trailing, 10)
+                }
+                if let image {
+                    image.resizable().frame(width: 15, height: 15)
                 }
                 Text(text)
                     .foregroundColor(color.textColor)
                     .bold()
+                    .underline()
             })
             .padding(.horizontal, 10)
             .padding(.vertical, 8)
@@ -74,6 +82,9 @@ struct BulkUpButton: View {
             BulkUpButton(text: "Save", color: .blue, isDisabled: false, isFullWidth: true) {
                 print("Save")
             }
+        }
+        BulkUpButton(text: "Template", color: .skyblue, isDisabled: false, image: Image(systemName: "plus")) {
+            print("")
         }
     }
     .padding()
