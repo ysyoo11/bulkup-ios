@@ -33,20 +33,18 @@ struct BulkUpMenu: View {
     var options: [MenuContent]
     
     var body: some View {
-        NavigationStack {
-            Menu {
-                ForEach(Array(options.enumerated()), id: \.offset) { _, option in
-                    MenuButton(content: option)
-                }
-            } label: {
-                Image(systemName: "ellipsis")
-                    .foregroundColor(.primaryBlue)
-                    .font(.body)
-                    .padding(.horizontal, 4)
-                    .padding(.vertical, 10)
-                    .background(.secondaryBlue)
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
+        Menu {
+            ForEach(Array(options.enumerated()), id: \.offset) { _, option in
+                MenuButton(content: option)
             }
+        } label: {
+            Image(systemName: "ellipsis")
+                .foregroundColor(.primaryBlue)
+                .font(.body)
+                .padding(.horizontal, 4)
+                .padding(.vertical, 10)
+                .background(.secondaryBlue)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
         }
     }
 }
