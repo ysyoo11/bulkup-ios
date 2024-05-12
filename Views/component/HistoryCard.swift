@@ -14,7 +14,7 @@ struct HistoryCard: View {
         VStack(alignment: .leading, spacing: 20) {
             HStack {
                 VStack(alignment: .leading) {
-                    Text(history.template)
+                    Text(history.template?.name ?? "Template")
                         .bold()
                     Text(history.createdAt, style: .date)
                         .font(.subheadline)
@@ -27,7 +27,7 @@ struct HistoryCard: View {
 
             HStack {
                 Image(systemName: "clock")
-                Text("\(history.duration) min")
+                Text("\(history.endedAt - history.createdAt) min")
         
                 Image(systemName: "scalemass")
                 Text("\(history.volume) kg")
@@ -46,11 +46,10 @@ struct HistoryCard: View {
 
 var tempHistory: History = History(
     id: "1",
-    template: "template",
-    duration: 1000,
-    createdAt: Date(),
-    volume: 2000,
-    userId: "userId"
+    createdAt: Date() - 1000,
+    endedAt: Date(),
+    updatedAt: Date() - 1000,
+    volume: 1000
 )
 
 #Preview {

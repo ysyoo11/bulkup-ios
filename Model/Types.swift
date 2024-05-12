@@ -7,38 +7,41 @@
 
 import Foundation
 
-struct Record {
+struct UserExercise {
     var id: String
-    var weight: Double?
-    var reps: Int
+    var exercise: Exercise
+    var records: [Record]
+    var autoRestTimer: Int? // sec
 }
 
-struct ExerciseWithRecord {
-    var id: String
-    var exerciseId: String // only store Exercise id
-    var records: [String] // only store Record id
-    var autoRestTimer: Int?
-}
-
-struct Template {
-    var id: String
-    var name: String
-    var exercisesWithRecord: [String] // only store ExerciseWithRecord id
-    var authorId: String
-}
+//struct Template {
+//    var id: String
+//    var name: String
+//    var exercises: [DBExercise]
+//    var createdAt: Date
+//    var updatedAt: Date
+//}
 
 struct History {
     var id: String
-    var template: String // only store Template id
-    var duration: Int
+    var template: UserTemplate?
     var createdAt: Date
+    var endedAt: Date
+    var updatedAt: Date
     var volume: Int
-    var userId: String
 }
 
-struct BulkUpUser {
+struct Record {
     var id: String
-    var username: String
     var createdAt: Date
-    var histories: [String] // only store history id
+    var updatedAt: Date
+    var sets: [WorkoutSet]
+}
+
+extension Date {
+    
+    static func - (lhs: Date, rhs: Date) -> TimeInterval {
+        return lhs.timeIntervalSinceReferenceDate - rhs.timeIntervalSinceReferenceDate
+    }
+    
 }
