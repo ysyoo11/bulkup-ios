@@ -7,57 +7,9 @@
 
 import SwiftUI
 
-@MainActor
-final class StartWorkoutViewModel: ObservableObject {
-    
-    @Published private(set) var templates: [UserTemplate] = []
-    
-    func addUserTemplate(template: UserTemplate) {
-        Task {
-            let authDataResult = try AuthenticationManager.shared.getAuthenticatedUser()
-            try? await UserManager.shared.addUserTemplate(userId: authDataResult.uid, template: template)
-        }
-    }
-    
-    func getUserTemplates() {
-        Task {
-            do {
-                let authDataResult = try AuthenticationManager.shared.getAuthenticatedUser()
-                self.templates = try await UserManager.shared.getAllUserTemplates(userId: authDataResult.uid)
-//                let userTemplates = try await UserManager.shared.getAllUserTemplates(userId: authDataResult.uid)
-//                
-//                var templatesArr: [UserTemplateWithExercises] = []
-//                for userTemplate in userTemplates {
-//                    var exerciseArr: [UserTemplateExerciseWithExercise] = []
-//                    for exercise in userTemplate.exercises {
-//                        if let dbExercise = try? await ExercisesManager.shared.getExerciseById(exerciseId: exercise.exerciseId) {
-//                            exerciseArr.append(UserTemplateExerciseWithExercise(exercise: dbExercise, sets: exercise.sets))
-//                        }
-//                    }
-//                    templatesArr.append(UserTemplateWithExercises(id: userTemplate.id, name: userTemplate.name, exercises: exerciseArr, createdAt: userTemplate.createdAt, updatedAt: userTemplate.updatedAt))
-//                }
-//                
-//                self.templates = templatesArr
-            } catch {
-                print(error)
-            }
-        }
-    }
-    
-    func removeUserTemplate(templateId: String) {
-        Task {
-            let authDataResult = try AuthenticationManager.shared.getAuthenticatedUser()
-            try? await UserManager.shared.removeUserTemplate(userId: authDataResult.uid, templateId: templateId)
-        }
-    }
-    
-}
-
 struct StartWorkoutView: View {
     @StateObject var viewModel = StartWorkoutViewModel()
-    
-    @State private var userTemplates: [UserTemplate] = []
-    @State private var showingNewTemplate = false  // State to control the modal presentation
+    @State private var showingNewTemplate = false
     
     private let adaptiveColumns = [
         GridItem(.adaptive(minimum: 170))
@@ -116,8 +68,8 @@ struct StartWorkoutView: View {
                 NewTemplateView(isPresented: $showingNewTemplate)
             }
             .padding(.horizontal, 20)
-            .task {
-                viewModel.getUserTemplates()
+            .onFirstAppear {
+                viewModel.addListenerForTemplates()
             }
         }
     }
