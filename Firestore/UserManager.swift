@@ -252,4 +252,8 @@ final class UserManager {
     func getAllUserTemplates(userId: String) async throws -> [UserTemplate] {
         try await userTemplatesCollection(userId: userId).getDocuments(as: UserTemplate.self)
     }
+    
+    func getUserTemplateById(userId: String, templateId: String) async throws -> UserTemplate {
+        try await userTemplateDocument(userId: userId, templateId: templateId).getDocument(as: UserTemplate.self)
+    }
 }
