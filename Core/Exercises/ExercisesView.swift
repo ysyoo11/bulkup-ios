@@ -219,7 +219,6 @@ struct ExercisesList: View {
                             .onAppear {
                                 Task {
                                     do {
-                                        print("Fetch next!!")
                                         try await fetchNext()
                                     } catch {
                                         print(error)
