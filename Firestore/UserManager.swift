@@ -245,15 +245,21 @@ final class UserManager {
         let document = userTemplatesCollection(userId: userId).document()
         let documentId = document.documentID
         
+        let encodedExercises = template.exercises.map { try? Firestore.Encoder().encode($0) }
+        
         let data: [String: Any] = [
             UserTemplate.CodingKeys.id.rawValue: documentId,
             UserTemplate.CodingKeys.name.rawValue: template.name,
-            UserTemplate.CodingKeys.exercises.rawValue: template.exercises,
-            UserTemplate.CodingKeys.createdAt.rawValue: Timestamp(),
-            UserTemplate.CodingKeys.updatedAt.rawValue: Timestamp()
+            UserTemplate.CodingKeys.exercises.rawValue: encodedExercises,
+            UserTemplate.CodingKeys.createdAt.rawValue: Timestamp(date: Date()),
+            UserTemplate.CodingKeys.updatedAt.rawValue: Timestamp(date: Date())
         ]
         
-        try await document.setData(data, merge: false)
+        do {
+            try await document.setData(data, merge: false)
+        } catch {
+            print(error)
+        }
     }
     
     func removeUserTemplate(userId: String, templateId: String) async throws {
