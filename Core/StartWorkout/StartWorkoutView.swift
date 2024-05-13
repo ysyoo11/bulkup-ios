@@ -70,7 +70,8 @@ struct StartWorkoutView: View {
                 NewTemplateView(isPresented: $showingNewTemplate)
             }
             .sheet(isPresented: $showingTemplatePreview) {
-                TemplatePreview(showingTemplatePreview: $showingTemplatePreview, previewTemplateId: $selectedTemplateId)
+//                TemplatePreview(showingTemplatePreview: $showingTemplatePreview, previewTemplateId: $selectedTemplateId)
+                TemplatePreviewBuilder(selectedTemplateId: $selectedTemplateId, showingTemplatePreview: $showingTemplatePreview)
             }
             .padding(.horizontal, 20)
             .onFirstAppear {
