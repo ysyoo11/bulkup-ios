@@ -16,6 +16,10 @@
 		A21625B42BEB7EFD00BBE9AC /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = A21625B32BEB7EFD00BBE9AC /* GoogleSignIn */; };
 		A21625B62BEB7EFD00BBE9AC /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A21625B52BEB7EFD00BBE9AC /* GoogleSignInSwift */; };
 		A2451BC92BF2091700445C01 /* OngoingExercisesViewSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2451BC82BF2091700445C01 /* OngoingExercisesViewSheet.swift */; };
+		A2451BCC2BF258D400445C01 /* UserTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2451BCB2BF258D400445C01 /* UserTemplate.swift */; };
+		A2451BCE2BF2591C00445C01 /* UserHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2451BCD2BF2591C00445C01 /* UserHistory.swift */; };
+		A2451BD02BF2594C00445C01 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2451BCF2BF2594C00445C01 /* User.swift */; };
+		A2451BD22BF2598200445C01 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2451BD12BF2598200445C01 /* Exercise.swift */; };
 		A245A8232BECF72700778555 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A245A8222BECF72700778555 /* FirebaseFirestore */; };
 		A245A8272BECF72700778555 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A245A8262BECF72700778555 /* FirebaseFirestoreSwift */; };
 		A245A82C2BEDFA1600778555 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A245A82B2BEDFA1600778555 /* ProfileView.swift */; };
@@ -85,6 +89,10 @@
 		A205D7FB2BEE836E0065CF5B /* SetList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetList.swift; sourceTree = "<group>"; };
 		A21625B72BEB7FB600BBE9AC /* BulkUp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "BulkUp-Info.plist"; sourceTree = "<group>"; };
 		A2451BC82BF2091700445C01 /* OngoingExercisesViewSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingExercisesViewSheet.swift; sourceTree = "<group>"; };
+		A2451BCB2BF258D400445C01 /* UserTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTemplate.swift; sourceTree = "<group>"; };
+		A2451BCD2BF2591C00445C01 /* UserHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHistory.swift; sourceTree = "<group>"; };
+		A2451BCF2BF2594C00445C01 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A2451BD12BF2598200445C01 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		A245A82B2BEDFA1600778555 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		A245A82E2BEE000300778555 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		A245A8312BEE023D00778555 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
@@ -190,6 +198,17 @@
 			path = Auth;
 			sourceTree = "<group>";
 		};
+		A2451BCA2BF258B800445C01 /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				A2451BCF2BF2594C00445C01 /* User.swift */,
+				A2451BCB2BF258D400445C01 /* UserTemplate.swift */,
+				A2451BCD2BF2591C00445C01 /* UserHistory.swift */,
+				A2451BD12BF2598200445C01 /* Exercise.swift */,
+			);
+			path = Types;
+			sourceTree = "<group>";
+		};
 		A245A8282BEDF72800778555 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,6 +246,7 @@
 			children = (
 				A245A82E2BEE000300778555 /* UserManager.swift */,
 				A205D7F32BEE637D0065CF5B /* ExercisesManager.swift */,
+				A2451BCA2BF258B800445C01 /* Types */,
 			);
 			path = Firestore;
 			sourceTree = "<group>";
@@ -539,12 +559,14 @@
 				F295E3772BE647B600D2DE64 /* RootView.swift in Sources */,
 				A2A1D46B2BF0911C00AA09D5 /* StartWorkoutViewModel.swift in Sources */,
 				A2D68EBA2BE8DD66000D19CB /* RestTimerSetupView.swift in Sources */,
+				A2451BD22BF2598200445C01 /* Exercise.swift in Sources */,
 				A2A1D4712BF0998500AA09D5 /* ExerciseListView.swift in Sources */,
 				A2451BC92BF2091700445C01 /* OngoingExercisesViewSheet.swift in Sources */,
 				A26970D92BEE280E0005F1BB /* SignInGoogleHelper.swift in Sources */,
 				A2F81A932BF1EF43001176B6 /* OngoingExerciseMenu.swift in Sources */,
 				A2A1D4772BF09A0D00AA09D5 /* InstructionView.swift in Sources */,
 				A2A1D4612BF08EC000AA09D5 /* Query.swift in Sources */,
+				A2451BCE2BF2591C00445C01 /* UserHistory.swift in Sources */,
 				A2B5269B2BEB47FB0093BDE1 /* WelcomeView.swift in Sources */,
 				A270B24A2BEB55820042AD0D /* BulkUpNavigationLink.swift in Sources */,
 				A205D7FC2BEE836E0065CF5B /* SetList.swift in Sources */,
@@ -558,10 +580,12 @@
 				A245A82C2BEDFA1600778555 /* ProfileView.swift in Sources */,
 				A2A1D45C2BF07C2400AA09D5 /* TemplateCard.swift in Sources */,
 				A2A1D4692BF0904300AA09D5 /* ExercisesList.swift in Sources */,
+				A2451BD02BF2594C00445C01 /* User.swift in Sources */,
 				A2A1D47E2BF10F1700AA09D5 /* ExercisesViewSheet.swift in Sources */,
 				A25B17F32BECDD2D00E8E6E7 /* Errors.swift in Sources */,
 				A25739ED2BE8F75A001C013E /* BulkUpDialog.swift in Sources */,
 				A205D7F22BEE61350065CF5B /* ExercisesDatabase.swift in Sources */,
+				A2451BCC2BF258D400445C01 /* UserTemplate.swift in Sources */,
 				A25B17F12BECC2D200E8E6E7 /* SettingsView.swift in Sources */,
 				A2A1D4652BF08F3C00AA09D5 /* OnFirstAppearViewModifier.swift in Sources */,
 				A245A8322BEE023D00778555 /* AuthenticationViewModel.swift in Sources */,

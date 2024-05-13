@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct HistoryCard: View {
-    var history: History
+    var history: UserHistoryWithInfo
 
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             HStack {
                 VStack(alignment: .leading) {
-                    Text(history.template?.name ?? "Template")
+                    Text(history.template.name)
                         .bold()
-                    Text(history.createdAt, style: .date)
+                    Text(history.createdAt ?? Date(), style: .date)
                         .font(.subheadline)
                 }
                 Spacer()
@@ -27,7 +27,7 @@ struct HistoryCard: View {
 
             HStack {
                 Image(systemName: "clock")
-                Text("\(history.endedAt - history.createdAt) min")
+                Text("\(history.duration) min")
         
                 Image(systemName: "scalemass")
                 Text("\(history.volume) kg")
@@ -44,12 +44,13 @@ struct HistoryCard: View {
     }
 }
 
-var tempHistory: History = History(
+var tempHistory: UserHistoryWithInfo = UserHistoryWithInfo(
     id: "1",
+    template: UserTemplateWithExercises(id: "1", name: "Template A", exercises: [], createdAt: Date(), updatedAt: Date()),
+    duration: 100,
+    volume: 1000,
     createdAt: Date() - 1000,
-    endedAt: Date(),
-    updatedAt: Date() - 1000,
-    volume: 1000
+    updatedAt: Date() - 1000
 )
 
 #Preview {

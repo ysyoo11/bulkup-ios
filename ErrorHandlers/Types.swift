@@ -14,15 +14,6 @@ struct UserExercise {
     var autoRestTimer: Int? // sec
 }
 
-struct History {
-    var id: String
-    var template: UserTemplate?
-    var createdAt: Date
-    var endedAt: Date
-    var updatedAt: Date
-    var volume: Int
-}
-
 struct Record {
     var id: String
     var createdAt: Date

@@ -159,6 +159,7 @@ struct WorkoutOngoingView: View {
                                 onClick: { isActiveCancelWorkoutDialog = true })
                         }
                         .padding()
+                        .padding(.top, 10)
                     }
                 }
                 .toolbar {
