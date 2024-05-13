@@ -9,7 +9,9 @@ import SwiftUI
 
 struct StartWorkoutView: View {
     @StateObject var viewModel = StartWorkoutViewModel()
-    @State private var showingNewTemplate = false
+    @State private var showingNewTemplate: Bool = false
+    @State private var showingTemplatePreview: Bool = false
+    @State private var selectedTemplateId: String = ""
     
     private let adaptiveColumns = [
         GridItem(.adaptive(minimum: 170))
@@ -54,7 +56,7 @@ struct StartWorkoutView: View {
                 }
                 LazyVGrid(columns: adaptiveColumns, spacing: 20) {
                     ForEach(viewModel.templates, id: \.id.self) { template in
-                        TemplateCardViewBuilder(templateId: template.id)
+                        TemplateCardViewBuilder(templateId: template.id, selectedTemplateId: $selectedTemplateId, showingTemplatePreview: $showingTemplatePreview)
                     }
                     NewTemplateCard(onClick: {
                         showingNewTemplate = true
@@ -66,6 +68,10 @@ struct StartWorkoutView: View {
             .navigationTitle("Start Workout")
             .sheet(isPresented: $showingNewTemplate) {
                 NewTemplateView(isPresented: $showingNewTemplate)
+            }
+            .sheet(isPresented: $showingTemplatePreview) {
+//                TemplatePreview(showingTemplatePreview: $showingTemplatePreview, previewTemplateId: $selectedTemplateId)
+                TemplatePreviewBuilder(selectedTemplateId: $selectedTemplateId, showingTemplatePreview: $showingTemplatePreview)
             }
             .padding(.horizontal, 20)
             .onFirstAppear {

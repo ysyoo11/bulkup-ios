@@ -1,29 +1,27 @@
 //
-//  TemplateCardViewBuilder.swift
+//  TemplatePreviewBuilder.swift
 //  BulkUp
 //
-//  Created by Yeonsuk Yoo on 12/5/2024.
+//  Created by Yeonsuk Yoo on 13/5/2024.
 //
 
 import SwiftUI
 
-struct TemplateCardViewBuilder: View {
-    
-    let templateId: String
-    @State private var template: UserTemplateWithExercises? = nil
+struct TemplatePreviewBuilder: View {
     @Binding var selectedTemplateId: String
     @Binding var showingTemplatePreview: Bool
+    @State private var template: UserTemplateWithExercises? = nil
     
     var body: some View {
         ZStack {
             if let template {
-                TemplateCard(selectedTemplateId: $selectedTemplateId, showingTemplatePreview: $showingTemplatePreview, template: template)
+                TemplatePreview(showingTemplatePreview: $showingTemplatePreview, previewTemplateId: $selectedTemplateId, template: template)
             }
         }
         .task {
             do {
                 let authDataResult = try AuthenticationManager.shared.getAuthenticatedUser()
-                let userTemplate = try await UserManager.shared.getUserTemplateById(userId: authDataResult.uid, templateId: templateId)
+                let userTemplate = try await UserManager.shared.getUserTemplateById(userId: authDataResult.uid, templateId: selectedTemplateId)
                 
                 var exerciseArr: [UserTemplateExerciseWithExercise] = []
                 for exercise in userTemplate.exercises {
@@ -39,6 +37,3 @@ struct TemplateCardViewBuilder: View {
     }
 }
 
-//#Preview {
-//    TemplateCardViewBuilder()
-//}

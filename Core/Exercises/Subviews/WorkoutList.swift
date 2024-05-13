@@ -15,10 +15,6 @@ enum WorkoutListType: String {
 struct WorkoutList: View {
     let type: WorkoutListType
     let exercise: DBExercise
-//    let name: String
-//    let category: String
-//    let bodyPart: String
-//    let imageUrl: String?
     let action: () -> Void
     
     var isNewTemplateMode: Bool = false

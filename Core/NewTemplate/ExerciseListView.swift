@@ -8,7 +8,7 @@ import SwiftUI
 
 struct ExerciseListView: View {
     @ObservedObject var vm = ExerciseListViewModel()
-    @ObservedObject var sharedVM: SharedViewModel
+//    @ObservedObject var sharedVM: SharedViewModel
     @State private var showInstruction: Bool = false
 
     var body: some View {
@@ -82,6 +82,6 @@ struct ExerciseListView: View {
     }
 }
 
-#Preview {
-    ExerciseListView(sharedVM: SharedViewModel())
-}
+//#Preview {
+//    ExerciseListView(sharedVM: SharedViewModel())
+//}
