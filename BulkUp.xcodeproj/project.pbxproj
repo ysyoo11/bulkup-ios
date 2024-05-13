@@ -20,6 +20,7 @@
 		A2451BCE2BF2591C00445C01 /* UserHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2451BCD2BF2591C00445C01 /* UserHistory.swift */; };
 		A2451BD02BF2594C00445C01 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2451BCF2BF2594C00445C01 /* User.swift */; };
 		A2451BD22BF2598200445C01 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2451BD12BF2598200445C01 /* Exercise.swift */; };
+		A2451BD42BF26B3200445C01 /* WorkoutOngoingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2451BD32BF26B3200445C01 /* WorkoutOngoingViewModel.swift */; };
 		A245A8232BECF72700778555 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A245A8222BECF72700778555 /* FirebaseFirestore */; };
 		A245A8272BECF72700778555 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A245A8262BECF72700778555 /* FirebaseFirestoreSwift */; };
 		A245A82C2BEDFA1600778555 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A245A82B2BEDFA1600778555 /* ProfileView.swift */; };
@@ -93,6 +94,7 @@
 		A2451BCD2BF2591C00445C01 /* UserHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHistory.swift; sourceTree = "<group>"; };
 		A2451BCF2BF2594C00445C01 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A2451BD12BF2598200445C01 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
+		A2451BD32BF26B3200445C01 /* WorkoutOngoingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutOngoingViewModel.swift; sourceTree = "<group>"; };
 		A245A82B2BEDFA1600778555 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		A245A82E2BEE000300778555 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		A245A8312BEE023D00778555 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
@@ -403,6 +405,7 @@
 			isa = PBXGroup;
 			children = (
 				A2F81A902BF1EF1C001176B6 /* WorkoutOngoingView.swift */,
+				A2451BD32BF26B3200445C01 /* WorkoutOngoingViewModel.swift */,
 				A2F81A922BF1EF43001176B6 /* OngoingExerciseMenu.swift */,
 				A2F81A942BF1EF95001176B6 /* RestTimerView.swift */,
 				A2F81A962BF1EFF0001176B6 /* WorkoutOngoingSetList.swift */,
@@ -556,6 +559,7 @@
 				A27FAEE72BEE4FB500436B5E /* StartWorkoutView.swift in Sources */,
 				A2701BE62BEB79EC0028DDAA /* HistoryView.swift in Sources */,
 				A2F81A952BF1EF95001176B6 /* RestTimerView.swift in Sources */,
+				A2451BD42BF26B3200445C01 /* WorkoutOngoingViewModel.swift in Sources */,
 				F295E3772BE647B600D2DE64 /* RootView.swift in Sources */,
 				A2A1D46B2BF0911C00AA09D5 /* StartWorkoutViewModel.swift in Sources */,
 				A2D68EBA2BE8DD66000D19CB /* RestTimerSetupView.swift in Sources */,
