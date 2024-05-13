@@ -5,6 +5,7 @@
 //  Created by Yeonsuk Yoo on 10/5/2024.
 //
 
+import Combine
 import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
@@ -68,40 +69,48 @@ struct DBUser: Codable {
 struct UserTemplateExercise: Codable, Equatable {
     let exerciseId: String
     let sets: [WorkoutSet]
+    let autoRestTimerSec: Int?
     
     init(userTemplateExercise: UserTemplateExercise) {
         self.exerciseId = userTemplateExercise.exerciseId
         self.sets = userTemplateExercise.sets
+        self.autoRestTimerSec = userTemplateExercise.autoRestTimerSec
     }
     
     init(
         exerciseId: String,
-        sets: [WorkoutSet]
+        sets: [WorkoutSet],
+        autoRestTimerSec: Int?
     ) {
         self.exerciseId = exerciseId
         self.sets = sets
+        self.autoRestTimerSec = autoRestTimerSec
     }
     
     enum CodingKeys: String, CodingKey {
         case exerciseId = "exercise_id"
         case sets = "sets"
+        case autoRestTimerSec = "auto_rest_timer_sec"
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.exerciseId = try container.decode(String.self, forKey: .exerciseId)
         self.sets = try container.decode([WorkoutSet].self, forKey: .sets)
+        self.autoRestTimerSec = try container.decodeIfPresent(Int.self, forKey: .autoRestTimerSec)
     }
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.exerciseId, forKey: .exerciseId)
         try container.encode(self.sets, forKey: .sets)
+        try container.encode(self.autoRestTimerSec, forKey: .autoRestTimerSec)
     }
 }
-struct UserTemplateExerciseWithExercise {
+struct UserTemplateExerciseWithExercise: Equatable {
     let exercise: DBExercise
-    let sets: [WorkoutSet]
+    var sets: [WorkoutSet]
+    var autoRestTimerSec: Int?
 }
 
 struct WorkoutSet: Codable, Equatable {
@@ -222,6 +231,8 @@ final class UserManager {
         userTemplatesCollection(userId: userId).document(templateId)
     }
     
+    private var userTemplatesListener: ListenerRegistration? = nil
+    
     func createNewUser(user: DBUser) async throws {
         try userDocument(userId: user.userId).setData(from: user, merge: false)
     }
@@ -234,15 +245,21 @@ final class UserManager {
         let document = userTemplatesCollection(userId: userId).document()
         let documentId = document.documentID
         
+        let encodedExercises = template.exercises.map { try? Firestore.Encoder().encode($0) }
+        
         let data: [String: Any] = [
             UserTemplate.CodingKeys.id.rawValue: documentId,
             UserTemplate.CodingKeys.name.rawValue: template.name,
-            UserTemplate.CodingKeys.exercises.rawValue: template.exercises,
-            UserTemplate.CodingKeys.createdAt.rawValue: Timestamp(),
-            UserTemplate.CodingKeys.updatedAt.rawValue: Timestamp()
+            UserTemplate.CodingKeys.exercises.rawValue: encodedExercises,
+            UserTemplate.CodingKeys.createdAt.rawValue: Timestamp(date: Date()),
+            UserTemplate.CodingKeys.updatedAt.rawValue: Timestamp(date: Date())
         ]
         
-        try await document.setData(data, merge: false)
+        do {
+            try await document.setData(data, merge: false)
+        } catch {
+            print(error)
+        }
     }
     
     func removeUserTemplate(userId: String, templateId: String) async throws {
@@ -252,4 +269,21 @@ final class UserManager {
     func getAllUserTemplates(userId: String) async throws -> [UserTemplate] {
         try await userTemplatesCollection(userId: userId).getDocuments(as: UserTemplate.self)
     }
+    
+    func getUserTemplateById(userId: String, templateId: String) async throws -> UserTemplate {
+        try await userTemplateDocument(userId: userId, templateId: templateId).getDocument(as: UserTemplate.self)
+    }
+    
+    func removeListenerForAllUserTemplates() {
+        self.userTemplatesListener?.remove()
+    }
+    
+    func addListenerForAllUserTemplates(userId: String) -> AnyPublisher<[UserTemplate], any Error> {
+        let (publisher, listener) = userTemplatesCollection(userId: userId)
+            .addSnapshotListener(as: UserTemplate.self)
+        
+        self.userTemplatesListener = listener
+        return publisher
+    }
+    
 }

@@ -54,11 +54,17 @@ struct SetListTextField: View {
     }
 }
 
+enum SetListType {
+    case edit
+    case ongoing
+}
 
 struct SetList: View {
     let set: Int
     var weight: Double = 0
     var reps: Int = 0
+    let type: SetListType
+    var onDelete: () -> Void
     @State private var isChecked: Bool = false
     
     var body: some View {
@@ -83,10 +89,12 @@ struct SetList: View {
             SetListTextField(placeholder: "10",
                              foregroundColor: .primaryGray,
                              backgroundColor: isChecked ? .secondaryGreen : .secondaryGray)
-            SetListButton(text: "✔︎",
+            SetListButton(text: type == .ongoing ? "✔︎" : "ⅹ",
                       foregroundColor: isChecked ? .white : .primaryGray,
                       backgroundColor: isChecked ? .primaryGreen : .secondaryGray,
-                      action: { isChecked.toggle() })
+                      action: {
+                type == .ongoing ? isChecked.toggle() : onDelete()
+                        })
         }
         .padding(.horizontal, 10)
         .padding(.vertical, 10)
@@ -96,8 +104,8 @@ struct SetList: View {
 
 #Preview {
     VStack(spacing: 0){
-        SetList(set: 1, weight: 50.0, reps: 10)
-        SetList(set: 2, weight: 55.0, reps: 10)
-        SetList(set: 3)
+        SetList(set: 1, weight: 50.0, reps: 10, type: .edit, onDelete: {})
+        SetList(set: 2, weight: 55.0, reps: 10, type: .ongoing, onDelete: {})
+        SetList(set: 3, type: .edit, onDelete: {})
     }
 }

@@ -89,6 +89,7 @@ struct BulkUpTextField: View {
                                  ? .init(top: 10, leading: 0, bottom: 10, trailing: 10)
                                  : .init(top: 10, leading: 10, bottom: 10, trailing: 10))
                         .focused($isFocused)
+                        .bold(type == .noBorder)
                 }
             }
             .background(type.backgroundColor)
