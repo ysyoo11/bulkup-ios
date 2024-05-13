@@ -69,40 +69,48 @@ struct DBUser: Codable {
 struct UserTemplateExercise: Codable, Equatable {
     let exerciseId: String
     let sets: [WorkoutSet]
+    let autoRestTimerSec: Int?
     
     init(userTemplateExercise: UserTemplateExercise) {
         self.exerciseId = userTemplateExercise.exerciseId
         self.sets = userTemplateExercise.sets
+        self.autoRestTimerSec = userTemplateExercise.autoRestTimerSec
     }
     
     init(
         exerciseId: String,
-        sets: [WorkoutSet]
+        sets: [WorkoutSet],
+        autoRestTimerSec: Int?
     ) {
         self.exerciseId = exerciseId
         self.sets = sets
+        self.autoRestTimerSec = autoRestTimerSec
     }
     
     enum CodingKeys: String, CodingKey {
         case exerciseId = "exercise_id"
         case sets = "sets"
+        case autoRestTimerSec = "auto_rest_timer_sec"
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.exerciseId = try container.decode(String.self, forKey: .exerciseId)
         self.sets = try container.decode([WorkoutSet].self, forKey: .sets)
+        self.autoRestTimerSec = try container.decodeIfPresent(Int.self, forKey: .autoRestTimerSec)
     }
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.exerciseId, forKey: .exerciseId)
         try container.encode(self.sets, forKey: .sets)
+        try container.encode(self.autoRestTimerSec, forKey: .autoRestTimerSec)
     }
 }
-struct UserTemplateExerciseWithExercise {
+struct UserTemplateExerciseWithExercise: Equatable {
     let exercise: DBExercise
-    let sets: [WorkoutSet]
+    var sets: [WorkoutSet]
+    var autoRestTimerSec: Int?
 }
 
 struct WorkoutSet: Codable, Equatable {

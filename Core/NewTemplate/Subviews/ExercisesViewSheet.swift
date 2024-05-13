@@ -1,30 +1,13 @@
 //
-//  ExercisesView.swift
+//  ExercisesViewSheet.swift
 //  BulkUp
 //
-//  Created by Yuta Horiuchi on 10/5/2024.
+//  Created by Yeonsuk Yoo on 13/5/2024.
 //
 
 import SwiftUI
-import Combine
 
-class TextFieldObserver : ObservableObject {
-    @Published var debouncedText = ""
-    @Published var searchText = ""
-    
-    private var subscriptions = Set<AnyCancellable>()
-    
-    init() {
-        $searchText
-            .debounce(for: .seconds(1), scheduler: DispatchQueue.main)
-            .sink(receiveValue: { [weak self] t in
-                self?.debouncedText = t
-            } )
-            .store(in: &subscriptions)
-    }
-}
-
-struct ExercisesView: View {
+struct ExercisesViewSheet: View {
     @StateObject private var viewModel = ExercisesViewModel()
     @ObservedObject private var newTemplateViewModel = NewTemplateViewModel()
     @StateObject private var textObserver = TextFieldObserver()
@@ -34,7 +17,10 @@ struct ExercisesView: View {
     @State var selectedCategory: String = ""
     @State private var isDialogActive = false
     
+    @Binding var isPresented: Bool
+    
     var isNewTemplateMode: Bool
+    var onAdd: ([DBExercise]) -> Void
     
     let allBodyParts = BodyPart.allCases.map { $0.rawValue.capitalized }
     let allCategories = ExerciseCategory.allCases.map { $0.rawValue.capitalized }
@@ -62,6 +48,15 @@ struct ExercisesView: View {
     var body: some View {
         ZStack {
             NavigationStack {
+                if isNewTemplateMode {
+                    HStack {
+                        Spacer()
+                        BulkUpButton(text: "Add", color: .clear, isDisabled: newTemplateViewModel.selectedExercises.isEmpty, onClick: {
+                            onAdd(newTemplateViewModel.selectedExercises)
+                            isPresented = false
+                        })
+                    }
+                }
                 VStack{
                     TextFieldWithDebounce(debouncedText: $searchQuery)
                         .padding(.bottom, 5)
@@ -115,7 +110,6 @@ struct ExercisesView: View {
                         onTap: newTemplateViewModel.onExerciseTap
                     )
                 }
-                .navigationTitle("Exercises")
                 .toolbar {
                     ToolbarItemGroup(placement: .navigationBarLeading) {
                         Button(action: {
@@ -141,6 +135,6 @@ struct ExercisesView: View {
     }
 }
 
-#Preview {
-    ExercisesView(isNewTemplateMode: true)
-}
+//#Preview {
+//    ExercisesViewSheet(isPresented: .constant(true), isNewTemplateMode: true, onAdd: {})
+//}

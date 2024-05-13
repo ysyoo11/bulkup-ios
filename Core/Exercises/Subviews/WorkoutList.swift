@@ -14,11 +14,14 @@ enum WorkoutListType: String {
 
 struct WorkoutList: View {
     let type: WorkoutListType
-    let name: String
-    let category: String
-    let bodyPart: String
-    let imageUrl: String?
+    let exercise: DBExercise
+//    let name: String
+//    let category: String
+//    let bodyPart: String
+//    let imageUrl: String?
     let action: () -> Void
+    
+    var isNewTemplateMode: Bool = false
     
     var count: Int = 0
     var weight: Double = 0
@@ -29,7 +32,7 @@ struct WorkoutList: View {
     var body: some View {
         
             HStack {
-                AsyncImage(url: URL(string: imageUrl ?? "")){ image in
+                AsyncImage(url: URL(string: exercise.imageUrl ?? "")){ image in
                     image
                         .resizable()
                         .scaledToFill()
@@ -40,10 +43,10 @@ struct WorkoutList: View {
                     .frame(width: 30, height:30)
                     
                 VStack(alignment: .leading, spacing: 5) {
-                    Text("\(name) (\(category.capitalized))")
+                    Text("\(exercise.name) (\(exercise.category.rawValue.capitalized))")
                         .font(.headline)
                     HStack{
-                        Text(bodyPart.capitalized)
+                        Text(exercise.bodyPart.rawValue.capitalized)
                         Spacer()
                         if type == .exercise {
                             if weight > 0 && reps > 0 {
@@ -75,7 +78,7 @@ struct WorkoutList: View {
             .padding(.horizontal, 15)
             .padding(.vertical, 8)
             .padding(.trailing, 10)
-            .background(isSelected ? Color.secondaryBlue : Color.white)
+            .background(isSelected && isNewTemplateMode ? Color.secondaryBlue : Color.white)
             .onTapGesture(perform: {
                 isSelected.toggle()
                 if type == .exercise {
@@ -87,38 +90,38 @@ struct WorkoutList: View {
 }
 
 
-#Preview {
-    VStack (spacing: 0){
-        WorkoutList(type: .exercise,
-                name: "Squat",
-                category: "Barbell",
-                bodyPart: "Legs",
-                imageUrl: "https://gymvisual.com/158-large_default/barbell-full-squat.jpg",
-                action: { print("SetList tapped") })
-        WorkoutList(type: .exercise,
-                name: "Squat",
-                category: "Barbell",
-                bodyPart: "Legs",
-                imageUrl: "https://gymvisual.com/158-large_default/barbell-full-squat.jpg",
-                action: { print("SetList tapped") },
-                weight: 60.0,
-                reps: 10)
-        
-        Text("SetList for NewTemplate View")
-            .font(.headline)
-            .padding()
-        WorkoutList(type: .newTemplate,
-                name: "Bench Press",
-                category: "Dumbbell",
-                bodyPart: "Chest",
-                imageUrl: "https://gymvisual.com/158-large_default/barbell-full-squat.jpg",
-                action: { print("Questionmark is tapped") })
-        WorkoutList(type: .newTemplate,
-                name: "Bench Press",
-                category: "Dumbbell",
-                bodyPart: "Chest",
-                imageUrl: "https://gymvisual.com/158-large_default/barbell-full-squat.jpg",
-                action: { print("Questionmark is tapped") },
-                count: 1)
-    }
-}
+//#Preview {
+//    VStack (spacing: 0){
+//        WorkoutList(type: .exercise,
+//                name: "Squat",
+//                category: "Barbell",
+//                bodyPart: "Legs",
+//                imageUrl: "https://gymvisual.com/158-large_default/barbell-full-squat.jpg",
+//                action: { print("SetList tapped") })
+//        WorkoutList(type: .exercise,
+//                name: "Squat",
+//                category: "Barbell",
+//                bodyPart: "Legs",
+//                imageUrl: "https://gymvisual.com/158-large_default/barbell-full-squat.jpg",
+//                action: { print("SetList tapped") },
+//                weight: 60.0,
+//                reps: 10)
+//        
+//        Text("SetList for NewTemplate View")
+//            .font(.headline)
+//            .padding()
+//        WorkoutList(type: .newTemplate,
+//                name: "Bench Press",
+//                category: "Dumbbell",
+//                bodyPart: "Chest",
+//                imageUrl: "https://gymvisual.com/158-large_default/barbell-full-squat.jpg",
+//                action: { print("Questionmark is tapped") })
+//        WorkoutList(type: .newTemplate,
+//                name: "Bench Press",
+//                category: "Dumbbell",
+//                bodyPart: "Chest",
+//                imageUrl: "https://gymvisual.com/158-large_default/barbell-full-squat.jpg",
+//                action: { print("Questionmark is tapped") },
+//                count: 1)
+//    }
+//}

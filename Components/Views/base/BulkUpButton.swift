@@ -33,6 +33,28 @@ enum ButtonColor {
     }
 }
 
+enum ButtonSize {
+    case xs, sm, base, lg
+    
+    var fontSize: CGFloat {
+        switch self {
+        case .xs: return 12
+        case .sm: return 14
+        case .base: return 16
+        case .lg: return 24
+        }
+    }
+    
+    var verticalPaddingSize: CGFloat {
+        switch self {
+        case.xs: return 4
+        case .sm: return 6
+        case .base: return 8
+        case .lg: return 10
+        }
+    }
+}
+
 struct BulkUpButton: View {
     let text: String
     let color: ButtonColor
@@ -40,6 +62,7 @@ struct BulkUpButton: View {
     var isFullWidth: Bool = false
     var imageResource: ImageResource?
     var image: Image?
+    var size: ButtonSize? = .base
     let onClick: () -> Void
     
     var body: some View {
@@ -58,9 +81,10 @@ struct BulkUpButton: View {
                     .foregroundColor(color.textColor)
                     .bold()
                     .underline()
+                    .font(.system(size: size?.fontSize ?? 16))
             })
             .padding(.horizontal, 10)
-            .padding(.vertical, 8)
+            .padding(.vertical, size?.verticalPaddingSize ?? 8)
             .frame(maxWidth: isFullWidth ? .infinity : nil)
         }
         .disabled(isDisabled)

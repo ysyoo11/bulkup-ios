@@ -13,6 +13,8 @@ struct ExercisesList: View {
     var lastExercise: DBExercise?
     let fetchNext: @MainActor () async throws -> ()
     var isReachingEnd: Bool
+    var isNewTemplateMode: Bool
+    var onTap: @MainActor (DBExercise) -> ()
     
     var body: some View {
         VStack (spacing: 0) {
@@ -27,11 +29,12 @@ struct ExercisesList: View {
                 }
                 ForEach(sections[key]!, id: \.id) { exercise in
                     WorkoutList(type: .exercise,
-                                name: exercise.name,
-                                category: exercise.category.rawValue,
-                                bodyPart: exercise.bodyPart.rawValue,
-                                imageUrl: exercise.imageUrl,
-                                action: {print(exercise.name)}) // TODO: Show modal view
+                                exercise: exercise,
+                                action: {
+                                    onTap(exercise)
+                                }, // TODO: Show modal view
+                                isNewTemplateMode: isNewTemplateMode)
+                    
                     Divider()
                         .padding(.horizontal, 15)
                     

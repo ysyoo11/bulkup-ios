@@ -36,7 +36,7 @@ struct RootView: View {
                                 Label("Start Workout", systemImage: "plus")
                             }
 
-                        ExercisesView()
+                        ExercisesView(isNewTemplateMode: false)
                             .tabItem {
                                 Label("Exercises", systemImage: "flame")
                             }

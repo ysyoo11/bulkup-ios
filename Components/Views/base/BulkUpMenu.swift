@@ -49,8 +49,8 @@ struct BulkUpMenu: View {
     }
 }
 
-let testOptions: [MenuContent] = ongoingExerciseMenuOptions
+//let testOptions: [MenuContent] = ongoingExerciseMenuOptions
 
-#Preview {
-    BulkUpMenu(options: testOptions)
-}
+//#Preview {
+//    BulkUpMenu(options: testOptions)
+//}

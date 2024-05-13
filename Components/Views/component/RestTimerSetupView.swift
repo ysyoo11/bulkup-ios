@@ -8,12 +8,17 @@
 import SwiftUI
 
 struct RestTimerSetupView: View {
-//    var userId: String
-//    var exerciseId: String
+    @ObservedObject private var newTemplateViewModel = NewTemplateViewModel()
+    
     let minRestTime = 30
     let maxRestTime = 300
-    @State private var isEnabled = false
-    @State var timer: Int = 120
+    
+    @Binding var exerciseIndex: Int
+    @Binding var exercise: UserTemplateExerciseWithExercise?
+    @Binding var currentStagedExercises: [UserTemplateExerciseWithExercise]
+    
+    @State private var isEnabled = true
+    @State var timer: Int = 90
     
     private func parseSecToStr(time: Int) -> String {
         let min = time / 60
@@ -29,6 +34,18 @@ struct RestTimerSetupView: View {
                     Toggle(isOn: $isEnabled) {
                         Text("Enabled")
                     }
+                    .onChange(of: isEnabled) { _, toggled in
+                        if toggled {
+                            newTemplateViewModel.setAutoRestTimer(index: exerciseIndex, sec: timer, exercises: currentStagedExercises)
+                        } else {
+                            newTemplateViewModel.disableAutoRestTimer(index: exerciseIndex, exercises: currentStagedExercises)
+                        }
+                    }
+                }
+                .onAppear {
+                    if exercise != nil && exercise?.autoRestTimerSec != nil {
+                        isEnabled = true
+                    }
                 }
 
                 Section(header: Text("Time Presets")) {
@@ -41,6 +58,16 @@ struct RestTimerSetupView: View {
                     }
                     .pickerStyle(WheelPickerStyle())
                     .disabled(!isEnabled)
+                    .onChange(of: timer) { _, sec in
+                        if isEnabled {
+                            newTemplateViewModel.setAutoRestTimer(index: exerciseIndex, sec: sec, exercises: currentStagedExercises)
+                        }
+                    }
+                }
+                .onAppear {
+                    if exercise != nil && exercise?.autoRestTimerSec != nil {
+                        timer = exercise!.autoRestTimerSec ?? 120
+                    }
                 }
                 .opacity(isEnabled ? 1.0 : 0.4)
             }
@@ -49,6 +76,6 @@ struct RestTimerSetupView: View {
     }
 }
 
-#Preview {
-    RestTimerSetupView()
-}
+//#Preview {
+//    RestTimerSetupView(, exerciseIndex: <#Binding<Int>#>)
+//}
