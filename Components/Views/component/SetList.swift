@@ -69,10 +69,12 @@ struct SetList: View {
     
     var body: some View {
         HStack{
-            SetListButton(text: "\(set)",
-                      foregroundColor: .primaryGray,
-                          backgroundColor: isChecked ? .secondaryGreen : .secondaryGray,
-                      action: { print("Tapped") })
+            SetListButton(
+                text: "\(set)",
+                foregroundColor: .primaryGray,
+                backgroundColor: isChecked ? .secondaryGreen : .secondaryGray,
+                action: { print("Tapped") })
+            
             if weight > 0 && reps > 0 {
                 Text("\(Int(weight))kg x \(reps)")
                     .foregroundColor(.gray)
@@ -84,17 +86,23 @@ struct SetList: View {
                     .font(.headline)
                     .frame(width: 150)
             }
-            SetListTextField(foregroundColor: .primaryGray,
-                             backgroundColor: isChecked ? .secondaryGreen : .secondaryGray)
-            SetListTextField(placeholder: "10",
-                             foregroundColor: .primaryGray,
-                             backgroundColor: isChecked ? .secondaryGreen : .secondaryGray)
-            SetListButton(text: type == .ongoing ? "✔︎" : "ⅹ",
-                      foregroundColor: isChecked ? .white : .primaryGray,
-                      backgroundColor: isChecked ? .primaryGreen : .secondaryGray,
-                      action: {
-                type == .ongoing ? isChecked.toggle() : onDelete()
-                        })
+            
+            SetListTextField(
+                foregroundColor: .primaryGray,
+                backgroundColor: isChecked ? .secondaryGreen : .secondaryGray)
+            
+            SetListTextField(
+                placeholder: "10",
+                foregroundColor: .primaryGray,
+                backgroundColor: isChecked ? .secondaryGreen : .secondaryGray)
+            
+            SetListButton(
+                text: type == .ongoing ? "✔︎" : "ⅹ",
+                foregroundColor: isChecked ? .white : .primaryGray,
+                backgroundColor: isChecked ? .primaryGreen : .secondaryGray,
+                action: {
+                    type == .ongoing ? isChecked.toggle() : onDelete()
+                })
         }
         .padding(.horizontal, 10)
         .padding(.vertical, 10)
@@ -102,10 +110,10 @@ struct SetList: View {
     }
 }
 
-#Preview {
-    VStack(spacing: 0){
-        SetList(set: 1, weight: 50.0, reps: 10, type: .edit, onDelete: {})
-        SetList(set: 2, weight: 55.0, reps: 10, type: .ongoing, onDelete: {})
-        SetList(set: 3, type: .edit, onDelete: {})
-    }
-}
+//#Preview {
+//    VStack(spacing: 0){
+//        SetList(set: 1, weight: 50.0, reps: 10, type: .edit, onDelete: {})
+//        SetList(set: 2, weight: 55.0, reps: 10, type: .ongoing, onDelete: {})
+//        SetList(set: 3, type: .edit, onDelete: {})
+//    }
+//}

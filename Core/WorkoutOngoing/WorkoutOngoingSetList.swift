@@ -32,7 +32,7 @@ struct WorkoutOngoingSetListTextField: View {
     var foregroundColor: Color
     var backgroundColor: Color
     
-    @State private var text: String = ""
+    @Binding var text: String
     @FocusState private var isFocused: Bool
     
     var body: some View {
@@ -56,6 +56,8 @@ struct WorkoutOngoingSetListTextField: View {
 
 
 struct WorkoutOngoingSetList: View {
+
+    let exerciseIndex: Int
     let set: Int
     var weight: Double = 0
     var reps: Int = 0
@@ -63,12 +65,17 @@ struct WorkoutOngoingSetList: View {
     @Binding var isActiveRestTimerView: Bool
     @EnvironmentObject var timerSettings: TimerSettings
     
+    @State var weightStr: String
+    @State var repsStr: String
+    
     var body: some View {
         HStack{
-            SetListButton(text: "\(set)",
-                      foregroundColor: .primaryGray,
-                          backgroundColor: isChecked ? .secondaryGreen : .secondaryGray,
-                      action: { print("Tapped") })
+            WorkoutOngoingSetListButton(
+                text: "\(set)",
+                foregroundColor: .primaryGray,
+                backgroundColor: isChecked ? .secondaryGreen : .secondaryGray,
+                action: { print("Tapped") })
+            
             if weight > 0 && reps > 0 {
                 Text("\(Int(weight))kg x \(reps)")
                     .foregroundColor(.gray)
@@ -80,15 +87,28 @@ struct WorkoutOngoingSetList: View {
                     .font(.headline)
                     .frame(width: 150)
             }
-            SetListTextField(foregroundColor: .primaryGray,
-                             backgroundColor: isChecked ? .secondaryGreen : .secondaryGray)
-            SetListTextField(placeholder: "10",
-                             foregroundColor: .primaryGray,
-                             backgroundColor: isChecked ? .secondaryGreen : .secondaryGray)
-            SetListButton(text: "✔︎",
-                      foregroundColor: isChecked ? .white : .primaryGray,
-                      backgroundColor: isChecked ? .primaryGreen : .secondaryGray,
-                      action: { isChecked.toggle() })
+            
+            WorkoutOngoingSetListTextField(
+                foregroundColor: .primaryGray,
+                backgroundColor: isChecked ? .secondaryGreen : .secondaryGray,
+                text: $weightStr)
+            
+            WorkoutOngoingSetListTextField(
+                placeholder: "10",
+                foregroundColor: .primaryGray,
+                backgroundColor: isChecked ? .secondaryGreen : .secondaryGray,
+                text: $repsStr)
+            
+            WorkoutOngoingSetListButton(
+                text: "✔︎",
+                foregroundColor: isChecked ? .white : .primaryGray,
+                backgroundColor: isChecked ? .primaryGreen : .secondaryGray,
+                action: {
+                    isChecked.toggle()
+                    if isChecked {
+                        isActiveRestTimerView = true
+                    }
+                })
         }
         .padding(.horizontal, 10)
         .padding(.vertical, 10)
@@ -98,14 +118,11 @@ struct WorkoutOngoingSetList: View {
                 isActiveRestTimerView = true
             }
         }
+        .onChange(of: weight) { oldValue, newValue in
+            weightStr = String(newValue)
+        }
+        .onChange(of: reps) { oldValue, newValue in
+            repsStr = String(newValue)
+        }
     }
 }
-
-
-//#Preview {
-//    VStack(spacing: 0){
-//        SetList(set: 1, weight: 50.0, reps: 10)
-//        SetList(set: 2, weight: 55.0, reps: 10)
-//        SetList(set: 3)
-//    }
-//}

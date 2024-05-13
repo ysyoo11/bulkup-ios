@@ -2,7 +2,7 @@
 //  NewTemplateView.swift
 //  BulkUp
 //
-//  Created by Eunbyul Cho on 9/5/2024.
+//  Created by Eunbyul Cho on 9/5/2024
 //
 
 import SwiftUI
@@ -97,7 +97,11 @@ final class NewTemplateViewModel: ObservableObject {
     
     func addUserTemplate() {
         let userTemplateExerciseArray: [UserTemplateExercise] = self.stagedExercises.map { exercise in
-            return UserTemplateExercise(exerciseId: exercise.exercise.id, sets: exercise.sets, autoRestTimerSec: exercise.autoRestTimerSec)
+            return UserTemplateExercise(
+                exerciseId: exercise.exercise.id,
+                sets: exercise.sets,
+                autoRestTimerSec: exercise.autoRestTimerSec
+            )
         }
         
         let template = UserTemplate(id: "", name: self.templateName, exercises: userTemplateExerciseArray, createdAt: Date(), updatedAt: Date())

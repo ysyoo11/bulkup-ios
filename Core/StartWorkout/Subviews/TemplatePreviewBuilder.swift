@@ -15,7 +15,10 @@ struct TemplatePreviewBuilder: View {
     var body: some View {
         ZStack {
             if let template {
-                TemplatePreview(showingTemplatePreview: $showingTemplatePreview, previewTemplateId: $selectedTemplateId, template: template)
+                TemplatePreview(
+                    showingTemplatePreview: $showingTemplatePreview, 
+                    previewTemplateId: $selectedTemplateId,
+                    template: template)
             }
         }
         .task {
@@ -26,10 +29,15 @@ struct TemplatePreviewBuilder: View {
                 var exerciseArr: [UserTemplateExerciseWithExercise] = []
                 for exercise in userTemplate.exercises {
                     if let dbExercise = try? await ExercisesManager.shared.getExerciseById(exerciseId: exercise.exerciseId) {
-                        exerciseArr.append(UserTemplateExerciseWithExercise(exercise: dbExercise, sets: exercise.sets))
+                        exerciseArr.append(UserTemplateExerciseWithExercise(exercise: dbExercise, sets: exercise.sets, autoRestTimerSec: exercise.autoRestTimerSec))
                     }
                 }
-                self.template = UserTemplateWithExercises(id: userTemplate.id, name: userTemplate.name, exercises: exerciseArr, createdAt: userTemplate.createdAt, updatedAt: userTemplate.updatedAt)
+                self.template = UserTemplateWithExercises(
+                    id: userTemplate.id,
+                    name: userTemplate.name,
+                    exercises: exerciseArr,
+                    createdAt: userTemplate.createdAt,
+                    updatedAt: userTemplate.updatedAt)
             } catch {
                 print(error)
             }

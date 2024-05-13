@@ -74,7 +74,7 @@ struct TemplatePreview: View {
                 
                 BulkUpNavigationLink(
                     text: "Start Workout",
-                    destination: WorkoutOngoingView()
+                    destination: WorkoutOngoingView(template: template)
                         .environmentObject(CountDownTimerModel())
                         .environmentObject(CountUpTimerModel())
                         .environmentObject(TimerSettings()),

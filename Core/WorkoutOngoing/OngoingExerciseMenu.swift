@@ -14,7 +14,7 @@ struct OngoingExerciseMenu: View {
     var body: some View {
         BulkUpMenu(options: [
             .option(text: "Remove Exercise", icon: "xmark", action: onRemove),
-            .navigationOption(text: "Auto Rest Timer", icon: "timer", destination: AnyView(WorkoutOngoingRestTimerSetupView()))
+            .navigationOption(text: "Auto Rest Timer", icon: "timer", destination: AnyView(WorkoutOngoingRestTimerSetupView().environmentObject(TimerSettings())))
         ])
     }
 }
