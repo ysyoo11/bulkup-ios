@@ -53,8 +53,8 @@
 		A2A1D4732BF099A100AA09D5 /* ExerciseListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A1D4722BF099A100AA09D5 /* ExerciseListViewModel.swift */; };
 		A2A1D4752BF099CB00AA09D5 /* ExerciseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A1D4742BF099CB00AA09D5 /* ExerciseModel.swift */; };
 		A2A1D4772BF09A0D00AA09D5 /* InstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A1D4762BF09A0D00AA09D5 /* InstructionView.swift */; };
-		A2A1D4792BF09A3800AA09D5 /* SharedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A1D4782BF09A3800AA09D5 /* SharedViewModel.swift */; };
 		A2A1D47E2BF10F1700AA09D5 /* ExercisesViewSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A1D47D2BF10F1700AA09D5 /* ExercisesViewSheet.swift */; };
+		A2A1D4822BF1D8B800AA09D5 /* TemplatePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A1D4812BF1D8B800AA09D5 /* TemplatePreview.swift */; };
 		A2A5AD112BE8E3B50087E2BA /* OngoingExerciseMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A5AD102BE8E3B50087E2BA /* OngoingExerciseMenu.swift */; };
 		A2A5AD132BE8E4430087E2BA /* TemplateEditMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A5AD122BE8E4430087E2BA /* TemplateEditMenu.swift */; };
 		A2B526942BEB42ED0093BDE1 /* WorkoutList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B526932BEB42ED0093BDE1 /* WorkoutList.swift */; };
@@ -111,8 +111,8 @@
 		A2A1D4722BF099A100AA09D5 /* ExerciseListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListViewModel.swift; sourceTree = "<group>"; };
 		A2A1D4742BF099CB00AA09D5 /* ExerciseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseModel.swift; sourceTree = "<group>"; };
 		A2A1D4762BF09A0D00AA09D5 /* InstructionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionView.swift; sourceTree = "<group>"; };
-		A2A1D4782BF09A3800AA09D5 /* SharedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedViewModel.swift; sourceTree = "<group>"; };
 		A2A1D47D2BF10F1700AA09D5 /* ExercisesViewSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesViewSheet.swift; sourceTree = "<group>"; };
+		A2A1D4812BF1D8B800AA09D5 /* TemplatePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplatePreview.swift; sourceTree = "<group>"; };
 		A2A5AD102BE8E3B50087E2BA /* OngoingExerciseMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingExerciseMenu.swift; sourceTree = "<group>"; };
 		A2A5AD122BE8E4430087E2BA /* TemplateEditMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateEditMenu.swift; sourceTree = "<group>"; };
 		A2B526932BEB42ED0093BDE1 /* WorkoutList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutList.swift; sourceTree = "<group>"; };
@@ -258,6 +258,7 @@
 			children = (
 				A2A1D45B2BF07C2400AA09D5 /* TemplateCard.swift */,
 				A2A1D45D2BF07C4900AA09D5 /* NewTemplateCard.swift */,
+				A2A1D4812BF1D8B800AA09D5 /* TemplatePreview.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -346,7 +347,6 @@
 				A2A1D4722BF099A100AA09D5 /* ExerciseListViewModel.swift */,
 				A2A1D4742BF099CB00AA09D5 /* ExerciseModel.swift */,
 				A2A1D4762BF09A0D00AA09D5 /* InstructionView.swift */,
-				A2A1D4782BF09A3800AA09D5 /* SharedViewModel.swift */,
 				A2A1D47C2BF10EFE00AA09D5 /* Subviews */,
 			);
 			path = NewTemplate;
@@ -483,6 +483,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2A1D4822BF1D8B800AA09D5 /* TemplatePreview.swift in Sources */,
 				A2A1D4672BF08FA600AA09D5 /* ExercisesViewModel.swift in Sources */,
 				A205D7F82BEE81200065CF5B /* ExerciseCategoryMenu.swift in Sources */,
 				A2D5DD0F2BEFF0AC00059D58 /* NewTemplateView.swift in Sources */,
@@ -533,7 +534,6 @@
 				A27BD92C2BEF8FF60069EA77 /* TextFieldWithDebounce.swift in Sources */,
 				A25739EB2BE8E538001C013E /* HistoryEditMenu.swift in Sources */,
 				A2A1D4732BF099A100AA09D5 /* ExerciseListViewModel.swift in Sources */,
-				A2A1D4792BF09A3800AA09D5 /* SharedViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

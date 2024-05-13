@@ -11,11 +11,13 @@ struct TemplateCardViewBuilder: View {
     
     let templateId: String
     @State private var template: UserTemplateWithExercises? = nil
+    @Binding var selectedTemplateId: String
+    @Binding var showingTemplatePreview: Bool
     
     var body: some View {
         ZStack {
             if let template {
-                TemplateCard(template: template)
+                TemplateCard(selectedTemplateId: $selectedTemplateId, showingTemplatePreview: $showingTemplatePreview, template: template)
             }
         }
         .task {

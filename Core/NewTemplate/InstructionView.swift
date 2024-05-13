@@ -9,7 +9,6 @@ import SwiftUI
 
 struct InstructionView: View {
     @ObservedObject var vm = ExerciseListViewModel()
-    let viewModel = SharedViewModel()
     let exerciseName: String //밖에서 받아온것
     @State private var selectedExercise: ExerciseModel?
 

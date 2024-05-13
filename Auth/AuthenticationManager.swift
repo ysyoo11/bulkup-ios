@@ -81,6 +81,7 @@ final class AuthenticationManager {
 // Email Sign-in
 extension AuthenticationManager {
     
+    @discardableResult
     func createUser(email: String, password: String) async throws -> AuthDataResultModel {
         let authDataResult = try await Auth.auth().createUser(withEmail: email, password: password)
         let authDataResultModel = AuthDataResultModel(user: authDataResult.user)
