@@ -104,7 +104,7 @@ extension UserManager {
     }
     
     func addListenerForAllUserHistories(userId: String) -> AnyPublisher<[UserHistory], any Error> {
-        let (publisher, listener) = userHistoriesCollection(userId: userId)
+        let (publisher, listener) = userHistoriesCollection(userId: userId).order(by: UserHistory.CodingKeys.createdAt.rawValue, descending: true)
             .addSnapshotListener(as: UserHistory.self)
         
         self.userHistoriesListener = listener
