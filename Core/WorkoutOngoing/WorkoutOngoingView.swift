@@ -79,6 +79,27 @@ final class WorkoutOngoingViewModel: ObservableObject {
         }
     }
     
+    func saveHistory(templateId: String, durationSec: Int) {
+        var volume = 0
+        for exercise in self.ongoingExercises {
+            for set in exercise.sets {
+                volume += set.reps * Int(set.weight ?? 0)
+            }
+        }
+        let history: UserHistory = UserHistory(
+            id: "",
+            templateId: templateId,
+            duration: durationSec,
+            volume: volume,
+            createdAt: Date(),
+            updatedAt: Date())
+        
+        Task {
+            let authDataResult = try AuthenticationManager.shared.getAuthenticatedUser()
+            try? await UserManager.shared.addUserHistory(userId: authDataResult.uid, history: history)
+        }
+    }
+    
 }
 
 struct WorkoutOngoingView: View {
@@ -209,7 +230,8 @@ struct WorkoutOngoingView: View {
                     message: "Finish Workout?",
                     actionButtonTitle: "Finish",
                     action: {
-                        // TODO:
+                        viewModel.saveHistory(templateId: template.id, durationSec: workOutTimerModel.totalSeconds)
+                        
                     },
                     cancelButtonTitle: "Cancel",
                     onClose: { print("Resume workout") })
@@ -317,10 +339,16 @@ struct ExerciseList: View {
                 .padding(.horizontal)
             }
             if isActiveRemoveExerciseDialog {
-                BulkUpDialog(isActive: $isActiveRemoveExerciseDialog, title: "Remove Exercise?", message: "This removes", actionButtonTitle: "Cancel", action: {
-                    onRemove()
-                    isActiveRemoveExerciseDialog = false
-                }, cancelButtonTitle: "Remove", onClose: { isActiveRemoveExerciseDialog = false })
+                BulkUpDialog(
+                    isActive: $isActiveRemoveExerciseDialog,
+                    title: "Remove Exercise?",
+                    message: "This removes",
+                    actionButtonTitle: "Cancel",
+                    action: {
+                        onRemove()
+                        isActiveRemoveExerciseDialog = false },
+                    cancelButtonTitle: "Remove",
+                    onClose: { isActiveRemoveExerciseDialog = false })
             }
         }
     }
