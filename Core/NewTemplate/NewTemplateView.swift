@@ -30,7 +30,7 @@ final class NewTemplateViewModel: ObservableObject {
     
     func stageSelectedExercises(exercises: [DBExercise]) {
         let newlyAddedExercises = exercises.map { exercise in
-            UserTemplateExerciseWithExercise(exercise: exercise, sets: [WorkoutSet(weight: 0, reps:0)], autoRestTimerSec: 90)
+            UserTemplateExerciseWithExercise(exercise: exercise, sets: [WorkoutSet(weight: 10, reps: 10)], autoRestTimerSec: 90)
         }
 
         self.stagedExercises = stagedExercises + newlyAddedExercises
@@ -124,8 +124,6 @@ struct NewTemplateView: View {
     @State private var selectedExerciseIndex: Int = 0
     @State private var selectedExercise: UserTemplateExerciseWithExercise?
     @State private var currentStagedExercises: [UserTemplateExerciseWithExercise] = []
-    
-    @State private var exampleExercises = [BulkUp.UserTemplateExerciseWithExercise(exercise: BulkUp.DBExercise(id: "23", name: "Back Extension", bodyPart: BulkUp.BodyPart.back, category: BulkUp.ExerciseCategory.machine, description: "Strengthens the lower back muscles by lifting the upper body against resistance while lying face down. This exercise is critical for back health and core stability.", imageUrl: Optional("https://gymvisual.com/19012-large_default/45-degrees-back-extension.jpg")), sets: [BulkUp.WorkoutSet(weight: Optional(0.0), reps: 0)]), BulkUp.UserTemplateExerciseWithExercise(exercise: BulkUp.DBExercise(id: "3", name: "Bench Press", bodyPart: BulkUp.BodyPart.chest, category: BulkUp.ExerciseCategory.barbell, description: "Targets the pectoral muscles by pressing a weight upwards from a bench-lying position. This essential upper body exercise also engages the shoulders and triceps, improving upper body strength and muscle mass.", imageUrl: Optional("https://gymvisual.com/33869-large_default/barbell-wide-bench-press-female.jpg")), sets: [BulkUp.WorkoutSet(weight: Optional(0.0), reps: 0)]), BulkUp.UserTemplateExerciseWithExercise(exercise: BulkUp.DBExercise(id: "5", name: "Biceps Curl", bodyPart: BulkUp.BodyPart.arms, category: BulkUp.ExerciseCategory.dumbbell, description: "Focuses on the biceps by curling weights from a hanging position to shoulder height. This exercise is fundamental for building arm strength and muscle definition, ensuring balanced arm development.", imageUrl: Optional("https://gymvisual.com/20395-large_default/dumbbell-waiter-biceps-curl.jpg")), sets: [BulkUp.WorkoutSet(weight: Optional(0.0), reps: 0)]), BulkUp.UserTemplateExerciseWithExercise(exercise: BulkUp.DBExercise(id: "7", name: "Burpees", bodyPart: BulkUp.BodyPart.fullBody, category: BulkUp.ExerciseCategory.bodyWeight, description: "A dynamic full-body exercise that combines a squat, jump, and push-up. Excellent for building strength and endurance, it also boosts cardiovascular fitness and burns a significant amount of calories.", imageUrl: Optional("https://gymvisual.com/33072-large_default/jack-burpee-male.jpg")), sets: [BulkUp.WorkoutSet(weight: Optional(0.0), reps: 0)])]
     
     private func onAdd(exercises: [DBExercise]) {
         viewModel.stageSelectedExercises(exercises: exercises)

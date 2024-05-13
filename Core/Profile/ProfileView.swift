@@ -25,11 +25,21 @@ struct ProfileView: View {
     
     var body: some View {
         NavigationStack {
-            List {
+            VStack {
                 if let user = viewModel.user {
-                    Text("UserId: \(user.userId)")
+                    HStack {
+                        Text("Welcome,")
+                            .font(.title)
+                        Spacer()
+                    }
+                    Text(user.username ?? user.email!)
+                        .font(.title2)
+                        .bold()
                 }
+                Spacer()
             }
+            .padding()
+            .padding(.top, 20)
             .task {
                 try? await viewModel.loadCurrentUser()
             }
