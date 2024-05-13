@@ -139,7 +139,7 @@ struct WorkoutOngoingView: View {
                     actionButtonTitle: "Finish",
                     action: {
                         workOutTimerModel.stopTimer()
-                        viewModel.saveHistory(templateId: template.id, durationSec: workOutTimerModel.totalSeconds)
+                        viewModel.saveHistory(templateId: template.id, durationSec: workOutTimerModel.minutes)
                     },
                     cancelButtonTitle: "Cancel",
                     onClose: { print("Resume workout") })

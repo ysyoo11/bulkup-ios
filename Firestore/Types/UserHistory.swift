@@ -61,9 +61,9 @@ struct UserHistory: Codable, Equatable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(String.self, forKey: .id)
-        self.templateId = try container.decode(String.self, forKey: .id)
+        self.templateId = try container.decode(String.self, forKey: .templateId)
         self.duration = try container.decode(Int.self, forKey: .duration)
-        self.volume = try container.decode(Int.self, forKey: .duration)
+        self.volume = try container.decode(Int.self, forKey: .volume)
         self.createdAt = try container.decodeIfPresent(Date.self, forKey: .createdAt)
         self.updatedAt = try container.decodeIfPresent(Date.self, forKey: .updatedAt)
     }
