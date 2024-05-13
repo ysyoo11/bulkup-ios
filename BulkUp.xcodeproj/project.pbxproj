@@ -15,6 +15,7 @@
 		A205D7FC2BEE836E0065CF5B /* SetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A205D7FB2BEE836E0065CF5B /* SetList.swift */; };
 		A21625B42BEB7EFD00BBE9AC /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = A21625B32BEB7EFD00BBE9AC /* GoogleSignIn */; };
 		A21625B62BEB7EFD00BBE9AC /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A21625B52BEB7EFD00BBE9AC /* GoogleSignInSwift */; };
+		A2451BC92BF2091700445C01 /* OngoingExercisesViewSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2451BC82BF2091700445C01 /* OngoingExercisesViewSheet.swift */; };
 		A245A8232BECF72700778555 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A245A8222BECF72700778555 /* FirebaseFirestore */; };
 		A245A8272BECF72700778555 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A245A8262BECF72700778555 /* FirebaseFirestoreSwift */; };
 		A245A82C2BEDFA1600778555 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A245A82B2BEDFA1600778555 /* ProfileView.swift */; };
@@ -83,6 +84,7 @@
 		A205D7F92BEE81AD0065CF5B /* NewExerciseDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExerciseDialog.swift; sourceTree = "<group>"; };
 		A205D7FB2BEE836E0065CF5B /* SetList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetList.swift; sourceTree = "<group>"; };
 		A21625B72BEB7FB600BBE9AC /* BulkUp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "BulkUp-Info.plist"; sourceTree = "<group>"; };
+		A2451BC82BF2091700445C01 /* OngoingExercisesViewSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingExercisesViewSheet.swift; sourceTree = "<group>"; };
 		A245A82B2BEDFA1600778555 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		A245A82E2BEE000300778555 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		A245A8312BEE023D00778555 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
@@ -386,6 +388,7 @@
 				A2F81A962BF1EFF0001176B6 /* WorkoutOngoingSetList.swift */,
 				A2F81A982BF1F02C001176B6 /* TimerModel.swift */,
 				A2F81A9A2BF1F337001176B6 /* WorkoutRestTimerSetupView.swift */,
+				A2451BC82BF2091700445C01 /* OngoingExercisesViewSheet.swift */,
 			);
 			path = WorkoutOngoing;
 			sourceTree = "<group>";
@@ -537,6 +540,7 @@
 				A2A1D46B2BF0911C00AA09D5 /* StartWorkoutViewModel.swift in Sources */,
 				A2D68EBA2BE8DD66000D19CB /* RestTimerSetupView.swift in Sources */,
 				A2A1D4712BF0998500AA09D5 /* ExerciseListView.swift in Sources */,
+				A2451BC92BF2091700445C01 /* OngoingExercisesViewSheet.swift in Sources */,
 				A26970D92BEE280E0005F1BB /* SignInGoogleHelper.swift in Sources */,
 				A2F81A932BF1EF43001176B6 /* OngoingExerciseMenu.swift in Sources */,
 				A2A1D4772BF09A0D00AA09D5 /* InstructionView.swift in Sources */,

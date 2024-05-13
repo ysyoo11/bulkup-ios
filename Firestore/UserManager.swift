@@ -108,7 +108,7 @@ struct UserTemplateExercise: Codable, Equatable {
     }
 }
 struct UserTemplateExerciseWithExercise: Equatable {
-    let exercise: DBExercise
+    var exercise: DBExercise
     var sets: [WorkoutSet]
     var autoRestTimerSec: Int?
 }
@@ -204,10 +204,10 @@ struct UserTemplate: Codable {
     }
 }
 
-struct UserTemplateWithExercises {
+struct UserTemplateWithExercises: Identifiable {
     let id: String
     let name: String
-    let exercises: [UserTemplateExerciseWithExercise]
+    var exercises: [UserTemplateExerciseWithExercise]
     let createdAt: Date?
     let updatedAt: Date?
 }

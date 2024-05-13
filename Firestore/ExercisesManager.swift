@@ -10,7 +10,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 struct DBExercise: Codable, Equatable {
-    let id: String
+    var id: String
     let name: String
     let bodyPart: BodyPart
     let category: ExerciseCategory

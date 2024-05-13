@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct ExercisesViewSheet: View {
+struct OngoingExercisesViewSheet: View {
     @StateObject private var viewModel = ExercisesViewModel()
-    @ObservedObject private var newTemplateViewModel = NewTemplateViewModel()
+    @ObservedObject private var workoutOngoingViewModel = WorkoutOngoingViewModel()
     @StateObject private var textObserver = TextFieldObserver()
     
     @State var searchQuery = ""
@@ -54,9 +54,10 @@ struct ExercisesViewSheet: View {
                         BulkUpButton(
                             text: "Add",
                             color: .clear,
-                            isDisabled: newTemplateViewModel.selectedExercises.isEmpty,
+                            isDisabled: workoutOngoingViewModel.selectedExercises.isEmpty,
                             onClick: {
-                                onAdd(newTemplateViewModel.selectedExercises)
+                                print("Add clicked!")
+                                onAdd(workoutOngoingViewModel.selectedExercises)
                                 isPresented = false
                             })
                     }
@@ -111,7 +112,7 @@ struct ExercisesViewSheet: View {
                         fetchNext: viewModel.getExercises,
                         isReachingEnd: viewModel.isReachingEnd,
                         isNewTemplateMode: isNewTemplateMode,
-                        onTap: newTemplateViewModel.onExerciseTap
+                        onTap: workoutOngoingViewModel.onExerciseTap
                     )
                 }
                 .toolbar {
