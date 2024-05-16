@@ -38,7 +38,3 @@ struct TemplateCardViewBuilder: View {
         }
     }
 }
-
-//#Preview {
-//    TemplateCardViewBuilder()
-//}

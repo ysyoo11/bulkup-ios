@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct TemplateCard: View {
+    
+    @ObservedObject private var viewModel = StartWorkoutViewModel()
     @Binding var selectedTemplateId: String
     @Binding var showingTemplatePreview: Bool
+    
     var template: UserTemplateWithExercises
 
     var body: some View {
@@ -20,8 +23,9 @@ struct TemplateCard: View {
                         .font(.headline)
                         .foregroundColor(.black)
                     Spacer()
-                    
                 }
+                .padding(.bottom, 1)
+                
                 ForEach(template.exercises, id: \.exercise.id.self) { item in
                     Text("\(item.exercise.name) (\(item.exercise.category))")
                         .font(.subheadline)
@@ -29,26 +33,35 @@ struct TemplateCard: View {
                 }
                 Spacer()
             }
-            .padding()
-            .background(.white)
-            .cornerRadius(10)
+            .padding(15)
             .overlay(
                 RoundedRectangle(cornerRadius:10)
-                    .stroke(.secondaryGray, lineWidth: 1)
-                    .frame(minWidth: 170, minHeight: 140, maxHeight: 140))
-            .frame(minWidth: 170, maxHeight: 160)
+                    .stroke(.secondaryGray, lineWidth: 1))
+            .frame(minWidth: 170, minHeight: 140, maxHeight: 140, alignment: .top)
+            .clipped()
             .onTapGesture {
                 selectedTemplateId = template.id
                 showingTemplatePreview = true
             }
+            
             VStack {
                 HStack {
                     Spacer()
-                    TemplateEditMenu(templateId: template.id)
+                    BulkUpMenu(options: [
+                        .option(text: "Delete", icon: "xmark", action: {
+                            viewModel.removeUserTemplate(templateId: template.id)
+                        }),
+                        .option(text: "Rename", icon: "pencil", action: {
+                            print("Rename tapped") // TODO:
+                        }),
+                        .option(text: "Edit Template", icon: "pencil", action: {
+                            print("Edit Template tapped") // TODO:
+                        })
+                    ])
                 }
                 Spacer()
             }
-            .padding()
+            .padding(13)
         }
     }
 }

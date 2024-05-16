@@ -62,7 +62,6 @@
 		A2A1D4772BF09A0D00AA09D5 /* InstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A1D4762BF09A0D00AA09D5 /* InstructionView.swift */; };
 		A2A1D47E2BF10F1700AA09D5 /* ExercisesViewSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A1D47D2BF10F1700AA09D5 /* ExercisesViewSheet.swift */; };
 		A2A1D4822BF1D8B800AA09D5 /* TemplatePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A1D4812BF1D8B800AA09D5 /* TemplatePreview.swift */; };
-		A2A5AD132BE8E4430087E2BA /* TemplateEditMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A5AD122BE8E4430087E2BA /* TemplateEditMenu.swift */; };
 		A2B526942BEB42ED0093BDE1 /* WorkoutList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B526932BEB42ED0093BDE1 /* WorkoutList.swift */; };
 		A2B526962BEB47280093BDE1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2B526952BEB47280093BDE1 /* GoogleService-Info.plist */; };
 		A2B526992BEB47C30093BDE1 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B526982BEB47C30093BDE1 /* SignUpView.swift */; };
@@ -133,7 +132,6 @@
 		A2A1D4762BF09A0D00AA09D5 /* InstructionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionView.swift; sourceTree = "<group>"; };
 		A2A1D47D2BF10F1700AA09D5 /* ExercisesViewSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesViewSheet.swift; sourceTree = "<group>"; };
 		A2A1D4812BF1D8B800AA09D5 /* TemplatePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplatePreview.swift; sourceTree = "<group>"; };
-		A2A5AD122BE8E4430087E2BA /* TemplateEditMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateEditMenu.swift; sourceTree = "<group>"; };
 		A2B526932BEB42ED0093BDE1 /* WorkoutList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutList.swift; sourceTree = "<group>"; };
 		A2B526952BEB47280093BDE1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A2B526982BEB47C30093BDE1 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
@@ -352,7 +350,6 @@
 		A2A5AD0F2BE8E3110087E2BA /* component */ = {
 			isa = PBXGroup;
 			children = (
-				A2A5AD122BE8E4430087E2BA /* TemplateEditMenu.swift */,
 				A205D7FB2BEE836E0065CF5B /* SetList.swift */,
 				A27BD92B2BEF8FF60069EA77 /* TextFieldWithDebounce.swift */,
 				A2D68EB92BE8DD66000D19CB /* RestTimerSetupView.swift */,
@@ -536,7 +533,6 @@
 				A2F81A972BF1EFF0001176B6 /* WorkoutOngoingSetList.swift in Sources */,
 				A271303D2BEB616000CDC8A9 /* LogInView.swift in Sources */,
 				A241D4B02BF64718003AE267 /* SelectableMenu.swift in Sources */,
-				A2A5AD132BE8E4430087E2BA /* TemplateEditMenu.swift in Sources */,
 				A2F81A912BF1EF1C001176B6 /* WorkoutOngoingView.swift in Sources */,
 				A27FAEE92BEE4FEC00436B5E /* ExercisesView.swift in Sources */,
 				A2A1D4592BF07C0000AA09D5 /* TemplateCardViewBuilder.swift in Sources */,
