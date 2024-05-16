@@ -7,10 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A205D7F22BEE61350065CF5B /* ExercisesDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A205D7F12BEE61350065CF5B /* ExercisesDatabase.swift */; };
 		A205D7F42BEE637D0065CF5B /* ExercisesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A205D7F32BEE637D0065CF5B /* ExercisesManager.swift */; };
-		A205D7F62BEE80DF0065CF5B /* BodyPartMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A205D7F52BEE80DF0065CF5B /* BodyPartMenu.swift */; };
-		A205D7F82BEE81200065CF5B /* ExerciseCategoryMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A205D7F72BEE81200065CF5B /* ExerciseCategoryMenu.swift */; };
 		A205D7FA2BEE81AD0065CF5B /* NewExerciseDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A205D7F92BEE81AD0065CF5B /* NewExerciseDialog.swift */; };
 		A205D7FC2BEE836E0065CF5B /* SetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A205D7FB2BEE836E0065CF5B /* SetList.swift */; };
 		A21625B42BEB7EFD00BBE9AC /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = A21625B32BEB7EFD00BBE9AC /* GoogleSignIn */; };
@@ -19,6 +16,7 @@
 		A241D4AA2BF63900003AE267 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A241D4A92BF63900003AE267 /* HistoryViewModel.swift */; };
 		A241D4AC2BF63E8A003AE267 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A241D4AB2BF63E8A003AE267 /* SettingsViewModel.swift */; };
 		A241D4AE2BF63F55003AE267 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A241D4AD2BF63F55003AE267 /* ProfileViewModel.swift */; };
+		A241D4B02BF64718003AE267 /* SelectableMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A241D4AF2BF64718003AE267 /* SelectableMenu.swift */; };
 		A2451BC92BF2091700445C01 /* OngoingExercisesViewSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2451BC82BF2091700445C01 /* OngoingExercisesViewSheet.swift */; };
 		A2451BCC2BF258D400445C01 /* UserTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2451BCB2BF258D400445C01 /* UserTemplate.swift */; };
 		A2451BCE2BF2591C00445C01 /* UserHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2451BCD2BF2591C00445C01 /* UserHistory.swift */; };
@@ -85,10 +83,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A205D7F12BEE61350065CF5B /* ExercisesDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesDatabase.swift; sourceTree = "<group>"; };
 		A205D7F32BEE637D0065CF5B /* ExercisesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesManager.swift; sourceTree = "<group>"; };
-		A205D7F52BEE80DF0065CF5B /* BodyPartMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyPartMenu.swift; sourceTree = "<group>"; };
-		A205D7F72BEE81200065CF5B /* ExerciseCategoryMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCategoryMenu.swift; sourceTree = "<group>"; };
 		A205D7F92BEE81AD0065CF5B /* NewExerciseDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExerciseDialog.swift; sourceTree = "<group>"; };
 		A205D7FB2BEE836E0065CF5B /* SetList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetList.swift; sourceTree = "<group>"; };
 		A21625B72BEB7FB600BBE9AC /* BulkUp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "BulkUp-Info.plist"; sourceTree = "<group>"; };
@@ -96,6 +91,7 @@
 		A241D4A92BF63900003AE267 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		A241D4AB2BF63E8A003AE267 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		A241D4AD2BF63F55003AE267 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		A241D4AF2BF64718003AE267 /* SelectableMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableMenu.swift; sourceTree = "<group>"; };
 		A2451BC82BF2091700445C01 /* OngoingExercisesViewSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingExercisesViewSheet.swift; sourceTree = "<group>"; };
 		A2451BCB2BF258D400445C01 /* UserTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTemplate.swift; sourceTree = "<group>"; };
 		A2451BCD2BF2591C00445C01 /* UserHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHistory.swift; sourceTree = "<group>"; };
@@ -189,8 +185,6 @@
 			isa = PBXGroup;
 			children = (
 				A2B526932BEB42ED0093BDE1 /* WorkoutList.swift */,
-				A205D7F52BEE80DF0065CF5B /* BodyPartMenu.swift */,
-				A205D7F72BEE81200065CF5B /* ExerciseCategoryMenu.swift */,
 				A205D7F92BEE81AD0065CF5B /* NewExerciseDialog.swift */,
 				A2A1D4682BF0904300AA09D5 /* ExercisesList.swift */,
 			);
@@ -277,25 +271,9 @@
 				A2B5269A2BEB47FB0093BDE1 /* WelcomeView.swift */,
 				A2B526982BEB47C30093BDE1 /* SignUpView.swift */,
 				A271303C2BEB616000CDC8A9 /* LogInView.swift */,
-				A245A8332BEE061D00778555 /* Subviews */,
-			);
-			path = Authentication;
-			sourceTree = "<group>";
-		};
-		A245A8332BEE061D00778555 /* Subviews */ = {
-			isa = PBXGroup;
-			children = (
 				A245A8342BEE064200778555 /* SignInEmailViewModel.swift */,
 			);
-			path = Subviews;
-			sourceTree = "<group>";
-		};
-		A26970D52BEE1A2A0005F1BB /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				A205D7F12BEE61350065CF5B /* ExercisesDatabase.swift */,
-			);
-			path = Utilities;
+			path = Authentication;
 			sourceTree = "<group>";
 		};
 		A2701BDE2BEB761A0028DDAA /* ErrorHandlers */ = {
@@ -378,6 +356,7 @@
 				A205D7FB2BEE836E0065CF5B /* SetList.swift */,
 				A27BD92B2BEF8FF60069EA77 /* TextFieldWithDebounce.swift */,
 				A2D68EB92BE8DD66000D19CB /* RestTimerSetupView.swift */,
+				A241D4AF2BF64718003AE267 /* SelectableMenu.swift */,
 			);
 			path = component;
 			sourceTree = "<group>";
@@ -438,7 +417,6 @@
 			children = (
 				A2A1D45F2BF08EA900AA09D5 /* Extensions */,
 				A2A1D4622BF08F0000AA09D5 /* Components */,
-				A26970D52BEE1A2A0005F1BB /* Utilities */,
 				A245A8282BEDF72800778555 /* Core */,
 				A21625B82BEB83CC00BBE9AC /* Auth */,
 				A245A82D2BEDFFF300778555 /* Firestore */,
@@ -554,10 +532,10 @@
 			files = (
 				A2A1D4822BF1D8B800AA09D5 /* TemplatePreview.swift in Sources */,
 				A2A1D4672BF08FA600AA09D5 /* ExercisesViewModel.swift in Sources */,
-				A205D7F82BEE81200065CF5B /* ExerciseCategoryMenu.swift in Sources */,
 				A2D5DD0F2BEFF0AC00059D58 /* NewTemplateView.swift in Sources */,
 				A2F81A972BF1EFF0001176B6 /* WorkoutOngoingSetList.swift in Sources */,
 				A271303D2BEB616000CDC8A9 /* LogInView.swift in Sources */,
+				A241D4B02BF64718003AE267 /* SelectableMenu.swift in Sources */,
 				A2A5AD132BE8E4430087E2BA /* TemplateEditMenu.swift in Sources */,
 				A2F81A912BF1EF1C001176B6 /* WorkoutOngoingView.swift in Sources */,
 				A27FAEE92BEE4FEC00436B5E /* ExercisesView.swift in Sources */,
@@ -572,7 +550,6 @@
 				A264A0C02BE8950B00724C36 /* BulkUpTextField.swift in Sources */,
 				A241D4AE2BF63F55003AE267 /* ProfileViewModel.swift in Sources */,
 				A2B526992BEB47C30093BDE1 /* SignUpView.swift in Sources */,
-				A205D7F62BEE80DF0065CF5B /* BodyPartMenu.swift in Sources */,
 				A2A1D46D2BF091C200AA09D5 /* Date.swift in Sources */,
 				A27FAEE72BEE4FB500436B5E /* StartWorkoutView.swift in Sources */,
 				A2701BE62BEB79EC0028DDAA /* HistoryView.swift in Sources */,
@@ -608,7 +585,6 @@
 				A2A1D47E2BF10F1700AA09D5 /* ExercisesViewSheet.swift in Sources */,
 				A25B17F32BECDD2D00E8E6E7 /* Errors.swift in Sources */,
 				A25739ED2BE8F75A001C013E /* BulkUpDialog.swift in Sources */,
-				A205D7F22BEE61350065CF5B /* ExercisesDatabase.swift in Sources */,
 				A2451BCC2BF258D400445C01 /* UserTemplate.swift in Sources */,
 				A25B17F12BECC2D200E8E6E7 /* SettingsView.swift in Sources */,
 				A2A1D4652BF08F3C00AA09D5 /* OnFirstAppearViewModifier.swift in Sources */,

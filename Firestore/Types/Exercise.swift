@@ -7,6 +7,33 @@
 
 import Foundation
 
+enum BodyPart: String, Codable, CaseIterable {
+    case legs = "legs"
+    case back = "back"
+    case chest = "chest"
+    case shoulder = "shoulder"
+    case arms = "arms"
+    case core = "core"
+    case fullBody = "full body"
+}
+
+enum ExerciseCategory: String, Codable, CaseIterable {
+    case dumbbell = "dumbbell"
+    case barbell = "barbell"
+    case machine = "machine"
+    case bodyWeight = "body weight"
+    case cardio = "cardio"
+}
+
+struct Exercise: Identifiable, Codable {
+    let id: String
+    let name: String
+    let bodyPart: BodyPart
+    let category: ExerciseCategory
+    let description: String
+    let imageUrl: String?
+}
+
 struct DBExercise: Codable, Equatable {
     var id: String
     let name: String

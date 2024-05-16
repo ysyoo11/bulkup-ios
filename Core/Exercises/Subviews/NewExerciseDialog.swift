@@ -9,11 +9,13 @@ import SwiftUI
 
 struct NewExerciseDialog: View {
     
-    let allBodyParts = BodyPart.allCases.map { $0.rawValue }
-    let allCategories = ExerciseCategory.allCases.map { $0.rawValue }
+    @State var text: String = ""
     @State var selectedBodyPart = ""
     @State var selectedCategory = ""
     @Binding var isActive: Bool
+    
+    let allBodyParts = BodyPart.allCases.map { $0.rawValue }
+    let allCategories = ExerciseCategory.allCases.map { $0.rawValue }
     
     var body: some View {
         ZStack {
@@ -24,8 +26,7 @@ struct NewExerciseDialog: View {
                 }
             NavigationView {
                 List {
-//                    BulkUpTextField(placeholder: "Add Name", type: .light, isSearch: false, size: .sm)
-//                        .padding(.vertical)
+                    BulkUpTextField(placeholder: "Add Name", type: .light, isSearch: false, size: .sm, text: $text)
                     
                     Picker("Body Part", selection: $selectedBodyPart) {
                         if selectedBodyPart.isEmpty {
@@ -35,6 +36,7 @@ struct NewExerciseDialog: View {
                             Text(bodyPart)
                         }
                     }.pickerStyle(.navigationLink)
+                    
                     Picker("Category", selection: $selectedCategory) {
                         if selectedCategory.isEmpty {
                             Text("Select").tag(Optional(-1))
@@ -50,12 +52,27 @@ struct NewExerciseDialog: View {
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
-                        SetListButton(text: "X", foregroundColor: .primaryGray, backgroundColor: .secondaryGray, action: { isActive = false })
+                        Button {
+                            isActive = false
+                        } label: {
+                            Image(systemName: "xmark")
+                                .font(.caption)
+                                .fontWeight(.bold)
+                                .padding(.vertical, 4)
+                                .padding(.horizontal, 6)
+                                .background(.secondaryGray)
+                                .clipShape(RoundedRectangle(cornerRadius: 6))
+                        }
+                        .tint(.primaryGray)
                     }
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        Button("Save") {
-                            //Add new exercise
+                        Button {
+                            // TODO: Add new exercise
                             isActive = false
+                        } label: {
+                            Text("Save")
+                                .underline()
+                                .fontWeight(.semibold)
                         }
                     }
                 }

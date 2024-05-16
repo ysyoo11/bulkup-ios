@@ -6,23 +6,6 @@
 //
 
 import SwiftUI
-import Combine
-
-class TextFieldObserver : ObservableObject {
-    @Published var debouncedText = ""
-    @Published var searchText = ""
-    
-    private var subscriptions = Set<AnyCancellable>()
-    
-    init() {
-        $searchText
-            .debounce(for: .seconds(1), scheduler: DispatchQueue.main)
-            .sink(receiveValue: { [weak self] t in
-                self?.debouncedText = t
-            } )
-            .store(in: &subscriptions)
-    }
-}
 
 struct ExercisesView: View {
     @StateObject private var viewModel = ExercisesViewModel()
@@ -66,41 +49,18 @@ struct ExercisesView: View {
                     TextFieldWithDebounce(debouncedText: $searchQuery)
                         .padding(.bottom, 5)
 
-                    // TODO: Refactor using BodyPartMenu
                     HStack{
-                        Menu {
-                            Picker("", selection: $selectedBodyPart) {
-                                Text("Any Body Part").tag("")
-                                ForEach(allBodyParts, id: \.self) { bodyPart in
-                                    Text(bodyPart)
-                                }
-                            }
-                            .onChange(of: selectedBodyPart, initial: false, {
-                                filterByBodyPart()
-                            })
-                        } label: {
-                            BulkUpButton(text: selectedBodyPart.isEmpty ? "Any Body Part" : selectedBodyPart,
-                                         color: !selectedBodyPart.isEmpty ? .blue : .gray,
-                                         isDisabled: false, isFullWidth: true) {}
-                        }
+                        SelectableMenu(
+                            currentlySelected: $selectedBodyPart,
+                            defaultDisplayValue: "Any Body Part",
+                            options: allBodyParts,
+                            onChange: filterByBodyPart)
                         
-                        // TODO: Refactor using ExerciseCategoryMenu
-                        Menu {
-                            Picker("", selection: $selectedCategory) {
-                                Text("Any Category").tag("")
-                                ForEach(allCategories, id: \.self) { category in
-                                    Text(category)
-                                }
-                            }
-                            .onChange(of: selectedCategory, initial: false, {
-                                filterByCategory()
-                            })
-                        } label: {
-                            BulkUpButton(text: selectedCategory.isEmpty ? "Any Category" : selectedCategory,
-                                         color: !selectedCategory.isEmpty ? .blue : .gray,
-                                         isDisabled: false,
-                                         isFullWidth: true) {}
-                        }
+                        SelectableMenu(
+                            currentlySelected: $selectedCategory,
+                            defaultDisplayValue: "Any Category",
+                            options: allCategories,
+                            onChange: filterByCategory)
                     }
                 }
                 .padding()
