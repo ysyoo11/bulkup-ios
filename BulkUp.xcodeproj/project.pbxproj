@@ -17,6 +17,8 @@
 		A21625B62BEB7EFD00BBE9AC /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A21625B52BEB7EFD00BBE9AC /* GoogleSignInSwift */; };
 		A241D4A82BF62BCB003AE267 /* HistoryCardBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A241D4A72BF62BCB003AE267 /* HistoryCardBuilder.swift */; };
 		A241D4AA2BF63900003AE267 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A241D4A92BF63900003AE267 /* HistoryViewModel.swift */; };
+		A241D4AC2BF63E8A003AE267 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A241D4AB2BF63E8A003AE267 /* SettingsViewModel.swift */; };
+		A241D4AE2BF63F55003AE267 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A241D4AD2BF63F55003AE267 /* ProfileViewModel.swift */; };
 		A2451BC92BF2091700445C01 /* OngoingExercisesViewSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2451BC82BF2091700445C01 /* OngoingExercisesViewSheet.swift */; };
 		A2451BCC2BF258D400445C01 /* UserTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2451BCB2BF258D400445C01 /* UserTemplate.swift */; };
 		A2451BCE2BF2591C00445C01 /* UserHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2451BCD2BF2591C00445C01 /* UserHistory.swift */; };
@@ -92,6 +94,8 @@
 		A21625B72BEB7FB600BBE9AC /* BulkUp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "BulkUp-Info.plist"; sourceTree = "<group>"; };
 		A241D4A72BF62BCB003AE267 /* HistoryCardBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCardBuilder.swift; sourceTree = "<group>"; };
 		A241D4A92BF63900003AE267 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
+		A241D4AB2BF63E8A003AE267 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		A241D4AD2BF63F55003AE267 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		A2451BC82BF2091700445C01 /* OngoingExercisesViewSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingExercisesViewSheet.swift; sourceTree = "<group>"; };
 		A2451BCB2BF258D400445C01 /* UserTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTemplate.swift; sourceTree = "<group>"; };
 		A2451BCD2BF2591C00445C01 /* UserHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHistory.swift; sourceTree = "<group>"; };
@@ -242,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				A25B17F02BECC2D200E8E6E7 /* SettingsView.swift */,
+				A241D4AB2BF63E8A003AE267 /* SettingsViewModel.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -250,6 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				A245A82B2BEDFA1600778555 /* ProfileView.swift */,
+				A241D4AD2BF63F55003AE267 /* ProfileViewModel.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -564,6 +570,7 @@
 				A2701BE02BEB762A0028DDAA /* Types.swift in Sources */,
 				A245A82F2BEE000300778555 /* UserManager.swift in Sources */,
 				A264A0C02BE8950B00724C36 /* BulkUpTextField.swift in Sources */,
+				A241D4AE2BF63F55003AE267 /* ProfileViewModel.swift in Sources */,
 				A2B526992BEB47C30093BDE1 /* SignUpView.swift in Sources */,
 				A205D7F62BEE80DF0065CF5B /* BodyPartMenu.swift in Sources */,
 				A2A1D46D2BF091C200AA09D5 /* Date.swift in Sources */,
@@ -606,6 +613,7 @@
 				A25B17F12BECC2D200E8E6E7 /* SettingsView.swift in Sources */,
 				A2A1D4652BF08F3C00AA09D5 /* OnFirstAppearViewModifier.swift in Sources */,
 				A245A8322BEE023D00778555 /* AuthenticationViewModel.swift in Sources */,
+				A241D4AC2BF63E8A003AE267 /* SettingsViewModel.swift in Sources */,
 				A27BD92C2BEF8FF60069EA77 /* TextFieldWithDebounce.swift in Sources */,
 				A2F81A992BF1F02C001176B6 /* TimerModel.swift in Sources */,
 				A2F81A9D2BF1FC6B001176B6 /* TemplatePreviewBuilder.swift in Sources */,
