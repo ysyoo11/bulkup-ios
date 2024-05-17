@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct WorkoutOngoingSetListButton: View {
     
@@ -28,6 +29,7 @@ struct WorkoutOngoingSetListButton: View {
 }
 
 struct WorkoutOngoingSetListTextField: View {
+    
     var placeholder: String = ""
     var foregroundColor: Color
     var backgroundColor: Color
@@ -43,6 +45,12 @@ struct WorkoutOngoingSetListTextField: View {
                     .font(.headline)
                     .focused($isFocused)
                     .padding(.init(top: 5, leading: 10, bottom: 5, trailing: 10))
+                    .onReceive(Just(text)) { newValue in
+                        let filtered = newValue.filter { "0123456789.".contains($0) }
+                        if filtered != newValue {
+                            text = filtered
+                        }
+                    }
             }
             .background(backgroundColor)
             .cornerRadius(6)
