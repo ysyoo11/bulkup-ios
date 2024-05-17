@@ -8,7 +8,7 @@ This is a group assignment for UTS Autumn 2024 iOS Application Development.
 - [Yeonsuk Yoo 14100287](https://www.github.com/ysyoo11)
 - [Yuta Horiuchi 24593814](https://www.github.com/uuuta714)
 - Eunbyul Cho
-- Suji Lee
+- [Suji Lee 25100696](https://github.com/SujiLee-d)
 
 ## Tech Stacks Used
 - SwiftUI
