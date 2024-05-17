@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct RestTimerSetupView: View {
-    @ObservedObject private var newTemplateViewModel = NewTemplateViewModel()
     
     let minRestTime = 30
     let maxRestTime = 300
@@ -16,6 +15,8 @@ struct RestTimerSetupView: View {
     @Binding var exerciseIndex: Int
     @Binding var exercise: UserTemplateExerciseWithExercise?
     @Binding var currentStagedExercises: [UserTemplateExerciseWithExercise]
+    var setAutoRestTimer: @MainActor (Int, Int, [UserTemplateExerciseWithExercise]) -> ()
+    var disableAutoRestTimer: @MainActor (Int, [UserTemplateExerciseWithExercise]) -> ()
     
     @State private var isEnabled = true
     @State var timer: Int = 90
@@ -36,9 +37,9 @@ struct RestTimerSetupView: View {
                     }
                     .onChange(of: isEnabled) { _, toggled in
                         if toggled {
-                            newTemplateViewModel.setAutoRestTimer(index: exerciseIndex, sec: timer, exercises: currentStagedExercises)
+                            setAutoRestTimer(exerciseIndex, timer, currentStagedExercises)
                         } else {
-                            newTemplateViewModel.disableAutoRestTimer(index: exerciseIndex, exercises: currentStagedExercises)
+                            disableAutoRestTimer(exerciseIndex, currentStagedExercises)
                         }
                     }
                 }
@@ -60,7 +61,7 @@ struct RestTimerSetupView: View {
                     .disabled(!isEnabled)
                     .onChange(of: timer) { _, sec in
                         if isEnabled {
-                            newTemplateViewModel.setAutoRestTimer(index: exerciseIndex, sec: sec, exercises: currentStagedExercises)
+                            setAutoRestTimer(exerciseIndex, timer, currentStagedExercises)
                         }
                     }
                 }

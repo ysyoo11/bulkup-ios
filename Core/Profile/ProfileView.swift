@@ -7,18 +7,6 @@
 
 import SwiftUI
 
-@MainActor
-final class ProfileViewModel: ObservableObject {
-    
-    @Published private(set) var user: DBUser? = nil
-    
-    func loadCurrentUser() async throws {
-        let authDataResult = try AuthenticationManager.shared.getAuthenticatedUser()
-        self.user = try await UserManager.shared.getUser(userId: authDataResult.uid)
-    }
-    
-}
-
 struct ProfileView: View {
     @StateObject private var viewModel = ProfileViewModel()
     @Binding var showWelcomeView: Bool
@@ -26,15 +14,23 @@ struct ProfileView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                if let user = viewModel.user {
-                    HStack {
-                        Text("Welcome,")
-                            .font(.title)
+                HStack {
+                    if let user = viewModel.user {
+                        HStack {
+                            Image(systemName: "person.fill")
+                                .resizable()
+                                .frame(width: 20, height: 20)
+                                .foregroundColor(.primaryGray)
+                                .padding()
+                                .background(.secondaryGray)
+                                .clipShape(Circle())
+                            Text(user.username ?? user.email!)
+                                .font(.title3)
+                                .bold()
+                                .padding(.leading, 10)
+                        }
                         Spacer()
                     }
-                    Text(user.username ?? user.email!)
-                        .font(.title2)
-                        .bold()
                 }
                 Spacer()
             }

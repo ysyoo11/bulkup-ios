@@ -7,34 +7,6 @@
 
 import SwiftUI
 
-@MainActor
-final class SettingsViewModel: ObservableObject {
-    
-    @Published var authProviders: [AuthProviderOption] = []
-    
-    func loadAuthProviders() {
-        if let providers = try? AuthenticationManager.shared.getProviders() {
-            authProviders = providers
-        }
-    }
-    
-    func logOut() throws {
-        try AuthenticationManager.shared.signOut()
-    }
-    
-    func deleteAccount() async throws {
-        try await AuthenticationManager.shared.delete()
-    }
-    
-    func resetPassword() async throws {
-        let authUser = try AuthenticationManager.shared.getAuthenticatedUser()
-        guard let email = authUser.email else {
-            throw AuthError.runtimeError("User email undefined")
-        }
-        try await AuthenticationManager.shared.resetPassword(email: email)
-    }
-}
-
 struct SettingsView: View {
     @StateObject var viewModel = SettingsViewModel()
     @Binding var showWelcomeView: Bool
@@ -50,8 +22,19 @@ struct SettingsView: View {
         }
     }
     
+    private func deleteAccount() {
+        Task {
+            do {
+                try await viewModel.deleteAccount()
+                showWelcomeView = true
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
     var body: some View {
-        List {
+        VStack {
             BulkUpButton(
                 text: "Log out",
                 color: .pink,
@@ -65,17 +48,9 @@ struct SettingsView: View {
                 color: .red,
                 isDisabled: false,
                 isFullWidth: true,
-                onClick: {
-                    Task {
-                        do {
-                            try await viewModel.deleteAccount()
-                            showWelcomeView = true
-                        } catch {
-                            print(error)
-                        }
-                    }
-                }
+                onClick: deleteAccount
             )
+            .padding(.top, 10)
             
             if viewModel.authProviders.contains(.email) {
                 Button {
@@ -96,7 +71,9 @@ struct SettingsView: View {
                 .padding(.top, 20)
                 .frame(maxWidth: .infinity, alignment: .center)
             }
+            Spacer()
         }
+        .padding()
         .onAppear {
             viewModel.loadAuthProviders()
         }

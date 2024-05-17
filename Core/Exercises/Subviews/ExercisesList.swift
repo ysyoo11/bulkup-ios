@@ -29,11 +29,11 @@ struct ExercisesList: View {
                 }
                 ForEach(sections[key]!, id: \.id) { exercise in
                     WorkoutList(type: .exercise,
-                                exercise: exercise,
-                                action: {
-                                    onTap(exercise)
-                                }, // TODO: Show modal view
-                                isNewTemplateMode: isNewTemplateMode)
+                        exercise: exercise,
+                        action: {
+                            onTap(exercise)
+                        }, // TODO: Show modal view
+                        isNewTemplateMode: isNewTemplateMode)
                     
                     Divider()
                         .padding(.horizontal, 15)

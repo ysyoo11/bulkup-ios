@@ -48,58 +48,22 @@ struct ExercisesViewSheet: View {
     var body: some View {
         ZStack {
             NavigationStack {
-                if isNewTemplateMode {
-                    HStack {
-                        Spacer()
-                        BulkUpButton(
-                            text: "Add",
-                            color: .clear,
-                            isDisabled: newTemplateViewModel.selectedExercises.isEmpty,
-                            onClick: {
-                                onAdd(newTemplateViewModel.selectedExercises)
-                                isPresented = false
-                            })
-                    }
-                }
                 VStack{
                     TextFieldWithDebounce(debouncedText: $searchQuery)
                         .padding(.bottom, 5)
 
-                    // TODO: Refactor using BodyPartMenu
                     HStack{
-                        Menu {
-                            Picker("", selection: $selectedBodyPart) {
-                                Text("Any Body Part").tag("")
-                                ForEach(allBodyParts, id: \.self) { bodyPart in
-                                    Text(bodyPart)
-                                }
-                            }
-                            .onChange(of: selectedBodyPart, initial: false, {
-                                filterByBodyPart()
-                            })
-                        } label: {
-                            BulkUpButton(text: selectedBodyPart.isEmpty ? "Any Body Part" : selectedBodyPart,
-                                         color: !selectedBodyPart.isEmpty ? .blue : .gray,
-                                         isDisabled: false, isFullWidth: true) {}
-                        }
+                        SelectableMenu(
+                            currentlySelected: $selectedBodyPart,
+                            defaultDisplayValue: "Any Body Part",
+                            options: allBodyParts,
+                            onChange: filterByBodyPart)
                         
-                        // TODO: Refactor using ExerciseCategoryMenu
-                        Menu {
-                            Picker("", selection: $selectedCategory) {
-                                Text("Any Category").tag("")
-                                ForEach(allCategories, id: \.self) { category in
-                                    Text(category)
-                                }
-                            }
-                            .onChange(of: selectedCategory, initial: false, {
-                                filterByCategory()
-                            })
-                        } label: {
-                            BulkUpButton(text: selectedCategory.isEmpty ? "Any Category" : selectedCategory,
-                                         color: !selectedCategory.isEmpty ? .blue : .gray,
-                                         isDisabled: false,
-                                         isFullWidth: true) {}
-                        }
+                        SelectableMenu(
+                            currentlySelected: $selectedCategory,
+                            defaultDisplayValue: "Any Category",
+                            options: allCategories,
+                            onChange: filterByCategory)
                     }
                 }
                 .padding()
@@ -114,12 +78,25 @@ struct ExercisesViewSheet: View {
                         onTap: newTemplateViewModel.onExerciseTap
                     )
                 }
+                .navigationTitle("Exercises")
                 .toolbar {
-                    ToolbarItemGroup(placement: .navigationBarLeading) {
+                    ToolbarItemGroup(placement: .topBarLeading) {
                         Button(action: {
                             isDialogActive = true
                         }) {
                             Text("New")
+                        }
+                    }
+                    if isNewTemplateMode {
+                        ToolbarItemGroup(placement: .topBarTrailing) {
+                            BulkUpButton(
+                                text: "Add",
+                                color: .clear,
+                                isDisabled: newTemplateViewModel.selectedExercises.isEmpty,
+                                onClick: {
+                                    onAdd(newTemplateViewModel.selectedExercises)
+                                    isPresented = false
+                                })
                         }
                     }
                 }

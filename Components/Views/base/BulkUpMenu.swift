@@ -41,8 +41,8 @@ struct BulkUpMenu: View {
             Image(systemName: "ellipsis")
                 .foregroundColor(.primaryBlue)
                 .font(.body)
-                .padding(.horizontal, 4)
-                .padding(.vertical, 10)
+                .padding(.horizontal, 6)
+                .padding(.vertical, 8)
                 .background(.secondaryBlue)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
         }

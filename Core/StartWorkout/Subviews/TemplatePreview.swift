@@ -65,7 +65,9 @@ struct TemplatePreview: View {
                         text: "Edit",
                         color: .clear,
                         isDisabled: false,
-                        onClick: {})
+                        onClick: {
+                            // TODO:
+                        })
                 }
                 
                 ForEach(template.exercises, id: \.exercise.id.self) { exercise in

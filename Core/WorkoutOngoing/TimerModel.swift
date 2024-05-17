@@ -11,7 +11,7 @@ import SwiftUI
 class TimerSettings: ObservableObject {
     
     @Published var isEnabled: Bool = false
-    @Published var timer: Int = 120
+    @Published var timer: Int = 90
     
 }
 
@@ -53,9 +53,7 @@ class CountDownTimerModel: NSObject, ObservableObject {
         progress = (progress < 0 ? 0 : progress)
         minutes = (totalSeconds / 60) % 60
         seconds = totalSeconds % 60
-//        print("TotalSeconds: \(totalSeconds)")
-//        print("Minutes: \(minutes)")
-//        print("Seconds: \(seconds)")
+
         timerStringValue = "\(minutes):\(seconds >= 10 ? "\(seconds)" : "0\(seconds)")"
         if minutes <= 0 && seconds <= 0 {
             stopTimer()
@@ -93,9 +91,7 @@ class CountUpTimerModel: NSObject, ObservableObject {
         totalSeconds += 1
         minutes = (totalSeconds / 60) % 60
         seconds = totalSeconds % 60
-//        print("TotalSeconds: \(totalSeconds)")
-//        print("Minutes: \(minutes)")
-//        print("Seconds: \(seconds)")
+
         timerStringValue = "\(minutes):\(seconds >= 10 ? "\(seconds)" : "0\(seconds)")"
     }
 }

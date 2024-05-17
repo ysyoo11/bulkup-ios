@@ -83,7 +83,7 @@ extension UserManager {
     }
     
     func addListenerForAllUserTemplates(userId: String) -> AnyPublisher<[UserTemplate], any Error> {
-        let (publisher, listener) = userTemplatesCollection(userId: userId)
+        let (publisher, listener) = userTemplatesCollection(userId: userId).order(by: UserHistory.CodingKeys.createdAt.rawValue, descending: true)
             .addSnapshotListener(as: UserTemplate.self)
         
         self.userTemplatesListener = listener
@@ -129,7 +129,7 @@ extension UserManager {
         ]
         
         do {
-            try await document.setData(data)
+            try await document.setData(data, merge: false)
         } catch {
             print(error)
         }
