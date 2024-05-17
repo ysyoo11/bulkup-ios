@@ -143,7 +143,10 @@ struct NewTemplateView: View {
                 RestTimerSetupView(
                     exerciseIndex: $selectedExerciseIndex,
                     exercise: $selectedExercise,
-                    currentStagedExercises: $currentStagedExercises)
+                    currentStagedExercises: $currentStagedExercises,
+                    setAutoRestTimer: viewModel.setAutoRestTimer,
+                    disableAutoRestTimer: viewModel.disableAutoRestTimer
+                )
             }
         }
     }

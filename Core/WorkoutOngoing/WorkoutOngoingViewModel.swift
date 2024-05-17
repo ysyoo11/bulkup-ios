@@ -86,7 +86,6 @@ final class WorkoutOngoingViewModel: ObservableObject {
                 volume += set.reps * Int(set.weight ?? 0)
             }
         }
-        print("duration: \(durationSec)")
         let history: UserHistory = UserHistory(
             id: "",
             templateId: templateId,

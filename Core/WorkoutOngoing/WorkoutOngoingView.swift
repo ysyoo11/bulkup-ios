@@ -163,7 +163,6 @@ struct WorkoutOngoingView: View {
                 setsEmptiedExercise.sets = []
                 return setsEmptiedExercise
             }
-            print(viewModel.completedExercises)
         }
         .toolbar(.hidden)
     }

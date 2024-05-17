@@ -29,7 +29,7 @@ final class NewTemplateViewModel: ObservableObject {
         let newlyAddedExercises = exercises.map { exercise in
             UserTemplateExerciseWithExercise(
                 exercise: exercise,
-                sets: [WorkoutSet(weight: 10, reps: 10)],
+                sets: [WorkoutSet(weight: 0, reps: 0)],
                 autoRestTimerSec: 90)
         }
 
@@ -108,7 +108,7 @@ final class NewTemplateViewModel: ObservableObject {
     }
     
     func addUserTemplate() {
-        let userTemplateExerciseArray: [UserTemplateExercise] = self.stagedExercises.map { exercise in
+        let userTemplateExerciseArray: [UserTemplateExercise] = stagedExercises.map { exercise in
             return UserTemplateExercise(
                 exerciseId: exercise.exercise.id,
                 sets: exercise.sets,

@@ -107,9 +107,7 @@ struct BulkUpButton: View {
                 print("Save")
             }
         }
-        BulkUpButton(text: "Template", color: .skyblue, isDisabled: false, image: Image(systemName: "plus")) {
-            print("")
-        }
+        BulkUpButton(text: "Template", color: .skyblue, isDisabled: false, image: Image(systemName: "plus")) {}
     }
     .padding()
 }

@@ -56,7 +56,6 @@ struct OngoingExercisesViewSheet: View {
                             color: .clear,
                             isDisabled: workoutOngoingViewModel.selectedExercises.isEmpty,
                             onClick: {
-                                print("Add clicked!")
                                 onAdd(workoutOngoingViewModel.selectedExercises)
                                 isPresented = false
                             })
