@@ -55,6 +55,7 @@ struct BulkUpTextField: View {
     var label: String?
     var size: TextFieldSize = .base
     var isSecure: Bool = false
+    var isOnlyNum: Bool = false
     
     @Binding var text: String
     @FocusState private var isFocused: Bool
