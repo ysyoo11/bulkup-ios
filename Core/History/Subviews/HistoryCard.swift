@@ -104,7 +104,7 @@ struct HistoryCard: View {
         .background(.white)
         .cornerRadius(10)
         .shadow(radius: 1)
-        .padding()
+        .padding(.horizontal)
     }
 }
 

@@ -28,11 +28,12 @@ struct SetListButton: View {
 }
 
 struct SetListTextField: View {
+    
     var placeholder: String = ""
     var foregroundColor: Color
     var backgroundColor: Color
     
-    @State private var text: String = ""
+    @Binding var text: String
     @FocusState private var isFocused: Bool
     
     var body: some View {
@@ -60,41 +61,39 @@ enum SetListType {
 }
 
 struct SetList: View {
-    let set: Int
-    var weight: Double = 0
-    var reps: Int = 0
+    
+    let exerciseIdx: Int
+    let offset: Int
     let type: SetListType
     var onDelete: () -> Void
+    var updateSet: @MainActor (Int, Int, Double?, Int?) -> ()
+    
     @State private var isChecked: Bool = false
+    @State private var weightStr: String = "0"
+    @State private var repsStr: String = "0"
     
     var body: some View {
         HStack{
             SetListButton(
-                text: "\(set)",
+                text: "\(offset + 1)",
                 foregroundColor: .primaryGray,
                 backgroundColor: isChecked ? .secondaryGreen : .secondaryGray,
                 action: { print("Tapped") })
-            
-            if weight > 0 && reps > 0 {
-                Text("\(Int(weight))kg x \(reps)")
-                    .foregroundColor(.gray)
-                    .font(.headline)
-                    .frame(width: 150)
-            } else {
-                Text("-")
-                    .foregroundColor(.gray)
-                    .font(.headline)
-                    .frame(width: 150)
-            }
+
+            Text("-")
+                .foregroundColor(.gray)
+                .font(.headline)
+                .frame(width: 150)
             
             SetListTextField(
                 foregroundColor: .primaryGray,
-                backgroundColor: isChecked ? .secondaryGreen : .secondaryGray)
+                backgroundColor: isChecked ? .secondaryGreen : .secondaryGray,
+                text: $weightStr)
             
             SetListTextField(
-                placeholder: "10",
                 foregroundColor: .primaryGray,
-                backgroundColor: isChecked ? .secondaryGreen : .secondaryGray)
+                backgroundColor: isChecked ? .secondaryGreen : .secondaryGray,
+                text: $repsStr)
             
             SetListButton(
                 text: type == .ongoing ? "✔︎" : "ⅹ",
@@ -107,13 +106,19 @@ struct SetList: View {
         .padding(.horizontal, 10)
         .padding(.vertical, 10)
         .background(isChecked ? .secondaryGreen : .clear)
+        .onChange(of: weightStr) {
+            updateSet(
+                exerciseIdx,
+                offset,
+                Double(weightStr),
+                Int(repsStr))
+        }
+        .onChange(of: repsStr) {
+            updateSet(
+                exerciseIdx,
+                offset,
+                Double(weightStr),
+                Int(repsStr))
+        }
     }
 }
-
-//#Preview {
-//    VStack(spacing: 0){
-//        SetList(set: 1, weight: 50.0, reps: 10, type: .edit, onDelete: {})
-//        SetList(set: 2, weight: 55.0, reps: 10, type: .ongoing, onDelete: {})
-//        SetList(set: 3, type: .edit, onDelete: {})
-//    }
-//}

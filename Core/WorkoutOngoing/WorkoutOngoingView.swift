@@ -211,7 +211,6 @@ struct ExerciseList: View {
                         .font(Font.system(size: 15))
                         .fontWeight(.bold)
                     Spacer()
-                    Spacer()
                     Text("kg")
                         .font(Font.system(size: 15))
                         .fontWeight(.bold)

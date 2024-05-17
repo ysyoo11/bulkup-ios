@@ -6,119 +6,12 @@
 //
 
 import SwiftUI
-import Foundation
-import Combine
-
-import Foundation
-
-@MainActor
-final class NewTemplateViewModel: ObservableObject {
-    
-    @Published var templateName: String = ""
-    @Published var templateNote: String = ""
-    
-    @Published var selectedExercises: [DBExercise] = []
-    @Published var stagedExercises: [UserTemplateExerciseWithExercise] = []
-    
-    func onExerciseTap(exercise: DBExercise) {
-        if selectedExercises.contains(where: {$0.id == exercise.id}) {
-            self.selectedExercises = selectedExercises.filter({ $0.id != exercise.id })
-            return
-        }
-        self.selectedExercises.append(exercise)
-    }
-    
-    func stageSelectedExercises(exercises: [DBExercise]) {
-        let newlyAddedExercises = exercises.map { exercise in
-            UserTemplateExerciseWithExercise(exercise: exercise, sets: [WorkoutSet(weight: 10, reps: 10)], autoRestTimerSec: 90)
-        }
-
-        self.stagedExercises = stagedExercises + newlyAddedExercises
-        self.selectedExercises = []
-    }
-    
-    func removeExercise(index: Int, from exercises: [UserTemplateExerciseWithExercise]){
-        guard index >= 0 && index < exercises.count else {
-            self.stagedExercises = exercises
-            return
-        }
-        
-        self.stagedExercises = exercises.enumerated().filter { $0.offset != index }.map { $0.element }
-    }
-    
-    func addSet(index: Int, stagedExercises: [UserTemplateExerciseWithExercise]) {
-        self.stagedExercises = stagedExercises.enumerated().map { offset, exercise in
-            var updatedExercise = exercise
-            if offset == index {
-                if let firstSet = exercise.sets.first {
-                    let newSet = WorkoutSet(weight: firstSet.weight, reps: firstSet.reps)
-                    updatedExercise.sets.append(newSet)
-                } else {
-                    let newSet = WorkoutSet(weight: 0.0, reps: 0)
-                    updatedExercise.sets.append(newSet)
-                }
-            }
-            return updatedExercise
-        }
-    }
-    
-    func removeSet(index: Int, stagedExercises: [UserTemplateExerciseWithExercise]) {
-        self.stagedExercises = stagedExercises.enumerated().map { offset, exercise in
-            var updatedExercise = exercise
-            if offset == index {
-                if !updatedExercise.sets.isEmpty {
-                    updatedExercise.sets.removeLast()
-                }
-            }
-            return updatedExercise
-        }
-    }
-    
-    // FIXME: Not applied to self.stagedExercises
-    func setAutoRestTimer(index: Int, sec: Int, exercises: [UserTemplateExerciseWithExercise]) {
-        self.stagedExercises = exercises.enumerated().map { offset, exercise in
-            var updatedExercise = exercise
-            if offset == index {
-                updatedExercise.autoRestTimerSec = sec
-            }
-            return updatedExercise
-        }
-    }
-    // FIXME: Not applied to self.stagedExercises
-    func disableAutoRestTimer(index: Int, exercises: [UserTemplateExerciseWithExercise]) {
-        self.stagedExercises = exercises.enumerated().map { offset, exercise in
-            var updatedExercise = exercise
-            if offset == index {
-                updatedExercise.autoRestTimerSec = nil
-            }
-            return updatedExercise
-        }
-    }
-    
-    func addUserTemplate() {
-        let userTemplateExerciseArray: [UserTemplateExercise] = self.stagedExercises.map { exercise in
-            return UserTemplateExercise(
-                exerciseId: exercise.exercise.id,
-                sets: exercise.sets,
-                autoRestTimerSec: exercise.autoRestTimerSec
-            )
-        }
-        
-        let template = UserTemplate(id: "", name: self.templateName, exercises: userTemplateExerciseArray, createdAt: Date(), updatedAt: Date())
-        
-        Task {
-            let authDataResult = try AuthenticationManager.shared.getAuthenticatedUser()
-            try? await UserManager.shared.addUserTemplate(userId: authDataResult.uid, template: template)
-        }
-    }
-    
-}
 
 struct NewTemplateView: View {
+    
     @StateObject private var viewModel = NewTemplateViewModel()
     
     @Binding var isPresented: Bool
-    @State private var templateName: String = ""
     @State private var showingRestTimerSetupView: Bool = false
     @State private var showingExercisesView: Bool = false
     @State private var selectedExerciseIndex: Int = 0
@@ -167,7 +60,7 @@ struct NewTemplateView: View {
                         .padding(.horizontal, 10)
                     
                     VStack {
-                        ForEach(Array(viewModel.stagedExercises.enumerated()), id: \.offset) { offset, item in
+                        ForEach(Array(viewModel.stagedExercises.enumerated()), id: \.offset) { exerciseIdx, item in
                             VStack {
                                 HStack {
                                     Text("\(item.exercise.name) (\(item.exercise.category.rawValue.capitalized))")
@@ -179,24 +72,53 @@ struct NewTemplateView: View {
                                     
                                     BulkUpButton(text: "Timer", color: .clear, isDisabled: false, onClick: {
                                         currentStagedExercises = viewModel.stagedExercises
-                                        selectedExerciseIndex = offset
+                                        selectedExerciseIndex = exerciseIdx
                                         selectedExercise = item
                                         showingRestTimerSetupView = true
                                     })
                                     BulkUpMenu(options: [
                                         .option(text: "Remove Exercise", icon: "xmark", action: {
-                                            viewModel.removeExercise(index: offset, from: viewModel.stagedExercises)
+                                            viewModel.removeExercise(index: exerciseIdx, from: viewModel.stagedExercises)
                                         })
                                     ])
                                 }
                                 VStack(spacing: 5) {
-                                    ForEach(Array(item.sets.enumerated()), id: \.offset) { index, set in
-                                        SetList(set: index + 1, weight: set.weight ?? 0, reps: set.reps, type: .edit, onDelete: {
-                                            viewModel.removeSet(index: offset, stagedExercises: viewModel.stagedExercises)
-                                        })
+                                    HStack {
+                                        Text("Set")
+                                            .font(Font.system(size: 15))
+                                            .fontWeight(.bold)
+                                        Spacer()
+                                        Text("Previous")
+                                            .font(Font.system(size: 15))
+                                            .fontWeight(.bold)
+                                        Spacer()
+                                        Text("kg")
+                                            .font(Font.system(size: 15))
+                                            .fontWeight(.bold)
+                                        Spacer()
+                                        Text("Reps")
+                                            .font(Font.system(size: 15))
+                                            .fontWeight(.bold)
+                                        Spacer()
+                                        Text("-")
+                                            .font(Font.system(size: 15))
+                                            .fontWeight(.bold)
+                                    }
+                                    .padding(.horizontal)
+                                    
+                                    ForEach(Array(item.sets.enumerated()), id: \.offset) { offset, set in
+                                        SetList(
+                                            exerciseIdx: exerciseIdx,
+                                            offset: offset,
+                                            type: .edit, 
+                                            onDelete: {
+                                                viewModel.removeSet(index: offset, stagedExercises: viewModel.stagedExercises)
+                                            },
+                                            updateSet: viewModel.updateSet
+                                        )
                                     }
                                     BulkUpButton(text: "+ Add Set", color: .gray, isDisabled: false, isFullWidth: true, size: .sm, onClick: {
-                                        viewModel.addSet(index: offset, stagedExercises: viewModel.stagedExercises)
+                                        viewModel.addSet(index: exerciseIdx, stagedExercises: viewModel.stagedExercises)
                                     })
                                 }
                             }
