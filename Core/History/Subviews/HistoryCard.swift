@@ -43,61 +43,61 @@ struct HistoryCard: View {
                 .font(.caption)
                 .padding(.top, 1)
                 
-                VStack {
-                    HStack {
-                        Text("Exercise")
-                            .font(Font.system(size: 15))
-                            .fontWeight(.medium)
-                            .foregroundStyle(.primaryGray)
-                            .frame(
-                              minWidth: 0,
-                              maxWidth: .infinity,
-                              minHeight: 0,
-                              alignment: .topLeading
-                            )
-                        
-                        Text("Best Set")
-                            .font(Font.system(size: 15))
-                            .fontWeight(.medium)
-                            .foregroundStyle(.primaryGray)
-                            .frame(
-                              minWidth: 0,
-                              maxWidth: .infinity,
-                              minHeight: 0,
-                              alignment: .topLeading
-                            )
-                    }
-                    .padding(.top, 2)
-                    
-                    ForEach(Array(history.template.exercises.enumerated()), id: \.element.exercise.id.self) { _, exercise in
-                        HStack {
-                            Text("\(exercise.sets.count) x \(exercise.exercise.name) (\(exercise.exercise.category))")
-                                .font(.footnote)
-                                .foregroundStyle(.gray)
-                                .frame(
-                                  minWidth: 0,
-                                  maxWidth: .infinity,
-                                  minHeight: 0,
-                                  alignment: .topLeading
-                                )
-                                .lineLimit(1)
-                                .truncationMode(.tail)
-
-                            Text("\(Int(exercise.sets[0].weight!))kg x \(exercise.sets[0].reps)")
-                                .font(.footnote)
-                                .foregroundStyle(.gray)
-                                .frame(
-                                  minWidth: 0,
-                                  maxWidth: .infinity,
-                                  minHeight: 0,
-                                  alignment: .topLeading
-                                )
-                                .lineLimit(1)
-                                .truncationMode(.tail)
-                        }
-                    }
-                }
-                .padding(.top, 1)
+//                VStack {
+//                    HStack {
+//                        Text("Exercise")
+//                            .font(Font.system(size: 15))
+//                            .fontWeight(.medium)
+//                            .foregroundStyle(.primaryGray)
+//                            .frame(
+//                              minWidth: 0,
+//                              maxWidth: .infinity,
+//                              minHeight: 0,
+//                              alignment: .topLeading
+//                            )
+//                        
+//                        Text("Best Set")
+//                            .font(Font.system(size: 15))
+//                            .fontWeight(.medium)
+//                            .foregroundStyle(.primaryGray)
+//                            .frame(
+//                              minWidth: 0,
+//                              maxWidth: .infinity,
+//                              minHeight: 0,
+//                              alignment: .topLeading
+//                            )
+//                    }
+//                    .padding(.top, 2)
+//                    
+//                    ForEach(Array(history.template.exercises.enumerated()), id: \.element.exercise.id.self) { _, exercise in
+//                        HStack {
+//                            Text("\(exercise.sets.count) x \(exercise.exercise.name) (\(exercise.exercise.category))")
+//                                .font(.footnote)
+//                                .foregroundStyle(.gray)
+//                                .frame(
+//                                  minWidth: 0,
+//                                  maxWidth: .infinity,
+//                                  minHeight: 0,
+//                                  alignment: .topLeading
+//                                )
+//                                .lineLimit(1)
+//                                .truncationMode(.tail)
+//
+//                            Text("\(Int(exercise.sets[0].weight!))kg x \(exercise.sets[0].reps)")
+//                                .font(.footnote)
+//                                .foregroundStyle(.gray)
+//                                .frame(
+//                                  minWidth: 0,
+//                                  maxWidth: .infinity,
+//                                  minHeight: 0,
+//                                  alignment: .topLeading
+//                                )
+//                                .lineLimit(1)
+//                                .truncationMode(.tail)
+//                        }
+//                    }
+//                }
+//                .padding(.top, 1)
             }
             .padding()
         }

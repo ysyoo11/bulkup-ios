@@ -7,6 +7,12 @@
 
 import Foundation
 
+// TODO: Add [CompletedExercise] in UserHistory and make it Codable
+struct CompletedExercise {
+    let exerciseId: String
+    let sets: [WorkoutSet]
+}
+
 struct UserHistoryWithInfo: Identifiable {
     let id: String
     let template: UserTemplateWithExercises

@@ -78,6 +78,7 @@ final class WorkoutOngoingViewModel: ObservableObject {
         }
     }
     
+    // TODO: Update History struct and save `completedExercises` to show details about completed exercises
     func saveHistory(templateId: String, durationSec: Int) {
         var volume = 0
         for exercise in self.completedExercises {
