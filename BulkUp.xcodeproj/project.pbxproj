@@ -34,12 +34,11 @@
 		A25739F42BE90A1C001C013E /* ModalView in Frameworks */ = {isa = PBXBuildFile; productRef = A25739F32BE90A1C001C013E /* ModalView */; settings = {ATTRIBUTES = (Required, ); }; };
 		A25B17EF2BECB34400E8E6E7 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25B17EE2BECB34400E8E6E7 /* AuthenticationManager.swift */; };
 		A25B17F12BECC2D200E8E6E7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25B17F02BECC2D200E8E6E7 /* SettingsView.swift */; };
-		A25B17F32BECDD2D00E8E6E7 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25B17F22BECDD2D00E8E6E7 /* Errors.swift */; };
 		A264A0BE2BE88D7600724C36 /* BulkUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A264A0BD2BE88D7600724C36 /* BulkUpButton.swift */; };
 		A264A0C02BE8950B00724C36 /* BulkUpTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A264A0BF2BE8950B00724C36 /* BulkUpTextField.swift */; };
 		A264A0C22BE8C70F00724C36 /* BulkUpMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A264A0C12BE8C70F00724C36 /* BulkUpMenu.swift */; };
 		A26970D92BEE280E0005F1BB /* SignInGoogleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26970D82BEE280E0005F1BB /* SignInGoogleHelper.swift */; };
-		A2701BE02BEB762A0028DDAA /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2701BDF2BEB762A0028DDAA /* Types.swift */; };
+		A2701BE02BEB762A0028DDAA /* UserExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2701BDF2BEB762A0028DDAA /* UserExercise.swift */; };
 		A2701BE22BEB78680028DDAA /* HistoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2701BE12BEB78680028DDAA /* HistoryCard.swift */; };
 		A2701BE62BEB79EC0028DDAA /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2701BE52BEB79EC0028DDAA /* HistoryView.swift */; };
 		A270B24A2BEB55820042AD0D /* BulkUpNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = A270B2492BEB55820042AD0D /* BulkUpNavigationLink.swift */; };
@@ -103,12 +102,11 @@
 		A25739EC2BE8F75A001C013E /* BulkUpDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkUpDialog.swift; sourceTree = "<group>"; };
 		A25B17EE2BECB34400E8E6E7 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		A25B17F02BECC2D200E8E6E7 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		A25B17F22BECDD2D00E8E6E7 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		A264A0BD2BE88D7600724C36 /* BulkUpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkUpButton.swift; sourceTree = "<group>"; };
 		A264A0BF2BE8950B00724C36 /* BulkUpTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkUpTextField.swift; sourceTree = "<group>"; };
 		A264A0C12BE8C70F00724C36 /* BulkUpMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkUpMenu.swift; sourceTree = "<group>"; };
 		A26970D82BEE280E0005F1BB /* SignInGoogleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInGoogleHelper.swift; sourceTree = "<group>"; };
-		A2701BDF2BEB762A0028DDAA /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
+		A2701BDF2BEB762A0028DDAA /* UserExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserExercise.swift; sourceTree = "<group>"; };
 		A2701BE12BEB78680028DDAA /* HistoryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCard.swift; sourceTree = "<group>"; };
 		A2701BE52BEB79EC0028DDAA /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		A270B2492BEB55820042AD0D /* BulkUpNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkUpNavigationLink.swift; sourceTree = "<group>"; };
@@ -209,6 +207,7 @@
 				A2451BCF2BF2594C00445C01 /* User.swift */,
 				A2451BCB2BF258D400445C01 /* UserTemplate.swift */,
 				A2451BCD2BF2591C00445C01 /* UserHistory.swift */,
+				A2701BDF2BEB762A0028DDAA /* UserExercise.swift */,
 				A2451BD12BF2598200445C01 /* Exercise.swift */,
 			);
 			path = Types;
@@ -268,15 +267,6 @@
 				A245A8342BEE064200778555 /* SignInEmailViewModel.swift */,
 			);
 			path = Authentication;
-			sourceTree = "<group>";
-		};
-		A2701BDE2BEB761A0028DDAA /* ErrorHandlers */ = {
-			isa = PBXGroup;
-			children = (
-				A2701BDF2BEB762A0028DDAA /* Types.swift */,
-				A25B17F22BECDD2D00E8E6E7 /* Errors.swift */,
-			);
-			path = ErrorHandlers;
 			sourceTree = "<group>";
 		};
 		A2710E0D2BF710D30054AD15 /* Subviews */ = {
@@ -419,7 +409,6 @@
 				A245A8282BEDF72800778555 /* Core */,
 				A21625B82BEB83CC00BBE9AC /* Auth */,
 				A245A82D2BEDFFF300778555 /* Firestore */,
-				A2701BDE2BEB761A0028DDAA /* ErrorHandlers */,
 				F295E3742BE647B600D2DE64 /* BulkUpApp.swift */,
 				F295E3782BE647B800D2DE64 /* Assets.xcassets */,
 				A2B526952BEB47280093BDE1 /* GoogleService-Info.plist */,
@@ -542,7 +531,7 @@
 				A2B526942BEB42ED0093BDE1 /* WorkoutList.swift in Sources */,
 				A264A0C22BE8C70F00724C36 /* BulkUpMenu.swift in Sources */,
 				A245A8352BEE064200778555 /* SignInEmailViewModel.swift in Sources */,
-				A2701BE02BEB762A0028DDAA /* Types.swift in Sources */,
+				A2701BE02BEB762A0028DDAA /* UserExercise.swift in Sources */,
 				A245A82F2BEE000300778555 /* UserManager.swift in Sources */,
 				A264A0C02BE8950B00724C36 /* BulkUpTextField.swift in Sources */,
 				A241D4AE2BF63F55003AE267 /* ProfileViewModel.swift in Sources */,
@@ -580,7 +569,6 @@
 				A241D4AA2BF63900003AE267 /* HistoryViewModel.swift in Sources */,
 				A2451BD02BF2594C00445C01 /* User.swift in Sources */,
 				A2A1D47E2BF10F1700AA09D5 /* ExercisesViewSheet.swift in Sources */,
-				A25B17F32BECDD2D00E8E6E7 /* Errors.swift in Sources */,
 				A25739ED2BE8F75A001C013E /* BulkUpDialog.swift in Sources */,
 				A2451BCC2BF258D400445C01 /* UserTemplate.swift in Sources */,
 				A25B17F12BECC2D200E8E6E7 /* SettingsView.swift in Sources */,

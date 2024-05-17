@@ -1,5 +1,5 @@
 //
-//  Types.swift
+//  UserExercise.swift
 //  BulkUp
 //
 //  Created by Yeonsuk Yoo on 8/5/2024.

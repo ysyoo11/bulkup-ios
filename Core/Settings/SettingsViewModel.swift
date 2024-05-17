@@ -29,7 +29,8 @@ final class SettingsViewModel: ObservableObject {
     func resetPassword() async throws {
         let authUser = try AuthenticationManager.shared.getAuthenticatedUser()
         guard let email = authUser.email else {
-            throw AuthError.runtimeError("User email undefined")
+            print("User email undefined")
+            return
         }
         try await AuthenticationManager.shared.resetPassword(email: email)
     }
