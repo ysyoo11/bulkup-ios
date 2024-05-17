@@ -11,7 +11,7 @@ import SwiftUI
 class TimerSettings: ObservableObject {
     
     @Published var isEnabled: Bool = false
-    @Published var timer: Int = 120
+    @Published var timer: Int = 90
     
 }
 

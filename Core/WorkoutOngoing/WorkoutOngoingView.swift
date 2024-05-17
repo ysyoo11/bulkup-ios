@@ -55,6 +55,7 @@ struct WorkoutOngoingView: View {
                                 id: exercise.exercise.id,
                                 name: exercise.exercise.name,
                                 sets: exercise.sets,
+                                autoRestTimer: exercise.autoRestTimerSec,
                                 onRemove: {
                                     viewModel.removeExercise(
                                         index: offset,
@@ -175,6 +176,7 @@ struct ExerciseList: View {
     let id: String
     let name: String
     let sets: [WorkoutSet]
+    let autoRestTimer: Int?
     let onRemove: () -> Void
     let onAddSet: () -> Void
     let weight: Double = 0
@@ -233,7 +235,8 @@ struct ExerciseList: View {
                         reps: set.reps,
                         isActiveRestTimerView: $isActiveRestTimerView,
                         weightStr: String(set.weight ?? 0),
-                        repsStr: String(set.reps))
+                        repsStr: String(set.reps),
+                        autoRestTimer: autoRestTimer ?? 0)
                 }
                 
                 BulkUpButton(

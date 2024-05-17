@@ -67,6 +67,7 @@ struct WorkoutOngoingSetList: View {
     
     @State var weightStr: String
     @State var repsStr: String
+    let autoRestTimer: Int
     
     var body: some View {
         HStack{
@@ -106,6 +107,7 @@ struct WorkoutOngoingSetList: View {
                 action: {
                     isChecked.toggle()
                     if isChecked {
+                        timerSettings.timer = autoRestTimer
                         isActiveRestTimerView = true
                     }
                 })
@@ -115,6 +117,7 @@ struct WorkoutOngoingSetList: View {
         .background(isChecked ? .secondaryGreen : .clear)
         .onChange(of: isChecked) { oldValue, newValue in
             if newValue && timerSettings.isEnabled {
+                timerSettings.timer = autoRestTimer
                 isActiveRestTimerView = true
             }
         }
