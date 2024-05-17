@@ -27,6 +27,8 @@ struct SignUpView: View {
     @StateObject private var viewModel = SignUpEmailViewModel()
     @Binding var showWelcomeView: Bool
     
+    @State private var errorMessage: String = ""
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -55,6 +57,14 @@ struct SignUpView: View {
                         text: $viewModel.email
                     )
                     .padding(.top, 20)
+                    .onChange(of: viewModel.email, {
+                        errorMessage = ""
+                    })
+                    
+                    if !errorMessage.isEmpty {
+                        Text(errorMessage)
+                            .foregroundStyle(.primaryRed)
+                    }
                     
                     BulkUpTextField(
                         placeholder: "",
@@ -65,26 +75,23 @@ struct SignUpView: View {
                         text: $viewModel.password
                     )
                     
-                    // TODO: Modify BulkUpButton and use the component
-                    Button {
-                        Task {
-                            do {
-                                try await viewModel.signUp()
-                                showWelcomeView = false
-                            } catch {
-                                print(error)
+                    BulkUpButton(
+                        text: "Sign Up",
+                        color: .blue,
+                        isDisabled: viewModel.email.isEmpty || viewModel.password.count < 6,
+                        isFullWidth: true,
+                        onClick: {
+                            Task {
+                                do {
+                                    try await viewModel.signUp()
+                                    showWelcomeView = false
+                                } catch {
+                                    print(error)
+                                    errorMessage = error.localizedDescription
+                                }
                             }
-                        }
-                    } label: {
-                        Text("Sign Up")
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .frame(height: 40)
-                            .frame(maxWidth: .infinity)
-                            .background(.primaryBlue)
-                            .cornerRadius(6)
-                    }
-                    .padding(.top, 20)
+                        })
+                    .padding(.top, 15)
                     
                     Spacer()
                 }
