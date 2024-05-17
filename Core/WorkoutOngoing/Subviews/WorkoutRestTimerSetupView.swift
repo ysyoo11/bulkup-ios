@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct WorkoutOngoingRestTimerSetupView: View {
-//    var userId: String
-//    var exerciseId: String
+    
     let minRestTime = 30
     let maxRestTime = 300
     @EnvironmentObject var timerSettings: TimerSettings

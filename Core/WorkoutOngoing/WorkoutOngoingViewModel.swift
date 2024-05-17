@@ -68,7 +68,6 @@ final class WorkoutOngoingViewModel: ObservableObject {
         }
     }
     
-    // FIXME:
     func updateCompletedExercises(exerciseIdx: Int, set: WorkoutSet, isChecked: Bool, setIdx: Int) {
         if isChecked {
             self.completedExercises[exerciseIdx].sets.append(set)
@@ -81,7 +80,7 @@ final class WorkoutOngoingViewModel: ObservableObject {
     
     func saveHistory(templateId: String, durationSec: Int) {
         var volume = 0
-        for exercise in self.ongoingExercises {
+        for exercise in self.completedExercises {
             for set in exercise.sets {
                 volume += set.reps * Int(set.weight ?? 0)
             }

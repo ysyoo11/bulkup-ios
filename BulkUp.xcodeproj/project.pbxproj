@@ -43,6 +43,7 @@
 		A2701BE22BEB78680028DDAA /* HistoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2701BE12BEB78680028DDAA /* HistoryCard.swift */; };
 		A2701BE62BEB79EC0028DDAA /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2701BE52BEB79EC0028DDAA /* HistoryView.swift */; };
 		A270B24A2BEB55820042AD0D /* BulkUpNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = A270B2492BEB55820042AD0D /* BulkUpNavigationLink.swift */; };
+		A2710E0F2BF711A20054AD15 /* ExerciseList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2710E0E2BF711A20054AD15 /* ExerciseList.swift */; };
 		A271303D2BEB616000CDC8A9 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A271303C2BEB616000CDC8A9 /* LogInView.swift */; };
 		A27BD92C2BEF8FF60069EA77 /* TextFieldWithDebounce.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27BD92B2BEF8FF60069EA77 /* TextFieldWithDebounce.swift */; };
 		A27C95542BEB40A200A32358 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A27C95532BEB40A200A32358 /* FirebaseAuth */; settings = {ATTRIBUTES = (Required, ); }; };
@@ -111,6 +112,7 @@
 		A2701BE12BEB78680028DDAA /* HistoryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCard.swift; sourceTree = "<group>"; };
 		A2701BE52BEB79EC0028DDAA /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		A270B2492BEB55820042AD0D /* BulkUpNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkUpNavigationLink.swift; sourceTree = "<group>"; };
+		A2710E0E2BF711A20054AD15 /* ExerciseList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseList.swift; sourceTree = "<group>"; };
 		A271303C2BEB616000CDC8A9 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		A27BD92B2BEF8FF60069EA77 /* TextFieldWithDebounce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithDebounce.swift; sourceTree = "<group>"; };
 		A27FAEE62BEE4FB500436B5E /* StartWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartWorkoutView.swift; sourceTree = "<group>"; };
@@ -277,6 +279,18 @@
 			path = ErrorHandlers;
 			sourceTree = "<group>";
 		};
+		A2710E0D2BF710D30054AD15 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				A2F81A922BF1EF43001176B6 /* OngoingExerciseMenu.swift */,
+				A2F81A942BF1EF95001176B6 /* RestTimerView.swift */,
+				A2F81A962BF1EFF0001176B6 /* WorkoutOngoingSetList.swift */,
+				A2F81A9A2BF1F337001176B6 /* WorkoutRestTimerSetupView.swift */,
+				A2710E0E2BF711A20054AD15 /* ExerciseList.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
 		A2A1D45A2BF07C0900AA09D5 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
@@ -390,12 +404,9 @@
 			children = (
 				A2F81A902BF1EF1C001176B6 /* WorkoutOngoingView.swift */,
 				A2451BD32BF26B3200445C01 /* WorkoutOngoingViewModel.swift */,
-				A2F81A922BF1EF43001176B6 /* OngoingExerciseMenu.swift */,
-				A2F81A942BF1EF95001176B6 /* RestTimerView.swift */,
-				A2F81A962BF1EFF0001176B6 /* WorkoutOngoingSetList.swift */,
 				A2F81A982BF1F02C001176B6 /* TimerModel.swift */,
-				A2F81A9A2BF1F337001176B6 /* WorkoutRestTimerSetupView.swift */,
 				A2451BC82BF2091700445C01 /* OngoingExercisesViewSheet.swift */,
+				A2710E0D2BF710D30054AD15 /* Subviews */,
 			);
 			path = WorkoutOngoing;
 			sourceTree = "<group>";
@@ -541,6 +552,7 @@
 				A2701BE62BEB79EC0028DDAA /* HistoryView.swift in Sources */,
 				A2F81A952BF1EF95001176B6 /* RestTimerView.swift in Sources */,
 				A2451BD42BF26B3200445C01 /* WorkoutOngoingViewModel.swift in Sources */,
+				A2710E0F2BF711A20054AD15 /* ExerciseList.swift in Sources */,
 				F295E3772BE647B600D2DE64 /* RootView.swift in Sources */,
 				A2A1D46B2BF0911C00AA09D5 /* StartWorkoutViewModel.swift in Sources */,
 				A2D68EBA2BE8DD66000D19CB /* RestTimerSetupView.swift in Sources */,

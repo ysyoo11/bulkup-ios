@@ -68,6 +68,7 @@ struct WorkoutOngoingSetList: View {
     @State var weightStr: String
     @State var repsStr: String
     let autoRestTimer: Int
+    var updateCompletedExercises: @MainActor (Int, WorkoutSet, Bool, Int) -> ()
     
     var body: some View {
         HStack{
@@ -110,6 +111,7 @@ struct WorkoutOngoingSetList: View {
                         timerSettings.timer = autoRestTimer
                         isActiveRestTimerView = true
                     }
+                    updateCompletedExercises(exerciseIndex, WorkoutSet(weight: weight, reps: reps), isChecked, set)
                 })
         }
         .padding(.horizontal, 10)
